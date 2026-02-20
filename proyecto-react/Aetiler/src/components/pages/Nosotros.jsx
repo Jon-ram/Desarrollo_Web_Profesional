@@ -107,7 +107,7 @@ function Nosotros() {
                 <section className="py-12 md:py-16">
                     <div className="max-w-3xl mx-auto text-center">
                         <div className="mb-8">
-                            <h2 className="text-xs font-bold uppercase tracking-[0.3em] text-primary mb-4">
+                            <h2 className="text-xs font-bold uppercase tracking-[0.3em] text-white mb-4">
                                 Nuestra Misión
                             </h2>
                             <p className="text-2xl md:text-3xl font-display font-medium leading-relaxed text-white">
@@ -135,7 +135,7 @@ function Nosotros() {
                                 className="text-center p-6 rounded-xl border border-slate-800 hover:border-primary/50 transition-colors"
                             >
                                 <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                                    <span className="material-symbols-outlined text-primary">
+                                    <span className="material-symbols-outlined text-white">
                                         {valor.icono}
                                     </span>
                                 </div>

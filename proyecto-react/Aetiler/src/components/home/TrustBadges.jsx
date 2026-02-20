@@ -15,7 +15,7 @@ function TrustBadges() {
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
                     {badges.map((badge, index) => (
                         <div key={index} className="space-y-2">
-                            <span className="material-symbols-outlined text-primary text-3xl">
+                            <span className="material-symbols-outlined text-white text-3xl">
                                 {badge.icon}
                             </span>
                             <p className="text-sm font-medium text-slate-300">{badge.text}</p>

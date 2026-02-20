@@ -1,9 +1,13 @@
 // src/components/pages/Login.jsx
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+
+// Referencia a grecaptcha de window
+const grecaptcha = window.grecaptcha;
 
 function Login() {
     const navigate = useNavigate();
+    const recaptchaRef = useRef(null);
     
     // Usuario válido (demo)
     const VALID_USER = {
@@ -26,13 +30,67 @@ function Login() {
     const [generalError, setGeneralError] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
-    const [recaptchaValid, setRecaptchaValid] = useState(false);
+    const [recaptchaToken, setRecaptchaToken] = useState('');
+    const [recaptchaError, setRecaptchaError] = useState(false);
+    const [recaptchaLoaded, setRecaptchaLoaded] = useState(false);
     
     // Estado para modal de recuperación
     const [showForgotModal, setShowForgotModal] = useState(false);
     const [recoveryEmail, setRecoveryEmail] = useState('');
     const [recoveryError, setRecoveryError] = useState('');
     const [recoverySuccess, setRecoverySuccess] = useState(false);
+
+    // Cargar reCAPTCHA
+    useEffect(() => {
+        // Verificar si reCAPTCHA ya está cargado
+        if (window.grecaptcha) {
+            setRecaptchaLoaded(true);
+            return;
+        }
+
+        // Definir callback global para cuando cargue reCAPTCHA
+        window.onRecaptchaLoad = () => {
+            setRecaptchaLoaded(true);
+        };
+
+        // Si ya hay un script de reCAPTCHA pero no ha cargado, esperar
+        if (document.querySelector('script[src*="recaptcha"]')) {
+            return;
+        }
+
+        // Cargar el script si no existe
+        const script = document.createElement('script');
+        script.src = 'https://www.google.com/recaptcha/api.js?onload=onRecaptchaLoad&render=explicit';
+        script.async = true;
+        script.defer = true;
+        document.head.appendChild(script);
+
+        return () => {
+            // Limpiar callback
+            window.onRecaptchaLoad = undefined;
+        };
+    }, []);
+
+    // Inicializar reCAPTCHA cuando esté cargado
+    useEffect(() => {
+        if (recaptchaLoaded && recaptchaRef.current) {
+            try {
+                window.grecaptcha.render(recaptchaRef.current, {
+                    sitekey: '6Le0UGcsAAAAAEd0bNIj7FP4sgYfBGwPKlnLwquV', // Tu sitekey
+                    callback: (token) => {
+                        setRecaptchaToken(token);
+                        setRecaptchaError(false);
+                    },
+                    'expired-callback': () => {
+                        setRecaptchaToken('');
+                        setRecaptchaError(true);
+                    }
+                });
+            } catch (error) {
+                console.error('Error al inicializar reCAPTCHA:', error);
+            }
+        }
+    }, [recaptchaLoaded]);
 
     // Cargar email recordado al iniciar
     useEffect(() => {
@@ -135,17 +193,23 @@ function Login() {
 
         // Limpiar errores generales
         setGeneralError('');
-        setRecaptchaError(false);
     };
 
-    // Validar reCAPTCHA simulado
-    const [recaptchaError, setRecaptchaError] = useState(false);
-    
+    // Validar reCAPTCHA
     const validateRecaptcha = () => {
-        // Simulación de reCAPTCHA - en un caso real, aquí iría la validación de Google
-        const isValid = recaptchaValid;
-        setRecaptchaError(!isValid);
-        return isValid;
+        if (!recaptchaToken) {
+            setRecaptchaError(true);
+            return false;
+        }
+        return true;
+    };
+
+    // Resetear reCAPTCHA
+    const resetRecaptcha = () => {
+        if (window.grecaptcha) {
+            window.grecaptcha.reset();
+            setRecaptchaToken('');
+        }
     };
 
     // Validar todo el formulario
@@ -189,6 +253,9 @@ function Login() {
         if (validateForm()) {
             setIsLoading(true);
             
+            // Aquí deberías enviar el token de reCAPTCHA a tu backend para validarlo
+            console.log('reCAPTCHA Token:', recaptchaToken);
+            
             // Simular proceso de login
             setTimeout(() => {
                 // Validar contra usuario demo
@@ -204,6 +271,9 @@ function Login() {
                         localStorage.removeItem('atelier_remember_email');
                     }
                     
+                    // Resetear reCAPTCHA
+                    resetRecaptcha();
+                    
                     // Redirigir al inicio
                     setTimeout(() => {
                         navigate('/');
@@ -212,6 +282,7 @@ function Login() {
                 } else {
                     setGeneralError('Email o contraseña incorrectos');
                     setIsLoading(false);
+                    resetRecaptcha(); // Resetear reCAPTCHA en caso de error
                 }
             }, 1000);
         }
@@ -273,8 +344,8 @@ function Login() {
                     <div className="bg-slate-800 rounded-2xl p-8 border border-slate-700">
                         {/* Logo y Bienvenida */}
                         <div className="text-center mb-8">
-                            <div className="inline-flex items-center justify-center w-16 h-16 bg-primary/10 rounded-full mb-4">
-                                <span className="material-symbols-outlined text-primary text-2xl">
+                            <div className="inline-flex items-center justify-center w-16 h-16 bg-primary/20 rounded-full mb-4 shadow-lg shadow-primary/20">
+                                <span className="material-symbols-outlined text-white text-3xl drop-shadow-[0_0_8px_rgba(240,98,93,0.8)]">
                                     account_circle
                                 </span>
                             </div>
@@ -349,26 +420,21 @@ function Login() {
                                 </div>
                             )}
 
-                            {/* reCAPTCHA simulado */}
+                            {/* Google reCAPTCHA */}
                             <div className="flex flex-col items-center">
-                                <div className="flex items-center gap-3 p-4 bg-slate-900 rounded-lg border border-slate-700">
-                                    <input
-                                        type="checkbox"
-                                        id="recaptcha"
-                                        checked={recaptchaValid}
-                                        onChange={(e) => {
-                                            setRecaptchaValid(e.target.checked);
-                                            setRecaptchaError(false);
-                                        }}
-                                        className="h-5 w-5 rounded border-slate-700 bg-slate-800 text-primary focus:ring-primary"
-                                    />
-                                    <label htmlFor="recaptcha" className="text-sm text-slate-400">
-                                        No soy un robot
-                                    </label>
-                                </div>
+                                <div 
+                                    ref={recaptchaRef}
+                                    className="g-recaptcha"
+                                    data-sitekey="6Le0UGcsAAAAAEd0bNIj7FP4sgYfBGwPKlnLwquV"
+                                ></div>
                                 {recaptchaError && (
                                     <p className="text-sm text-red-500 mt-2">
                                         Por favor, completa la verificación de seguridad
+                                    </p>
+                                )}
+                                {!recaptchaLoaded && (
+                                    <p className="text-sm text-slate-400 mt-2">
+                                        Cargando verificación de seguridad...
                                     </p>
                                 )}
                             </div>
@@ -383,14 +449,14 @@ function Login() {
                                         onChange={handleChange}
                                         className="h-4 w-4 rounded border-slate-700 bg-slate-800 text-primary focus:ring-primary"
                                     />
-                                    <span className="ml-2 text-sm text-slate-400">
+                                    <span className="ml-2 text-sm text-white hover:text-primary transition-colors">
                                         Recordar sesión
                                     </span>
                                 </label>
                                 <button
                                     type="button"
                                     onClick={() => setShowForgotModal(true)}
-                                    className="text-sm text-white hover:text-red-500 font-medium"
+                                    className="text-sm text-white font-medium hover:text-primary transition-colors"
                                 >
                                     ¿Olvidaste tu contraseña?
                                 </button>
@@ -400,7 +466,7 @@ function Login() {
                             <button
                                 type="submit"
                                 disabled={isLoading}
-                                className="w-full bg-primary hover:bg-red-500 text-white py-3 rounded-lg font-bold transition-all shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                                className="w-full bg-primary hover:bg-[#ff8a85] text-white py-3 rounded-lg font-bold transition-all shadow-lg hover:shadow-xl hover:shadow-primary/30 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                             >
                                 {isLoading ? (
                                     <>
@@ -426,7 +492,7 @@ function Login() {
                                 <button
                                     type="button"
                                     onClick={() => showToast('Login con Google no disponible - Solo usuario demo', 'info')}
-                                    className="flex items-center justify-center gap-2 px-4 py-3 rounded-lg bg-slate-900 border border-slate-700 text-slate-300 hover:bg-slate-800 transition-colors"
+                                    className="flex items-center justify-center gap-2 px-4 py-3 rounded-lg bg-slate-900 border border-slate-700 text-slate-300 hover:bg-slate-800 hover:text-white hover:border-primary transition-all"
                                 >
                                     <svg className="w-5 h-5" viewBox="0 0 24 24">
                                         <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
@@ -439,7 +505,7 @@ function Login() {
                                 <button
                                     type="button"
                                     onClick={() => showToast('Login con Facebook no disponible - Solo usuario demo', 'info')}
-                                    className="flex items-center justify-center gap-2 px-4 py-3 rounded-lg bg-slate-900 border border-slate-700 text-slate-300 hover:bg-slate-800 transition-colors"
+                                    className="flex items-center justify-center gap-2 px-4 py-3 rounded-lg bg-slate-900 border border-slate-700 text-slate-300 hover:bg-slate-800 hover:text-white hover:border-primary transition-all"
                                 >
                                     <svg className="w-5 h-5 text-[#1877F2]" fill="currentColor" viewBox="0 0 24 24">
                                         <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
@@ -451,11 +517,30 @@ function Login() {
                             {/* Enlace a Registro */}
                             <div className="text-center text-sm text-slate-500">
                                 ¿No tienes una cuenta?{' '}
-                                <Link to="/registro" className="text-primary hover:text-red-500 font-bold">
+                                <Link to="/registro" className="text-primary hover:text-[#ff8a85] font-bold transition-colors">
                                     Regístrate aquí
                                 </Link>
                             </div>
                         </form>
+
+                        {/* Usuario demo info */}
+                        <div className="mt-8 p-4 bg-gradient-to-r from-primary/10 to-primary/5 border-l-4 border-primary rounded-lg">
+                            <div className="flex items-start gap-3">
+                                <span className="material-symbols-outlined text-primary drop-shadow-[0_0_4px_rgba(240,98,93,0.5)]">info</span>
+                                <div>
+                                    <h4 className="font-medium text-sm text-white mb-2">
+                                        Usuario de prueba:
+                                    </h4>
+                                    <div className="bg-slate-900 rounded-lg p-3 border border-primary/20">
+                                        <p className="text-sm font-medium text-white">demo@atelier.com</p>
+                                        <p className="text-xs text-slate-400 mt-1">Contraseña: Atelier123!</p>
+                                    </div>
+                                    <p className="text-xs text-slate-500 mt-2 italic">
+                                        * Único usuario válido para iniciar sesión
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </main>
@@ -528,7 +613,7 @@ function Login() {
                                         <button
                                             type="submit"
                                             disabled={isLoading}
-                                            className="flex-1 bg-primary hover:bg-red-500 text-white px-4 py-3 rounded-lg font-medium transition-colors disabled:opacity-50"
+                                            className="flex-1 bg-primary hover:bg-[#ff8a85] text-white px-4 py-3 rounded-lg font-medium transition-colors disabled:opacity-50"
                                         >
                                             {isLoading ? 'Enviando...' : 'Enviar enlace'}
                                         </button>
@@ -578,6 +663,19 @@ function Login() {
                     }
                     to {
                         transform: rotate(360deg);
+                    }
+                }
+
+                /* Estilos para reCAPTCHA en modo oscuro */
+                .g-recaptcha {
+                    transform: scale(0.9);
+                    transform-origin: center;
+                    margin: 0 auto;
+                }
+                
+                @media (max-width: 640px) {
+                    .g-recaptcha {
+                        transform: scale(0.8);
                     }
                 }
             `}</style>
