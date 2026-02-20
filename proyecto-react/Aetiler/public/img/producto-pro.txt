@@ -1,0 +1,2432 @@
+index.html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>ATELIER | E-commerce Fashion</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#f0625d",
+                        "background-light": "#ffffff",
+                        "background-dark": "#0f172a",
+                    },
+                    fontFamily: {
+                        display: ["Playfair Display", "serif"],
+                        sans: ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.5rem",
+                    },
+                },
+            },
+        };
+    </script>
+    <style>
+        .hero-gradient {
+            background: linear-gradient(to right, rgba(0,0,0,0.1), rgba(0,0,0,0.05)), url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+    <!-- Header Manager -->
+    <script src="header-manager.js" defer></script>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-sans transition-colors duration-300">
+<header class="border-b border-slate-200 dark:border-slate-800 sticky top-0 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-20 gap-8">
+            <!-- Logo -->
+            <div class="flex-shrink-0">
+                <a class="font-display text-3xl font-bold tracking-tight text-slate-900 dark:text-white uppercase" href="index.html">Atelier</a>
+            </div>
+            
+            <!-- ÁREA DEL BUSCADOR (ESTA ES LA QUE MODIFICARÁ EL SCRIPT) -->
+            <div class="flex-1 max-w-2xl relative">
+                <!-- El buscador actual se mantiene aquí -->
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <span class="material-symbols-outlined text-slate-400 text-sm">search</span>
+                </div>
+                <input class="block w-full pl-10 pr-3 py-2 border border-slate-300 dark:border-slate-700 rounded-full leading-5 bg-slate-50 dark:bg-slate-800 placeholder-slate-500 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary sm:text-sm transition-all" 
+                       placeholder="Buscar productos..." 
+                       type="text"/>
+            </div>
+            
+            <!-- Botones derecho -->
+            <div class="flex items-center gap-4">
+                <button class="p-2 text-slate-500 hover:text-primary dark:text-slate-400 dark:hover:text-primary transition-colors" id="theme-toggle">
+                    <span class="material-symbols-outlined dark:hidden">dark_mode</span>
+                    <span class="material-symbols-outlined hidden dark:inline">light_mode</span>
+                </button>
+                <button class="bg-primary hover:bg-red-500 text-white px-6 py-2.5 rounded-full text-sm font-semibold transition-all shadow-sm">
+                    <a href="error.html">Regístrate o inicia sesión</a>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Navegación (si aplica) -->
+        <nav class="flex justify-center space-x-8 md:space-x-12 py-3 border-t border-slate-100 dark:border-slate-800">
+            <!-- Tus enlaces de navegación -->
+        </nav>
+    </div>
+</header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="relative h-[500px] overflow-hidden">
+            <img alt="Fashion background with vibrant colors" class="absolute inset-0 w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAv8z4dfDQCBiy5TuUcVJwTgxo1wNak5r5ZRAucsEQJkBCN3wHRzVQTw39ntTxpIt3sfmkM4OhHWgf9zzF0BjWDrSusjWJUY6lA43t-jLUewhiZQYBjd4HlxeQ3fTSyhWqs3jP1UgA_xMEu6iaZl4tLkiMA8gA_4xJjsodh-Xb_rbbr7Q7Gr2rbCay4cS5bOJBUCRl9J8YksQvoKohiwstIdof8GL9IWGcc2C_ZDrzpUSpy8rOOHW6p2Fp3eaLAZifmkJg-_-7xhS6q"/>
+            <div class="absolute inset-0 bg-black/10 dark:bg-black/20"></div>
+            <div class="relative max-w-7xl mx-auto px-4 h-full flex items-center">
+                <div class="max-w-xl text-white">
+                    <span class="inline-block text-[#c4ff00] font-bold text-lg mb-3">Ofertas exclusivas 2024</span>
+                    <h1 class="text-5xl md:text-7xl font-bold font-display leading-tight mb-4">Todo lo que Necesitas</h1>
+                    <p class="text-base mb-6 opacity-90 font-medium">Miles de productos en un solo lugar. Ofertas increíbles, envío gratis y la mejor calidad.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trust Badges -->
+        <section class="py-8 border-y border-slate-100 dark:border-slate-800">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                    <div class="space-y-1">
+                        <span class="material-symbols-outlined text-primary text-2xl">local_shipping</span>
+                        <p class="text-xs font-medium">Envío gratis +$50</p>
+                    </div>
+                    <div class="space-y-1">
+                        <span class="material-symbols-outlined text-primary text-2xl">security</span>
+                        <p class="text-xs font-medium">Compra 100% segura</p>
+                    </div>
+                    <div class="space-y-1">
+                        <span class="material-symbols-outlined text-primary text-2xl">assignment_return</span>
+                        <p class="text-xs font-medium">Devoluciones fáciles</p>
+                    </div>
+                    <div class="space-y-1">
+                        <span class="material-symbols-outlined text-primary text-2xl">support_agent</span>
+                        <p class="text-xs font-medium">Soporte 24/7</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Products -->
+        <section class="max-w-7xl mx-auto px-4 py-12">
+            <div class="text-center mb-10">
+                <p class="text-primary font-semibold text-sm uppercase tracking-widest mb-2">Colección exclusiva</p>
+                <h2 class="text-3xl font-display font-bold mb-3">Productos Destacados</h2>
+                <p class="text-slate-500 dark:text-slate-400 max-w-xl mx-auto">Selección cuidadosa de nuestras mejores piezas</p>
+            </div>
+            
+            <!-- Filters -->
+            <div class="flex flex-col sm:flex-row justify-between items-center gap-4 mb-8">
+                <p class="text-sm text-slate-500">Mostrando 4 productos</p>
+                <select class="border border-slate-200 dark:border-slate-700 rounded-full px-4 py-2 text-sm bg-transparent w-full sm:w-auto">
+                    <option>Ordenar por: Destacados</option>
+                    <option>Precio: menor a mayor</option>
+                    <option>Precio: mayor a menor</option>
+                </select>
+            </div>
+            
+            <!-- Products Grid (Only 4 products) -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Product 1 -->
+                <div class="group">
+                    <div class="relative aspect-[3/4] rounded-xl overflow-hidden mb-4 bg-slate-100 dark:bg-slate-800">
+                        <img alt="Vestido chic rojo" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzskSXsWZYxwjTyq-F0o4VZhfIL5rknRU4A9m2cigUTqYw3dZBItX9Dv3rUmff9aeO8PmZ1DNLnwBzNVY5bOYMvGcOiWt_zfhKM4aMa_Nwp4ppx54HOH1JkZjt2ojHKK6hLZZAHQkZda6e7d9JqtUWyTSOSa-seAWqnR8rLf4jYzzXcU6FamY1WWQHN3LQg6Cl2rru7oroLxj8--7-5uxFC9bKZUTw1Tb5Aa1kkaoy18tw5DSYSXK7IqC9gHmCyBORfXwdonCv_Vq6"/>
+                        <span class="absolute top-3 left-3 bg-primary text-white text-[10px] font-bold px-2 py-1 rounded italic uppercase tracking-wider">¡OFERTA!</span>
+                    </div>
+                    <div class="space-y-3">
+                        <div>
+                            <h3 class="font-bold text-slate-800 dark:text-slate-200 text-base">Vestido chic rojo</h3>
+                            <p class="font-semibold text-slate-600 dark:text-slate-400">$200</p>
+                        </div>
+                        <button class="w-full bg-slate-900 dark:bg-slate-700 text-white py-2.5 rounded-full text-sm font-semibold hover:bg-primary transition-colors flex items-center justify-center gap-2">
+                            <span class="material-symbols-outlined text-sm">shopping_cart</span>
+                            Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="group">
+                    <div class="relative aspect-[3/4] rounded-xl overflow-hidden mb-4 bg-slate-100 dark:bg-slate-800">
+                        <img alt="Chaqueta sport Nike" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCb7s2vaJFu89EtkS6OG2ntR5pj1VM7nr4WSAQbmfLcyajCzhbAUhOqFQSUMxJVJOAEX9XROWkf5sY7v5lytacBNiuNRyfikKJyBvHSPYZNOgnvsKMHk0_z4xe5n6ZxYQX_JCTg6n1zAVorxXZrP669MtHWujd_kLkcOL5tjreJQZZxwfa7y8wqOtKHJLxtnjzzo7dcideu81BYsMLv9FJEdhpob5Iu6z14lx2Iv3fhFELH4aw-uklqjAIB2cccvcMSKF6RNQ0NHjnd"/>
+                        <span class="absolute top-3 left-3 bg-primary text-white text-[10px] font-bold px-2 py-1 rounded italic uppercase tracking-wider">¡OFERTA!</span>
+                    </div>
+                    <div class="space-y-3">
+                        <div>
+                            <h3 class="font-bold text-slate-800 dark:text-slate-200 text-base">Chaqueta sport Nike</h3>
+                            <p class="font-semibold text-slate-600 dark:text-slate-400">$100</p>
+                        </div>
+                        <button class="w-full bg-slate-900 dark:bg-slate-700 text-white py-2.5 rounded-full text-sm font-semibold hover:bg-primary transition-colors flex items-center justify-center gap-2">
+                            <span class="material-symbols-outlined text-sm">shopping_cart</span>
+                            Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="group">
+                    <div class="relative aspect-[3/4] rounded-xl overflow-hidden mb-4 bg-slate-100 dark:bg-slate-800">
+                        <img alt="Bolso de Mano" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQOrzCzhGqkOu2au_nrIXvDIko3ZP5Ye6v5Xjr6GrmUxVB6d61pKtYU61-Ds8JAf73O32v6HNpw2HtMeiu5JfGNb_NE0NUuA0gLbqSCKfgqPEmc6yap8gAv0LZyrTBOLTZBa4teJ5Q0nrYPnIVWZWn1E6BDHPLRDTTqWnaMYeRgKCqW66V6sJD9xynB08yFcToeHWZ72sHLOl1EJROme1jnBkrnL_i_Gitz2uB_kIzxhf7l-aX6Yo1qXinQZDfJawaX0s7yBM9fFoW"/>
+                    </div>
+                    <div class="space-y-3">
+                        <div>
+                            <h3 class="font-bold text-slate-800 dark:text-slate-200 text-base">Bolso de Mano</h3>
+                            <p class="font-semibold text-slate-600 dark:text-slate-400">$200</p>
+                        </div>
+                        <button class="w-full bg-slate-900 dark:bg-slate-700 text-white py-2.5 rounded-full text-sm font-semibold hover:bg-primary transition-colors flex items-center justify-center gap-2">
+                            <span class="material-symbols-outlined text-sm">shopping_cart</span>
+                            Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Product 4 -->
+                <div class="group">
+                    <div class="relative aspect-[3/4] rounded-xl overflow-hidden mb-4 bg-slate-100 dark:bg-slate-800">
+                        <img alt="Gafas de sol polarizados" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnPCWhPUUPAAwFZhCurRdPo7Q4-tE7kS0_8-DzRySJdcTpiGeQLxByz4p5ld6Ait2brqtrx1eRHafRZYZqzMlg5TWWv0wUnBv59m2UhaGx7bAWJBSBXuYrTyuZqkkSDe4159Tg7CjUCTl7TAAqxD_FsBYQOw0eVnz0yZ3mo6jPGVmBEQUV4mFVXP_UxPo8ZUpfLF-uaGxaf9wgDPW6fj7Nhw5TEe6ltenIhiJ4UL2wFB9mk-iHcPdeqPCqm4WuJY0wLrzOvWtyIloJ"/>
+                    </div>
+                    <div class="space-y-3">
+                        <div>
+                            <h3 class="font-bold text-slate-800 dark:text-slate-200 text-base">Gafas de sol polarizados</h3>
+                            <p class="font-semibold text-slate-600 dark:text-slate-400">$300</p>
+                        </div>
+                        <button class="w-full bg-slate-900 dark:bg-slate-700 text-white py-2.5 rounded-full text-sm font-semibold hover:bg-primary transition-colors flex items-center justify-center gap-2">
+                            <span class="material-symbols-outlined text-sm">shopping_cart</span>
+                            Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- View More Button -->
+            <div class="text-center mt-10">
+                <a href="productos2.html" class="inline-block border border-slate-300 dark:border-slate-700 hover:border-primary text-slate-700 dark:text-slate-300 hover:text-primary px-6 py-3 rounded-full font-medium transition-all duration-300">
+                    Explorar todos los productos →
+                </a>
+            </div>
+        </section>
+
+        <!-- Newsletter Section -->
+        <section class="bg-slate-50 dark:bg-slate-900 py-12">
+            <div class="max-w-3xl mx-auto px-4 text-center">
+                <h3 class="text-2xl font-display font-bold mb-3">Únete a nuestra comunidad</h3>
+                <p class="text-slate-600 dark:text-slate-400 mb-6">Recibe ofertas exclusivas y novedades de moda antes que nadie</p>
+                <div class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+                    <input type="email" placeholder="Tu correo electrónico" class="flex-1 px-4 py-3 rounded-full border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 focus:outline-none focus:ring-1 focus:ring-primary"/>
+                    <button class="bg-primary hover:bg-red-500 text-white px-6 py-3 rounded-full font-semibold transition-colors">Suscribirse</button>
+                </div>
+                <p class="text-xs text-slate-500 mt-3">Al suscribirte aceptas nuestra política de privacidad</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-12">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-start gap-8">
+                <div class="max-w-sm">
+                    <h2 class="font-display text-3xl font-bold tracking-tight uppercase mb-3">Atelier</h2>
+                    <p class="text-slate-400 text-sm">Diseño de alta gama y elegancia para el mundo moderno. Encuentra tu estilo hoy.</p>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-8">
+                    <div class="space-y-3">
+                        <h4 class="font-bold text-xs uppercase tracking-widest text-slate-500">Explorar</h4>
+                        <ul class="text-sm space-y-2">
+                            <li><a class="hover:text-primary transition-colors" href="nosotros.html">Nosotros</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="servicios.html">Servicios</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="#">Ofertas</a></li>
+                        </ul>
+                    </div>
+                    <div class="space-y-3">
+                        <h4 class="font-bold text-xs uppercase tracking-widest text-slate-500">Ayuda</h4>
+                        <ul class="text-sm space-y-2">
+                            <li><a class="hover:text-primary transition-colors" href="#">Soporte</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="#">Envíos</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="#">Devoluciones</a></li>
+                        </ul>
+                    </div>
+                    <div class="space-y-3">
+                        <h4 class="font-bold text-xs uppercase tracking-widest text-slate-500">Legal</h4>
+                        <ul class="text-sm space-y-2">
+                            <li><a class="hover:text-primary transition-colors" href="#">Términos</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="#">Privacidad</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="#">Cookies</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 pt-6 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-500">
+                <p>© 2024 ATELIER S.A. Todos los derechos reservados.</p>
+                <div class="flex gap-6">
+                    <a class="hover:text-white transition-colors" href="#">
+                        <span class="material-symbols-outlined text-base">photo_camera</span>
+                    </a>
+                    <a class="hover:text-white transition-colors" href="#">
+                        <span class="material-symbols-outlined text-base">thumb_up</span>
+                    </a>
+                    <a class="hover:text-white transition-colors" href="#">
+                        <span class="material-symbols-outlined text-base">chat</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Add to cart functionality (basic)
+        document.querySelectorAll('button').forEach(button => {
+            if (button.textContent.includes('Añadir al carrito')) {
+                button.addEventListener('click', function() {
+                    const productName = this.parentElement.querySelector('h3').textContent;
+                    const productPrice = this.parentElement.querySelector('p').textContent;
+                    
+                    // Create notification
+                    const notification = document.createElement('div');
+                    notification.className = 'fixed top-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg z-50 animate-fade-in';
+                    notification.innerHTML = `
+                        <div class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-sm">check_circle</span>
+                            <span>${productName} añadido al carrito</span>
+                        </div>
+                    `;
+                    
+                    document.body.appendChild(notification);
+                    
+                    // Remove notification after 3 seconds
+                    setTimeout(() => {
+                        notification.remove();
+                    }, 3000);
+                });
+            }
+        });
+
+        // Add CSS for fade-in animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fade-in {
+                from { opacity: 0; transform: translateY(-10px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+            .animate-fade-in {
+                animation: fade-in 0.3s ease-out;
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
+
+---------------------------------------------------------------------------------------------------
+productos2.html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Atelier - Productos</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,400,0,0" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                colors: {
+                    primary: "#f0625d",
+                    "background-light": "#ffffff",
+                    "background-dark": "#121212",
+                },
+                fontFamily: {
+                    display: ["Playfair Display", "serif"],
+                    sans: ["Inter", "sans-serif"],
+                },
+                borderRadius: {
+                    DEFAULT: "0.5rem",
+                },
+            },
+        },
+    };
+</script>
+<style>
+    .product-card:hover .cart-overlay {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    .cart-overlay {
+        opacity: 0;
+        transform: translateY(10px);
+        transition: all 0.2s ease-in-out;
+    }
+    .filter-active {
+        background-color: #f0625d;
+        color: white;
+        border-color: #f0625d;
+    }
+    @keyframes fade-in {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in {
+        animation: fade-in 0.3s ease-out;
+    }
+</style>
+<!-- Header Manager -->
+<script src="header-manager.js" defer></script>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-sans antialiased">
+    <!-- Header -->
+    <header class="border-b border-slate-200 dark:border-slate-800 sticky top-0 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20 gap-8">
+                <div class="flex-shrink-0">
+                    <a class="font-display text-3xl font-bold tracking-tight text-slate-900 dark:text-white uppercase" href="index.html">Atelier</a>
+                </div>
+                <div class="flex-1 max-w-2xl relative">
+                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                        <span class="material-symbols-outlined text-slate-400 text-sm">search</span>
+                    </div>
+                    <input id="searchInput" class="block w-full pl-10 pr-3 py-2 border border-slate-300 dark:border-slate-700 rounded-full leading-5 bg-slate-50 dark:bg-slate-800 placeholder-slate-500 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary sm:text-sm transition-all" placeholder="Buscar productos..." type="text"/>
+                </div>
+                <div class="flex items-center gap-4">
+                    <button class="p-2 text-slate-500 hover:text-primary dark:text-slate-400 dark:hover:text-primary transition-colors" id="theme-toggle">
+                        <span class="material-symbols-outlined dark:hidden">dark_mode</span>
+                        <span class="material-symbols-outlined hidden dark:inline">light_mode</span>
+                    </button>
+                    <button class="bg-primary hover:bg-red-500 text-white px-6 py-2.5 rounded-full text-sm font-semibold transition-all shadow-sm">
+                        Regístrate o inicia sesión
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 py-6">
+        <!-- Breadcrumb -->
+        <nav aria-label="Breadcrumb" class="flex text-xs text-slate-500 mb-6 uppercase tracking-widest">
+            <a class="hover:text-primary transition-colors" href="index.html">Inicio</a>
+            <span class="mx-2">/</span>
+            <span class="text-slate-900 dark:text-slate-100 font-semibold">Productos</span>
+        </nav>
+
+        <div class="flex flex-col lg:flex-row gap-8">
+            <!-- Filters Sidebar -->
+            <aside class="w-full lg:w-64 flex-shrink-0">
+                <div class="sticky top-28">
+                    <div class="flex items-center justify-between mb-6">
+                        <h3 class="font-semibold text-lg">Filtros</h3>
+                        <button id="clearFilters" class="text-xs text-primary hover:text-red-500 transition-colors">
+                            Limpiar filtros
+                        </button>
+                    </div>
+                    
+                    <!-- Category Filter -->
+                    <div class="mb-6">
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">Categoría</h4>
+                        <div class="space-y-2" id="categoryFilterContainer">
+                            <!-- Las categorías se cargarán dinámicamente desde el JSON -->
+                        </div>
+                    </div>
+
+                    <!-- Size Filter -->
+                    <div class="mb-6">
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">Talla</h4>
+                        <div class="grid grid-cols-5 gap-2" id="sizeFilterContainer">
+                            <!-- Los filtros de talla se cargarán dinámicamente -->
+                        </div>
+                    </div>
+
+                    <!-- Price Filter -->
+                    <div class="mb-6">
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">Rango de Precio</h4>
+                        <input id="priceRange" class="w-full h-1 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-primary" type="range" min="0" max="1000" value="1000"/>
+                        <div class="flex justify-between mt-2 text-xs text-slate-500">
+                            <span>$0</span>
+                            <span id="priceValue">$1,000</span>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Products Section -->
+            <div class="flex-1">
+                <!-- Products Header -->
+                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 gap-4">
+                    <div>
+                        <h2 class="font-display text-2xl md:text-3xl font-bold">Colección de Productos</h2>
+                        <p id="productCount" class="text-sm text-slate-500 mt-1">Cargando productos...</p>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <select id="sortSelect" class="border border-slate-300 dark:border-slate-700 rounded-lg px-3 py-2 text-sm bg-transparent focus:ring-primary focus:border-primary cursor-pointer">
+                            <option value="relevance">Ordenar por: Relevancia</option>
+                            <option value="price-low">Precio: menor a mayor</option>
+                            <option value="price-high">Precio: mayor a menor</option>
+                            <option value="newest">Novedades</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Products Grid -->
+                <div id="productsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    <!-- Products will be dynamically loaded from JSON -->
+                    <div class="col-span-full text-center py-12">
+                        <div class="animate-pulse">
+                            <div class="w-16 h-16 bg-slate-200 dark:bg-slate-700 rounded-full mx-auto mb-4"></div>
+                            <div class="h-4 bg-slate-200 dark:bg-slate-700 rounded w-48 mx-auto mb-2"></div>
+                            <div class="h-3 bg-slate-200 dark:bg-slate-700 rounded w-32 mx-auto"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pagination -->
+                <div class="flex justify-center mt-12 pb-8 hidden" id="paginationContainer">
+                    <nav class="flex items-center gap-2">
+                        <button class="p-2 border border-slate-200 dark:border-slate-700 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 disabled:opacity-50 transition-colors" id="prevPage" disabled>
+                            <span class="material-symbols-outlined text-sm">chevron_left</span>
+                        </button>
+                        <button class="w-10 h-10 flex items-center justify-center rounded-lg bg-primary text-white font-bold page-number" data-page="1">1</button>
+                        <button class="p-2 border border-slate-200 dark:border-slate-700 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors" id="nextPage">
+                            <span class="material-symbols-outlined text-sm">chevron_right</span>
+                        </button>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-12">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-start gap-8">
+                <div class="max-w-sm">
+                    <h2 class="font-display text-3xl font-bold tracking-tight uppercase mb-3">Atelier</h2>
+                    <p class="text-slate-400 text-sm">Diseño de alta gama y elegancia para el mundo moderno. Encuentra tu estilo hoy.</p>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-8">
+                    <div class="space-y-3">
+                        <h4 class="font-bold text-xs uppercase tracking-widest text-slate-500">Explorar</h4>
+                        <ul class="text-sm space-y-2">
+                            <li><a class="hover:text-primary transition-colors" href="nosotros.html">Nosotros</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="servicios.html">Servicios</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="#">Ofertas</a></li>
+                        </ul>
+                    </div>
+                    <div class="space-y-3">
+                        <h4 class="font-bold text-xs uppercase tracking-widest text-slate-500">Ayuda</h4>
+                        <ul class="text-sm space-y-2">
+                            <li><a class="hover:text-primary transition-colors" href="#">Soporte</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="#">Envíos</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="#">Devoluciones</a></li>
+                        </ul>
+                    </div>
+                    <div class="space-y-3">
+                        <h4 class="font-bold text-xs uppercase tracking-widest text-slate-500">Legal</h4>
+                        <ul class="text-sm space-y-2">
+                            <li><a class="hover:text-primary transition-colors" href="#">Términos</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="#">Privacidad</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="#">Cookies</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 pt-6 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-500">
+                <p>© 2024 ATELIER S.A. Todos los derechos reservados.</p>
+                <div class="flex gap-6">
+                    <a class="hover:text-white transition-colors" href="#">
+                        <span class="material-symbols-outlined text-base">photo_camera</span>
+                    </a>
+                    <a class="hover:text-white transition-colors" href="#">
+                        <span class="material-symbols-outlined text-base">thumb_up</span>
+                    </a>
+                    <a class="hover:text-white transition-colors" href="#">
+                        <span class="material-symbols-outlined text-base">chat</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Productos cargados desde JSON
+        let productos = [];
+        let categoriasUnicas = [];
+        let tallasUnicas = [];
+        
+        // Filtros actuales
+        let filtrosActuales = {
+            categorias: [],
+            tallas: [],
+            precioMax: 1000,
+            busqueda: "",
+            orden: "relevance",
+            paginaActual: 1,
+            productosPorPagina: 12
+        };
+
+        // Elementos DOM
+        const elementos = {
+            productsGrid: document.getElementById('productsGrid'),
+            searchInput: document.getElementById('searchInput'),
+            priceRange: document.getElementById('priceRange'),
+            priceValue: document.getElementById('priceValue'),
+            sortSelect: document.getElementById('sortSelect'),
+            clearFiltersBtn: document.getElementById('clearFilters'),
+            productCount: document.getElementById('productCount'),
+            categoryFilterContainer: document.getElementById('categoryFilterContainer'),
+            sizeFilterContainer: document.getElementById('sizeFilterContainer'),
+            paginationContainer: document.getElementById('paginationContainer'),
+            prevPageBtn: document.getElementById('prevPage'),
+            nextPageBtn: document.getElementById('nextPage')
+        };
+
+        // Inicializar aplicación
+        async function inicializarAplicacion() {
+            try {
+                // Cargar productos desde JSON
+                await cargarProductos();
+                
+                // Configurar filtros
+                configurarFiltros();
+                
+                // Configurar eventos
+                configurarEventos();
+                
+                // Renderizar productos iniciales
+                renderizarProductosFiltrados();
+                
+                // Configurar modo oscuro
+                configurarModoOscuro();
+                
+            } catch (error) {
+                console.error('Error al inicializar:', error);
+                mostrarError();
+            }
+        }
+
+        // Cargar productos desde JSON
+        async function cargarProductos() {
+            try {
+                const respuesta = await fetch('productos.json');
+                const datos = await respuesta.json();
+                
+                productos = datos.productos;
+                
+                // Extraer categorías únicas
+                categoriasUnicas = [...new Set(productos.map(p => p.categoria))];
+                
+                // Extraer tallas únicas
+                const todasTallas = productos.flatMap(p => p.tallas);
+                tallasUnicas = [...new Set(todasTallas)].sort();
+                
+                // Actualizar contador
+                elementos.productCount.textContent = `Mostrando ${productos.length} productos`;
+                
+            } catch (error) {
+                console.error('Error al cargar productos:', error);
+                throw error;
+            }
+        }
+
+        // Configurar filtros dinámicos
+        function configurarFiltros() {
+            // Configurar filtro de categorías
+            elementos.categoryFilterContainer.innerHTML = categoriasUnicas.map(categoria => `
+                <label class="flex items-center text-sm cursor-pointer group">
+                    <input type="checkbox" value="${categoria}" class="hidden category-checkbox"/>
+                    <span class="w-4 h-4 border border-slate-300 dark:border-slate-600 rounded mr-3 flex items-center justify-center">
+                        <span class="check-icon hidden text-white">✓</span>
+                    </span>
+                    <span class="group-hover:text-primary transition-colors">${capitalizarPrimeraLetra(categoria)}</span>
+                </label>
+            `).join('');
+
+            // Configurar filtro de tallas
+            elementos.sizeFilterContainer.innerHTML = tallasUnicas.map(talla => `
+                <button class="size-filter border border-slate-200 dark:border-slate-700 py-2 text-xs hover:border-primary transition-colors rounded" data-size="${talla.toLowerCase()}">
+                    ${talla.toUpperCase()}
+                </button>
+            `).join('');
+        }
+
+        // Configurar eventos
+        function configurarEventos() {
+            // Evento de búsqueda
+            elementos.searchInput.addEventListener('input', function() {
+                filtrosActuales.busqueda = this.value.toLowerCase();
+                filtrosActuales.paginaActual = 1;
+                renderizarProductosFiltrados();
+            });
+
+            // Evento de filtro de precio
+            elementos.priceRange.addEventListener('input', function() {
+                const valor = parseInt(this.value);
+                elementos.priceValue.textContent = `$${valor.toLocaleString()}`;
+                filtrosActuales.precioMax = valor;
+                filtrosActuales.paginaActual = 1;
+                renderizarProductosFiltrados();
+            });
+
+            // Evento de ordenación
+            elementos.sortSelect.addEventListener('change', function() {
+                filtrosActuales.orden = this.value;
+                renderizarProductosFiltrados();
+            });
+
+            // Evento de categorías
+            document.querySelectorAll('.category-checkbox').forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    const categoria = this.value;
+                    const checkIcon = this.parentElement.querySelector('.check-icon');
+                    
+                    if (this.checked) {
+                        checkIcon.classList.remove('hidden');
+                        checkIcon.parentElement.classList.add('bg-primary', 'border-primary');
+                        filtrosActuales.categorias.push(categoria);
+                    } else {
+                        checkIcon.classList.add('hidden');
+                        checkIcon.parentElement.classList.remove('bg-primary', 'border-primary');
+                        filtrosActuales.categorias = filtrosActuales.categorias.filter(c => c !== categoria);
+                    }
+                    
+                    filtrosActuales.paginaActual = 1;
+                    renderizarProductosFiltrados();
+                });
+            });
+
+            // Evento de tallas
+            document.querySelectorAll('.size-filter').forEach(button => {
+                button.addEventListener('click', function() {
+                    const talla = this.dataset.size;
+                    const estaActivo = this.classList.contains('active');
+                    
+                    if (estaActivo) {
+                        this.classList.remove('active', 'bg-primary', 'text-white', 'border-primary');
+                        filtrosActuales.tallas = filtrosActuales.tallas.filter(t => t !== talla);
+                    } else {
+                        this.classList.add('active', 'bg-primary', 'text-white', 'border-primary');
+                        filtrosActuales.tallas.push(talla);
+                    }
+                    
+                    filtrosActuales.paginaActual = 1;
+                    renderizarProductosFiltrados();
+                });
+            });
+
+            // Evento limpiar filtros
+            elementos.clearFiltersBtn.addEventListener('click', function() {
+                // Limpiar checkboxes de categorías
+                document.querySelectorAll('.category-checkbox').forEach(cb => {
+                    cb.checked = false;
+                    cb.parentElement.querySelector('.check-icon').classList.add('hidden');
+                    cb.parentElement.querySelector('span:first-child').classList.remove('bg-primary', 'border-primary');
+                });
+                
+                // Limpiar botones de tallas
+                document.querySelectorAll('.size-filter').forEach(btn => {
+                    btn.classList.remove('active', 'bg-primary', 'text-white', 'border-primary');
+                });
+                
+                // Limpiar precio
+                elementos.priceRange.value = 1000;
+                elementos.priceValue.textContent = '$1,000';
+                
+                // Limpiar búsqueda
+                elementos.searchInput.value = '';
+                
+                // Limpiar ordenación
+                elementos.sortSelect.value = 'relevance';
+                
+                // Restablecer filtros
+                filtrosActuales = {
+                    categorias: [],
+                    tallas: [],
+                    precioMax: 1000,
+                    busqueda: "",
+                    orden: "relevance",
+                    paginaActual: 1,
+                    productosPorPagina: 12
+                };
+                
+                renderizarProductosFiltrados();
+            });
+        }
+
+        // Filtrar productos
+        function filtrarProductos() {
+            let productosFiltrados = [...productos];
+            
+            // Filtrar por búsqueda
+            if (filtrosActuales.busqueda) {
+                productosFiltrados = productosFiltrados.filter(producto =>
+                    producto.nombre.toLowerCase().includes(filtrosActuales.busqueda) ||
+                    producto.descripcion.toLowerCase().includes(filtrosActuales.busqueda) ||
+                    producto.tags.some(tag => tag.includes(filtrosActuales.busqueda))
+                );
+            }
+            
+            // Filtrar por categorías
+            if (filtrosActuales.categorias.length > 0) {
+                productosFiltrados = productosFiltrados.filter(producto =>
+                    filtrosActuales.categorias.includes(producto.categoria)
+                );
+            }
+            
+            // Filtrar por tallas
+            if (filtrosActuales.tallas.length > 0) {
+                productosFiltrados = productosFiltrados.filter(producto =>
+                    producto.tallas.some(talla =>
+                        filtrosActuales.tallas.includes(talla.toLowerCase())
+                    )
+                );
+            }
+            
+            // Filtrar por precio
+            productosFiltrados = productosFiltrados.filter(producto =>
+                producto.precio <= filtrosActuales.precioMax
+            );
+            
+            // Ordenar productos
+            productosFiltrados.sort((a, b) => {
+                switch (filtrosActuales.orden) {
+                    case 'price-low':
+                        return a.precio - b.precio;
+                    case 'price-high':
+                        return b.precio - a.precio;
+                    case 'newest':
+                        return b.id - a.id;
+                    default: // relevance
+                        // Primero destacados, luego por ID
+                        if (a.destacado && !b.destacado) return -1;
+                        if (!a.destacado && b.destacado) return 1;
+                        return b.id - a.id;
+                }
+            });
+            
+            return productosFiltrados;
+        }
+
+        // Renderizar productos filtrados
+        function renderizarProductosFiltrados() {
+            const productosFiltrados = filtrarProductos();
+            const totalProductos = productosFiltrados.length;
+            
+            // Calcular paginación
+            const totalPaginas = Math.ceil(totalProductos / filtrosActuales.productosPorPagina);
+            const inicio = (filtrosActuales.paginaActual - 1) * filtrosActuales.productosPorPagina;
+            const fin = inicio + filtrosActuales.productosPorPagina;
+            const productosPagina = productosFiltrados.slice(inicio, fin);
+            
+            // Actualizar contador
+            elementos.productCount.textContent = `Mostrando ${inicio + 1}-${Math.min(fin, totalProductos)} de ${totalProductos} productos`;
+            
+            // Renderizar productos
+            elementos.productsGrid.innerHTML = '';
+            
+            if (productosPagina.length === 0) {
+                elementos.productsGrid.innerHTML = `
+                    <div class="col-span-full text-center py-16">
+                        <span class="material-symbols-outlined text-6xl text-slate-300 dark:text-slate-700 mb-4">search_off</span>
+                        <h3 class="text-xl font-semibold mb-2">No se encontraron productos</h3>
+                        <p class="text-slate-500">Intenta con otros filtros o términos de búsqueda.</p>
+                    </div>
+                `;
+            } else {
+                productosPagina.forEach(producto => {
+                    const productCard = crearTarjetaProducto(producto);
+                    elementos.productsGrid.appendChild(productCard);
+                });
+            }
+            
+            // Actualizar paginación
+            actualizarPaginacion(totalPaginas, totalProductos);
+        }
+
+        // Crear tarjeta de producto
+        function crearTarjetaProducto(producto) {
+            const div = document.createElement('div');
+            div.className = 'product-card group cursor-pointer';
+            div.dataset.id = producto.id;
+            
+            const precioOriginalHTML = producto.en_oferta && producto.precio_original ?
+                `<span class="text-slate-400 line-through text-sm">$${producto.precio_original}</span>` : '';
+            
+            const badgeOferta = producto.en_oferta ?
+                `<span class="absolute top-3 left-3 bg-primary text-white text-[10px] font-bold px-2 py-1 rounded italic uppercase tracking-wider">¡OFERTA!</span>` : '';
+            
+            const badgeNuevo = producto.nuevo ?
+                `<span class="absolute top-3 right-3 bg-green-500 text-white text-[10px] font-bold px-2 py-1 rounded italic uppercase tracking-wider">NUEVO</span>` : '';
+            
+            const badgeDestacado = producto.destacado && !producto.en_oferta && !producto.nuevo ?
+                `<span class="absolute top-3 right-3 bg-yellow-500 text-white text-[10px] font-bold px-2 py-1 rounded italic uppercase tracking-wider">DESTACADO</span>` : '';
+            
+            div.innerHTML = `
+                <div class="relative aspect-[3/4] rounded-xl overflow-hidden mb-4 bg-slate-100 dark:bg-slate-800">
+                    <img alt="${producto.nombre}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="${producto.imagen}"/>
+                    ${badgeOferta}
+                    ${badgeNuevo}
+                    ${badgeDestacado}
+                    ${producto.imagenes_secundarias && producto.imagenes_secundarias.length > 0 ?
+                        `<div class="absolute bottom-3 right-3 bg-white/90 rounded-full w-8 h-8 flex items-center justify-center text-xs font-bold">
+                            +${producto.imagenes_secundarias.length}
+                        </div>` : ''}
+                    <div class="cart-overlay absolute inset-x-0 bottom-0 p-3">
+                        <button class="w-full bg-black dark:bg-white text-white dark:text-black py-2.5 rounded-lg text-xs font-bold uppercase tracking-widest hover:bg-slate-800 transition-colors flex items-center justify-center gap-2 add-to-cart-btn">
+                            <span class="material-symbols-outlined text-sm">shopping_cart</span>
+                            Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+                <div class="space-y-3">
+                    <div>
+                        <h3 class="font-bold text-slate-800 dark:text-slate-200 text-base mb-1">${producto.nombre}</h3>
+                        <p class="text-xs text-slate-500 mb-2">${producto.categoria}</p>
+                        <div class="flex items-center justify-between">
+                            ${producto.en_oferta ?
+                                `<div class="flex items-center gap-2">
+                                    <span class="text-primary font-bold text-lg">$${producto.precio}</span>
+                                    ${precioOriginalHTML}
+                                    <span class="text-primary text-xs font-bold">-${producto.descuento}%</span>
+                                </div>` :
+                                `<span class="text-slate-900 dark:text-white font-bold text-lg">$${producto.precio}</span>`
+                            }
+                            <div class="flex items-center">
+                                <span class="text-yellow-400 text-sm">★</span>
+                                <span class="text-xs ml-1">${producto.valoracion}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="w-full bg-primary hover:bg-red-500 text-white py-2.5 rounded-lg text-sm font-semibold transition-colors view-details-btn">
+                        Ver detalles
+                    </button>
+                </div>
+            `;
+            
+            // Añadir eventos a los botones
+            const addToCartBtn = div.querySelector('.add-to-cart-btn');
+            const viewDetailsBtn = div.querySelector('.view-details-btn');
+            
+            addToCartBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                agregarAlCarrito(producto);
+            });
+            
+            viewDetailsBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                window.location.href = `producto.html?id=${producto.id}`;
+            });
+            
+            // Hacer clic en toda la tarjeta para ver detalles
+            div.addEventListener('click', (e) => {
+                // Solo redirigir si no se hizo clic en un botón
+                if (!e.target.closest('button')) {
+                    window.location.href = `producto.html?id=${producto.id}`;
+                }
+            });
+            
+            return div;
+        }
+
+        // Actualizar paginación
+        function actualizarPaginacion(totalPaginas, totalProductos) {
+            if (totalProductos > filtrosActuales.productosPorPagina) {
+                elementos.paginationContainer.classList.remove('hidden');
+                
+                // Actualizar estado de botones
+                elementos.prevPageBtn.disabled = filtrosActuales.paginaActual === 1;
+                elementos.nextPageBtn.disabled = filtrosActuales.paginaActual === totalPaginas;
+                
+                // Evento página anterior
+                elementos.prevPageBtn.onclick = () => {
+                    if (filtrosActuales.paginaActual > 1) {
+                        filtrosActuales.paginaActual--;
+                        renderizarProductosFiltrados();
+                    }
+                };
+                
+                // Evento página siguiente
+                elementos.nextPageBtn.onclick = () => {
+                    if (filtrosActuales.paginaActual < totalPaginas) {
+                        filtrosActuales.paginaActual++;
+                        renderizarProductosFiltrados();
+                    }
+                };
+                
+            } else {
+                elementos.paginationContainer.classList.add('hidden');
+            }
+        }
+
+        // Agregar al carrito
+        function agregarAlCarrito(producto) {
+            // Crear notificación
+            const notification = document.createElement('div');
+            notification.className = 'fixed top-4 right-4 bg-green-500 text-white px-4 py-3 rounded-lg shadow-lg z-50 animate-fade-in flex items-center gap-2';
+            notification.innerHTML = `
+                <span class="material-symbols-outlined text-sm">check_circle</span>
+                <span>${producto.nombre} añadido al carrito</span>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Remover notificación después de 3 segundos
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+            
+            // Aquí puedes agregar lógica para guardar en el carrito
+            console.log('Producto agregado:', producto);
+        }
+
+        // Configurar modo oscuro
+        function configurarModoOscuro() {
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            const htmlElement = document.documentElement;
+            
+            if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                htmlElement.classList.add('dark');
+            } else {
+                htmlElement.classList.remove('dark');
+            }
+            
+            themeToggleBtn.addEventListener('click', () => {
+                htmlElement.classList.toggle('dark');
+                localStorage.setItem('theme', htmlElement.classList.contains('dark') ? 'dark' : 'light');
+            });
+        }
+
+        // Mostrar error
+        function mostrarError() {
+            elementos.productsGrid.innerHTML = `
+                <div class="col-span-full text-center py-16">
+                    <span class="material-symbols-outlined text-6xl text-red-500 mb-4">error</span>
+                    <h3 class="text-xl font-semibold mb-2">Error al cargar productos</h3>
+                    <p class="text-slate-500 mb-4">No se pudo cargar la información de productos.</p>
+                    <button onclick="location.reload()" class="bg-primary hover:bg-red-500 text-white px-6 py-2 rounded-lg font-semibold transition-colors">
+                        Reintentar
+                    </button>
+                </div>
+            `;
+        }
+
+        // Función helper para capitalizar primera letra
+        function capitalizarPrimeraLetra(string) {
+            return string.charAt(0).toUpperCase() + string.slice(1);
+        }
+
+        // Inicializar cuando el DOM esté listo
+        document.addEventListener('DOMContentLoaded', inicializarAplicacion);
+    </script>
+</body>
+</html>
+
+---------------------------------------------------------------------------------------------------
+productos.json
+{
+  "productos": [
+    {
+      "id": 1,
+      "nombre": "Vestido chic rojo",
+      "descripcion": "Vestido elegante de color rojo intenso, perfecto para ocasiones especiales",
+      "precio": 200,
+      "precio_original": 350,
+      "categoria": "vestidos",
+      "subcategoria": "vestidos-ocasion",
+      "tallas": ["S", "M", "L"],
+      "colores": ["Rojo"],
+      "imagen": "https://lh3.googleusercontent.com/aida-public/AB6AXuBnzcKiD19cFwGWNnCHFqMff3Dz_KlSWuGbMy31J3hjs8RXpQ0Dm9m6aUT7WL-K05cbhiw2uKrcR8kOXKYIbNKa3rdcjtFo5KGjB7nwqTMaASaQDEC4y6PLc79dsU_WYd9IF3rMaK93s8BWXeWzAGamYUHY1jIii4I0AHic_JYlw0kNreoMGSy0RigKDe06YExp6x6h71_zr6HjDtTh98dBFJjcL0eZCDeB0IsDxAf9WJNiKYvafZdE_3Sqk2OcHiHcMYGSyDzPf5nf",
+      "imagenes_secundarias": [
+        "https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=800&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1598554747436-c9293d6a5883?w-800&auto=format&fit=crop"
+      ],
+      "en_oferta": true,
+      "descuento": 43,
+      "stock": 15,
+      "material": "Seda sintética",
+      "disponible": true,
+      "destacado": true,
+      "nuevo": false,
+      "valoracion": 4.8,
+      "reseñas": 42,
+      "tags": ["vestido", "rojo", "elegante", "ocasión especial", "fiesta"]
+    },
+    {
+      "id": 2,
+      "nombre": "Chaqueta bomber terracota",
+      "descripcion": "Chaqueta bomber estilo urbano en tono terracota, cómoda y moderna",
+      "precio": 100,
+      "precio_original": 180,
+      "categoria": "chaquetas",
+      "subcategoria": "chaquetas-urbana",
+      "tallas": ["M", "L", "XL"],
+      "colores": ["Terracota"],
+      "imagen": "https://lh3.googleusercontent.com/aida-public/AB6AXuDeW1KvRnABkq_3aIHamsXWHpXrL6rDPxxtpR-P12kCkp1XRSFSvTOm6GOdn6XsrvDU0ai898I5X_ABJo1rfhyII2VwLKOql2tt0z4ewz691lYqY12X5-mKxgxZMjQauxnsUfjYBYcqil1POxgXwsk17jfKGfnYgdxg390rdRjnREadAiek77eY1CRBjMnAMLk6n31iZRWnd1hAwwhqxW8pkZG2fCMmYSNX31tu86n7LcNafJ-CKp6qZ0ZdyVrbhdZZiouXnHbJ7kWB",
+      "imagenes_secundarias": [
+        "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=800&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=800&auto=format&fit=crop"
+      ],
+      "en_oferta": true,
+      "descuento": 44,
+      "stock": 8,
+      "material": "Algodón y poliéster",
+      "disponible": true,
+      "destacado": true,
+      "nuevo": false,
+      "valoracion": 4.5,
+      "reseñas": 28,
+      "tags": ["chaqueta", "bomber", "urbano", "terracota", "casual"]
+    },
+    {
+      "id": 3,
+      "nombre": "Camisa lino minimalista",
+      "descripcion": "Camisa de lino minimalista, ideal para looks casuales y elegantes",
+      "precio": 120,
+      "precio_original": 120,
+      "categoria": "camisetas",
+      "subcategoria": "camisas-formales",
+      "tallas": ["XS", "S", "M"],
+      "colores": ["Blanco", "Beige"],
+      "imagen": "https://lh3.googleusercontent.com/aida-public/AB6AXuCzjbXbGyeWFTFTWYqzYXAGkwGjdTA46wwX1zgxAp30MVL0JyJLQoI40-nGpdLQThAe50LGfpnZ5pTacxxWLHtYuzj4QAEGPWMyf_ZPyj2WUNS-Jk0Knoped2SmZTrOIMtIj--MAqzwLSRPr6h_5eSaz2cEyw-FUaearOTgBZbBI_Mi674NZXSDECk7wutqdFBK0Jn1BobZTo7xxnL5eEWjHbzRiSKfdHm3QDCjcFm90nep1kH-ZcyMCMYJzkhQt6oc3WHoAs3j690u",
+      "imagenes_secundarias": [
+        "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=800&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=800&auto=format&fit=crop"
+      ],
+      "en_oferta": false,
+      "descuento": 0,
+      "stock": 22,
+      "material": "Lino 100%",
+      "disponible": true,
+      "destacado": false,
+      "nuevo": true,
+      "valoracion": 4.7,
+      "reseñas": 31,
+      "tags": ["camisa", "lino", "minimalista", "formal", "casual"]
+    },
+    {
+      "id": 4,
+      "nombre": "Conjunto veraniego",
+      "descripcion": "Conjunto de dos piezas perfecto para el verano, fresco y moderno",
+      "precio": 240,
+      "precio_original": 240,
+      "categoria": "vestidos",
+      "subcategoria": "conjuntos",
+      "tallas": ["S", "M"],
+      "colores": ["Azul claro", "Blanco"],
+      "imagen": "https://lh3.googleusercontent.com/aida-public/AB6AXuBQ6HvXIyMIKUXeW-uXdU6ITgpjL5bDx_o2OWO6elM6E9AuhcVNVWyy2FfPOfNF1Ub_J3tAGlfgt4Hf-Iyb_FQkn4vgB1cLCdAbIdNivD7t-xUnxr3CiVaAEwSN7dC9g-BRsBVKUiOon-KHvhpowCi2Kb3_i-qcOWKKqFGJg-QkRZN1mfYwf4X9W_fs3zxpulgpA9Ezu4EYqflMgEsiKNNJnHrs8RZ7ssaEccLZtiEEy38EUqX1es8AcnoNlQyFGliOwpvv7F-19Yse",
+      "imagenes_secundarias": [
+        "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=800&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=800&auto=format&fit=crop"
+      ],
+      "en_oferta": false,
+      "descuento": 0,
+      "stock": 12,
+      "material": "Algodón y viscosa",
+      "disponible": true,
+      "destacado": false,
+      "nuevo": true,
+      "valoracion": 4.9,
+      "reseñas": 19,
+      "tags": ["conjunto", "verano", "playa", "fresco", "moderno"]
+    },
+    {
+      "id": 5,
+      "nombre": "Vestido midi negro",
+      "descripcion": "Vestido midi negro elegante, versátil para cualquier ocasión",
+      "precio": 160,
+      "precio_original": 210,
+      "categoria": "vestidos",
+      "subcategoria": "vestidos-midi",
+      "tallas": ["XS", "S", "M", "L"],
+      "colores": ["Negro"],
+      "imagen": "https://lh3.googleusercontent.com/aida-public/AB6AXuBQanqro1gyRtXsG16rQBXw9tOA5vPGevTwteEVGbhlGa7XeN5UCYfnfb3ExASA3XFayFYR4qjGovm97yFbJa4WuAwBgrfcWg4aECuHM729uwNBz3T9HExdUwWGA4-CRC6XGXx51NYsjxjJH0kUqNbp4Hfupz_hb8FbaUTLitYqNgKXowm7LJ2AOhH7fE5im9rv50nt4FLahyxby__1CCq8xVvkv_jg3E4ijDPMR9DYpWsm8OBkuaRiKpkc7dssZls6eKHZ_mE3xqNW",
+      "imagenes_secundarias": [
+        "https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=800&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=800&auto=format&fit=crop"
+      ],
+      "en_oferta": true,
+      "descuento": 24,
+      "stock": 18,
+      "material": "Crepe",
+      "disponible": true,
+      "destacado": true,
+      "nuevo": false,
+      "valoracion": 4.6,
+      "reseñas": 37,
+      "tags": ["vestido", "midi", "negro", "elegante", "versátil"]
+    },
+    {
+      "id": 6,
+      "nombre": "Sudadera urban style",
+      "descripcion": "Sudadera cómoda estilo urbano, perfecta para el día a día",
+      "precio": 95,
+      "precio_original": 95,
+      "categoria": "camisetas",
+      "subcategoria": "sudaderas",
+      "tallas": ["M", "L", "XL"],
+      "colores": ["Gris", "Negro"],
+      "imagen": "https://lh3.googleusercontent.com/aida-public/AB6AXuDkKA6g3r7_yFczOpvas4HwhoOjIfqsuE250arTRBccitpCQxpKUdCZ8xjzSFa8-4kU_GHdZZIBC5JLhpIe0Q5ElgGFZiwxt2Xo32SGvxRToijPQY8_uGu_w2SXv58lvF51Kxm6hIMSpGs4mS6M1swwSQ0-hm3X0mRMyHXbcrEdsfaPgOMWsCvy4JRu7WnwYR7b_1mw0zsxXIXLWqjEBrhNfyb85NaKCNRuLQM7P8F2b2Vk1fwrw0k_V1sCkJALx5JMKv23BjwaVHK0",
+      "imagenes_secundarias": [
+        "https://images.unsplash.com/photo-1544441893-675973e31985?w=800&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?w=800&auto=format&fit=crop"
+      ],
+      "en_oferta": false,
+      "descuento": 0,
+      "stock": 25,
+      "material": "Algodón",
+      "disponible": true,
+      "destacado": false,
+      "nuevo": false,
+      "valoracion": 4.3,
+      "reseñas": 45,
+      "tags": ["sudadera", "urbano", "cómoda", "casual", "diario"]
+    },
+    {
+      "id": 7,
+      "nombre": "Pantalón cargo beige",
+      "descripcion": "Pantalón cargo en tono beige, funcional y a la moda",
+      "precio": 140,
+      "precio_original": 140,
+      "categoria": "pantalones",
+      "subcategoria": "pantalones-cargo",
+      "tallas": ["S", "M", "L"],
+      "colores": ["Beige", "Caqui"],
+      "imagen": "https://lh3.googleusercontent.com/aida-public/AB6AXuBMLoF1pFbyET79T5XKJl9x4WpDvO4KL2QeS8Ww2z5k2BEvO6u-bzP_7BkZt5fW0d0JwFVVJQskTs60WovXAB3IwgSOO8tzY28Tldl7xptwRdsRtoGcJjPw5rgJjwacOWeB30Fq3NjUktH1E3mlLIZkxNblKPn7MRLcK1lFR1mY0VUnjsX8zw0Weu_mCH0blCVkS66PAx-LSpz1_0FZq8shQ=w800-h600",
+      "imagenes_secundarias": [
+        "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=800&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=800&auto=format&fit=crop"
+      ],
+      "en_oferta": false,
+      "descuento": 0,
+      "stock": 14,
+      "material": "Algodón y poliéster",
+      "disponible": true,
+      "destacado": false,
+      "nuevo": true,
+      "valoracion": 4.4,
+      "reseñas": 23,
+      "tags": ["pantalón", "cargo", "beige", "funcional", "moda"]
+    },
+    {
+      "id": 8,
+      "nombre": "Chaqueta denim oversize",
+      "descripcion": "Chaqueta denim oversize, estilo relajado y contemporáneo",
+      "precio": 180,
+      "precio_original": 220,
+      "categoria": "chaquetas",
+      "subcategoria": "chaquetas-denim",
+      "tallas": ["M", "L", "XL"],
+      "colores": ["Azul denim", "Negro"],
+      "imagen": "https://lh3.googleusercontent.com/aida-public/AB6AXuAaqEMcO54SMIgYvVq6q02uJTVF6G6PzTPv9Sx5OH0WTLUsvXqasnmMOr2hWY3kCbQ1bCSkyYqW8tprDP9OJgJb9C_xePzyY6D9cY4lKvByFzZPHbNjeSy8CKx7S04zr9i_8mpjLzAPMxW4k-CJpJTVk1hA0z3pWtuzWmz81Vzkf0fDP7AqRxDnL91Z5lFL7q8q9aCLMjSg=w800-h600",
+      "imagenes_secundarias": [
+        "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=800&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1525450824786-227cbef70703?w=800&auto=format&fit=crop"
+      ],
+      "en_oferta": true,
+      "descuento": 18,
+      "stock": 9,
+      "material": "Denim",
+      "disponible": true,
+      "destacado": true,
+      "nuevo": false,
+      "valoracion": 4.7,
+      "reseñas": 39,
+      "tags": ["chaqueta", "denim", "oversize", "relajado", "contemporáneo"]
+    },
+    {
+      "id": 9,
+      "nombre": "Top seda satinada",
+      "descripcion": "Top de seda satinada, elegante y perfecto para combinar",
+      "precio": 85,
+      "precio_original": 85,
+      "categoria": "camisetas",
+      "subcategoria": "tops",
+      "tallas": ["XS", "S", "M"],
+      "colores": ["Blanco", "Rosa pálido"],
+      "imagen": "https://lh3.googleusercontent.com/aida-public/AB6AXuAJ_fUfASz0ac34-qopLgv5uUPXhjAbFlQPKmMSnUsL3PhI3hKXWf10tMzxUKuObOogvXPDCdv_8EQrSJBjDj5J55R21oBdvsb8y-R1SCyzXU1QsUgfQhK4ylQf4T-BKIXuR2fG2bD4Yl23pqZy=w800-h600",
+      "imagenes_secundarias": [
+        "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=800&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1586790170083-2f9ceadc732d?w=800&auto=format&fit=crop"
+      ],
+      "en_oferta": false,
+      "descuento": 0,
+      "stock": 20,
+      "material": "Seda",
+      "disponible": true,
+      "destacado": false,
+      "nuevo": true,
+      "valoracion": 4.8,
+      "reseñas": 27,
+      "tags": ["top", "seda", "satinado", "elegante", "combinable"]
+    },
+    {
+      "id": 10,
+      "nombre": "Falda midi plisada",
+      "descripcion": "Falda midi plisada, femenina y con movimiento",
+      "precio": 120,
+      "precio_original": 120,
+      "categoria": "vestidos",
+      "subcategoria": "faldas",
+      "tallas": ["S", "M"],
+      "colores": ["Negro", "Bordó"],
+      "imagen": "https://lh3.googleusercontent.com/aida-public/AB6AXuAdJ9TCwzVpq7by19Mts2Mngu65xPCcV7AJ4wBheYv_Xx7KBS5adqwYs3JbU9LQaPN6ZJ0lA_DbD6Jm_8v5Qs-vFgyg8OBsdEWWhOo4jmPtv2QU5l8yK56xS7AHIz1SQouH9fVrDg5pou53=w800-h600",
+      "imagenes_secundarias": [
+        "https://images.unsplash.com/photo-1572804013427-4d7ca7268217?w=800&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=800&auto=format&fit=crop"
+      ],
+      "en_oferta": false,
+      "descuento": 0,
+      "stock": 16,
+      "material": "Poliéster",
+      "disponible": true,
+      "destacado": false,
+      "nuevo": false,
+      "valoracion": 4.5,
+      "reseñas": 33,
+      "tags": ["falda", "midi", "plisada", "femenina", "movimiento"]
+    },
+    {
+      "id": 11,
+      "nombre": "Pantalón cuero sintético",
+      "descripcion": "Pantalón de cuero sintético, moderno y con actitud",
+      "precio": 160,
+      "precio_original": 160,
+      "categoria": "pantalones",
+      "subcategoria": "pantalones-piel",
+      "tallas": ["S", "M", "L"],
+      "colores": ["Negro"],
+      "imagen": "https://lh3.googleusercontent.com/aida-public/AB6AXuBwWeAl4OhP2q2B_wvXo7zXVZz2p4_DN4V8dGyCkSAd9obPq-foPy8rBR5lRkG5tT4t_fiZPnngTwB1QIgokI-vp7ocUN3imdLVuELPK-M4Apw2dPwIlhJ1Hw6uFy_hgxIhFttQF1Z5t5g=w800-h600",
+      "imagenes_secundarias": [
+        "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=800&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1475180098004-ca77a66827be?w=800&auto=format&fit=crop"
+      ],
+      "en_oferta": false,
+      "descuento": 0,
+      "stock": 7,
+      "material": "Cuero sintético",
+      "disponible": true,
+      "destacado": false,
+      "nuevo": true,
+      "valoracion": 4.6,
+      "reseñas": 18,
+      "tags": ["pantalón", "cuero", "sintético", "moderno", "actitud"]
+    },
+    {
+      "id": 12,
+      "nombre": "Chaqueta vaquera vintage",
+      "descripcion": "Chaqueta vaquera estilo vintage, auténtica y con carácter",
+      "precio": 145,
+      "precio_original": 190,
+      "categoria": "chaquetas",
+      "subcategoria": "chaquetas-vaqueras",
+      "tallas": ["M", "L"],
+      "colores": ["Azul denim", "Gris"],
+      "imagen": "https://lh3.googleusercontent.com/aida-public/AB6AXuCaG5pPJXlZwlszQ5ES6rrr-6CGLfzJY4rf-3rByi45qFmts7yivlYTo-lpQhIsy5OKglpN-y_7HEF4rUUXhIAAqD8d5PQZzApqC-8HqM3yCjylp9R4gb2u8DRokCj_99JR3gNvVl_L6g=w800-h600",
+      "imagenes_secundarias": [
+        "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=800&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=800&auto=format&fit=crop"
+      ],
+      "en_oferta": true,
+      "descuento": 24,
+      "stock": 11,
+      "material": "Denim",
+      "disponible": true,
+      "destacado": true,
+      "nuevo": false,
+      "valoracion": 4.9,
+      "reseñas": 41,
+      "tags": ["chaqueta", "vaquera", "vintage", "auténtica", "carácter"]
+    }
+  ],
+  "categorias": [
+    {
+      "id": "vestidos",
+      "nombre": "Vestidos",
+      "descripcion": "Vestidos para toda ocasión",
+      "icono": "dress"
+    },
+    {
+      "id": "chaquetas",
+      "nombre": "Chaquetas",
+      "descripcion": "Chaquetas y abrigos",
+      "icono": "jacket"
+    },
+    {
+      "id": "camisetas",
+      "nombre": "Camisetas",
+      "descripcion": "Camisas, tops y sudaderas",
+      "icono": "shirt"
+    },
+    {
+      "id": "pantalones",
+      "nombre": "Pantalones",
+      "descripcion": "Pantalones y faldas",
+      "icono": "pants"
+    }
+  ],
+  "subcategorias": [
+    {
+      "id": "vestidos-ocasion",
+      "nombre": "Vestidos de ocasión",
+      "categoria": "vestidos"
+    },
+    {
+      "id": "vestidos-midi",
+      "nombre": "Vestidos midi",
+      "categoria": "vestidos"
+    },
+    {
+      "id": "conjuntos",
+      "nombre": "Conjuntos",
+      "categoria": "vestidos"
+    },
+    {
+      "id": "faldas",
+      "nombre": "Faldas",
+      "categoria": "vestidos"
+    },
+    {
+      "id": "chaquetas-urbana",
+      "nombre": "Chaquetas urbanas",
+      "categoria": "chaquetas"
+    },
+    {
+      "id": "chaquetas-denim",
+      "nombre": "Chaquetas denim",
+      "categoria": "chaquetas"
+    },
+    {
+      "id": "chaquetas-vaqueras",
+      "nombre": "Chaquetas vaqueras",
+      "categoria": "chaquetas"
+    },
+    {
+      "id": "camisas-formales",
+      "nombre": "Camisas formales",
+      "categoria": "camisetas"
+    },
+    {
+      "id": "sudaderas",
+      "nombre": "Sudaderas",
+      "categoria": "camisetas"
+    },
+    {
+      "id": "tops",
+      "nombre": "Tops",
+      "categoria": "camisetas"
+    },
+    {
+      "id": "pantalones-cargo",
+      "nombre": "Pantalones cargo",
+      "categoria": "pantalones"
+    },
+    {
+      "id": "pantalones-piel",
+      "nombre": "Pantalones de piel",
+      "categoria": "pantalones"
+    }
+  ],
+  "metadata": {
+    "total_productos": 12,
+    "ultima_actualizacion": "2024-01-15",
+    "version": "1.0.0"
+  }
+}
+---------------------------------------------------------------------------------------------------
+producto.html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ATELIER - Detalles del Producto</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,400,0,0" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                colors: {
+                    primary: "#f0625d",
+                    "background-light": "#ffffff",
+                    "background-dark": "#121212",
+                },
+                fontFamily: {
+                    display: ["Playfair Display", "serif"],
+                    sans: ["Inter", "sans-serif"],
+                },
+                borderRadius: {
+                    DEFAULT: "0.5rem",
+                },
+            },
+        },
+    };
+</script>
+<style>
+    .zoom-image {
+        transition: transform 0.3s ease;
+        cursor: zoom-in;
+    }
+    .zoom-image:hover {
+        transform: scale(1.05);
+    }
+    @keyframes fade-in {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in {
+        animation: fade-in 0.3s ease-out;
+    }
+    .tab-btn.active {
+        border-bottom-color: #f0625d;
+        color: #f0625d;
+    }
+</style>
+<!-- Header Manager -->
+<script src="header-manager.js" defer></script>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-sans antialiased">
+    <!-- Header -->
+    <header class="border-b border-slate-200 dark:border-slate-800 sticky top-0 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20 gap-8">
+                <div class="flex-shrink-0">
+                    <a class="font-display text-3xl font-bold tracking-tight text-slate-900 dark:text-white uppercase" href="index.html">Atelier</a>
+                </div>
+
+                <div class="flex items-center gap-4">
+                    <button class="p-2 text-slate-500 hover:text-primary dark:text-slate-400 dark:hover:text-primary transition-colors" id="theme-toggle">
+                        <span class="material-symbols-outlined dark:hidden">dark_mode</span>
+                        <span class="material-symbols-outlined hidden dark:inline">light_mode</span>
+                    </button>
+                    <button class="bg-primary hover:bg-red-500 text-white px-6 py-2.5 rounded-full text-sm font-semibold transition-all shadow-sm">
+                        <a href="error.html">Regístrate o inicia sesión</a>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 py-8">
+        <!-- Breadcrumb -->
+        <nav aria-label="Breadcrumb" class="flex text-xs text-slate-500 mb-8 uppercase tracking-widest" id="breadcrumb">
+            <a class="hover:text-primary transition-colors" href="index.html">Inicio</a>
+            <span class="mx-2">/</span>
+            <a class="hover:text-primary transition-colors" href="productos2.html">Productos</a>
+            <span class="mx-2">/</span>
+            <span class="text-slate-900 dark:text-slate-100 font-semibold">Cargando...</span>
+        </nav>
+
+        <!-- Loading State -->
+        <div id="loadingState" class="text-center py-12">
+            <div class="animate-pulse">
+                <div class="w-16 h-16 bg-slate-200 dark:bg-slate-700 rounded-full mx-auto mb-4"></div>
+                <div class="h-4 bg-slate-200 dark:bg-slate-700 rounded w-48 mx-auto mb-2"></div>
+                <div class="h-3 bg-slate-200 dark:bg-slate-700 rounded w-32 mx-auto"></div>
+            </div>
+        </div>
+
+        <!-- Product Details Container -->
+        <div id="productContainer" class="hidden">
+            <!-- Product Details will be dynamically loaded here -->
+        </div>
+
+        <!-- Error State -->
+        <div id="errorState" class="hidden text-center py-16">
+            <span class="material-symbols-outlined text-6xl text-red-500 mb-4">error</span>
+            <h3 class="text-xl font-semibold mb-2">Producto no encontrado</h3>
+            <p class="text-slate-500 mb-4">El producto que buscas no existe o ha sido removido.</p>
+            <a href="productos.html" class="bg-primary hover:bg-red-500 text-white px-6 py-3 rounded-lg font-semibold transition-colors inline-block">
+                Volver a productos
+            </a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-12 mt-20">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-start gap-8">
+                <div class="max-w-sm">
+                    <h2 class="font-display text-3xl font-bold tracking-tight uppercase mb-3">Atelier</h2>
+                    <p class="text-slate-400 text-sm">Diseño de alta gama y elegancia para el mundo moderno. Encuentra tu estilo hoy.</p>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-8">
+                    <div class="space-y-3">
+                        <h4 class="font-bold text-xs uppercase tracking-widest text-slate-500">Explorar</h4>
+                        <ul class="text-sm space-y-2">
+                            <li><a class="hover:text-primary transition-colors" href="nosotros.html">Nosotros</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="servicios.html">Servicios</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="#">Ofertas</a></li>
+                        </ul>
+                    </div>
+                    <div class="space-y-3">
+                        <h4 class="font-bold text-xs uppercase tracking-widest text-slate-500">Ayuda</h4>
+                        <ul class="text-sm space-y-2">
+                            <li><a class="hover:text-primary transition-colors" href="#">Soporte</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="#">Envíos</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="#">Devoluciones</a></li>
+                        </ul>
+                    </div>
+                    <div class="space-y-3">
+                        <h4 class="font-bold text-xs uppercase tracking-widest text-slate-500">Legal</h4>
+                        <ul class="text-sm space-y-2">
+                            <li><a class="hover:text-primary transition-colors" href="#">Términos</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="#">Privacidad</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="#">Cookies</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 pt-6 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-500">
+                <p>© 2024 ATELIER S.A. Todos los derechos reservados.</p>
+                <div class="flex gap-6">
+                    <a class="hover:text-white transition-colors" href="#">
+                        <span class="material-symbols-outlined text-base">photo_camera</span>
+                    </a>
+                    <a class="hover:text-white transition-colors" href="#">
+                        <span class="material-symbols-outlined text-base">thumb_up</span>
+                    </a>
+                    <a class="hover:text-white transition-colors" href="#">
+                        <span class="material-symbols-outlined text-base">chat</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Templates -->
+    <template id="productTemplate">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <!-- Product Images -->
+            <div>
+                <!-- Main Image -->
+                <div class="relative rounded-xl overflow-hidden mb-4 bg-slate-100 dark:bg-slate-800">
+                    <img id="mainImage" src="" alt="" class="w-full h-auto object-cover zoom-image cursor-zoom-in"/>
+                    
+                    <!-- Badge -->
+                    <div id="badgeContainer"></div>
+                    
+                    <!-- Wishlist Button -->
+                    <button id="wishlistBtn" class="absolute top-4 right-4 w-10 h-10 bg-white/90 dark:bg-slate-800/90 rounded-full flex items-center justify-center hover:bg-white dark:hover:bg-slate-700 transition-colors shadow-lg">
+                        <span class="material-symbols-outlined text-slate-700 dark:text-slate-300">favorite</span>
+                    </button>
+                </div>
+
+                <!-- Thumbnails -->
+                <div class="grid grid-cols-4 gap-3" id="thumbnailsContainer">
+                    <!-- Thumbnails will be dynamically added -->
+                </div>
+            </div>
+
+            <!-- Product Info -->
+            <div class="space-y-8">
+                <!-- Product Header -->
+                <div>
+                    <div class="flex items-center gap-3 mb-2">
+                        <span id="productCategory" class="text-xs font-bold uppercase tracking-widest text-primary"></span>
+                        <span id="productCode" class="text-xs text-slate-500"></span>
+                    </div>
+                    <h1 id="productName" class="font-display text-4xl md:text-5xl font-bold mb-3"></h1>
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="flex items-center gap-2">
+                            <div id="ratingStars" class="flex"></div>
+                            <span id="ratingText" class="text-sm text-slate-500"></span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-green-500 text-sm">check_circle</span>
+                            <span id="stockStatus" class="text-sm text-slate-500"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Price -->
+                <div class="space-y-2">
+                    <div class="flex items-center gap-4">
+                        <span id="currentPrice" class="text-4xl font-bold text-primary"></span>
+                        <span id="originalPrice" class="text-2xl text-slate-400 line-through"></span>
+                        <span id="discountBadge" class="bg-red-500 text-white text-xs font-bold uppercase px-3 py-1 rounded-full"></span>
+                    </div>
+                    <p class="text-sm text-slate-500">Precio incluye IVA. Envío gratuito en pedidos +$50</p>
+                </div>
+
+                <!-- Description -->
+                <div class="space-y-4">
+                    <h3 class="text-lg font-bold">Descripción</h3>
+                    <p id="productDescription" class="text-slate-600 dark:text-slate-400 leading-relaxed"></p>
+                    <ul id="featuresList" class="space-y-2 text-slate-600 dark:text-slate-400">
+                        <!-- Features will be added dynamically -->
+                    </ul>
+                </div>
+
+                <!-- Size Selector -->
+                <div class="space-y-4" id="sizeSelectorContainer">
+                    <!-- Size selector will be added if product has sizes -->
+                </div>
+
+                <!-- Quantity & Actions -->
+                <div class="space-y-6">
+                    <div class="space-y-3">
+                        <h3 class="text-lg font-bold">Cantidad</h3>
+                        <div class="flex items-center gap-4">
+                            <div class="flex items-center border border-slate-300 dark:border-slate-700 rounded-lg">
+                                <button id="decreaseQty" class="w-12 h-12 flex items-center justify-center text-slate-500 hover:text-primary transition-colors">
+                                    <span class="material-symbols-outlined">remove</span>
+                                </button>
+                                <input id="quantity" type="number" min="1" value="1" class="w-16 h-12 text-center border-x border-slate-300 dark:border-slate-700 bg-transparent focus:outline-none"/>
+                                <button id="increaseQty" class="w-12 h-12 flex items-center justify-center text-slate-500 hover:text-primary transition-colors">
+                                    <span class="material-symbols-outlined">add</span>
+                                </button>
+                            </div>
+                            <div id="stockInfo" class="text-sm text-slate-500"></div>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <button id="addToCartBtn" class="bg-primary hover:bg-red-500 text-white py-4 rounded-lg font-bold flex items-center justify-center gap-3 transition-all shadow-lg hover:shadow-xl">
+                            <span class="material-symbols-outlined">shopping_cart</span>
+                            Añadir al carrito
+                        </button>
+                        <button id="buyNowBtn" class="bg-black dark:bg-white text-white dark:text-black py-4 rounded-lg font-bold flex items-center justify-center gap-3 transition-all hover:bg-slate-800 dark:hover:bg-slate-200">
+                            <span class="material-symbols-outlined">bolt</span>
+                            Comprar ahora
+                        </button>
+                    </div>
+
+                    <!-- Additional Info -->
+                    <div class="grid grid-cols-2 gap-4 pt-4 border-t border-slate-200 dark:border-slate-800">
+                        <div class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-slate-400">local_shipping</span>
+                            <div>
+                                <p class="text-sm font-medium">Envío gratis</p>
+                                <p class="text-xs text-slate-500">En 24-48h</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-slate-400">assignment_return</span>
+                            <div>
+                                <p class="text-sm font-medium">Devolución fácil</p>
+                                <p class="text-xs text-slate-500">30 días</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product Tabs -->
+        <div class="mt-16 pt-12 border-t border-slate-200 dark:border-slate-800">
+            <!-- Tab Navigation -->
+            <div class="flex border-b border-slate-200 dark:border-slate-800 mb-8">
+                <button class="tab-btn py-4 px-6 text-lg font-medium border-b-2 border-transparent hover:text-primary transition-colors active" data-tab="details">
+                    Detalles
+                </button>
+                <button class="tab-btn py-4 px-6 text-lg font-medium border-b-2 border-transparent hover:text-primary transition-colors" data-tab="reviews">
+                    Reseñas
+                </button>
+                <button class="tab-btn py-4 px-6 text-lg font-medium border-b-2 border-transparent hover:text-primary transition-colors" data-tab="shipping">
+                    Envío & Devoluciones
+                </button>
+            </div>
+
+            <!-- Tab Content -->
+            <div id="tabDetails" class="tab-content space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <h4 class="text-xl font-bold mb-4">Especificaciones</h4>
+                        <div class="space-y-3" id="specificationsList">
+                            <!-- Specifications will be added dynamically -->
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-bold mb-4">Medidas</h4>
+                        <div class="space-y-3" id="measurementsList">
+                            <!-- Measurements will be added if available -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tabReviews" class="tab-content hidden space-y-6">
+                <div class="flex items-center justify-between mb-8">
+                    <div>
+                        <div class="flex items-center gap-4 mb-2">
+                            <div id="averageRating" class="text-4xl font-bold"></div>
+                            <div>
+                                <div id="reviewStars" class="flex mb-1"></div>
+                                <p id="reviewCount" class="text-sm text-slate-500"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="bg-primary hover:bg-red-500 text-white px-6 py-3 rounded-lg font-medium transition-colors">
+                        Escribir reseña
+                    </button>
+                </div>
+
+                <!-- Reviews Container -->
+                <div id="reviewsContainer" class="space-y-6">
+                    <!-- Reviews will be added dynamically -->
+                </div>
+            </div>
+
+            <div id="tabShipping" class="tab-content hidden space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="space-y-4">
+                        <h4 class="text-xl font-bold">Política de Envío</h4>
+                        <ul class="space-y-3 text-slate-600 dark:text-slate-400">
+                            <li class="flex items-start gap-2">
+                                <span class="material-symbols-outlined text-primary text-sm mt-0.5">local_shipping</span>
+                                <span>Envío gratuito en pedidos superiores a $50</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="material-symbols-outlined text-primary text-sm mt-0.5">schedule</span>
+                                <span>Entrega en 24-48 horas en zonas urbanas</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="material-symbols-outlined text-primary text-sm mt-0.5">track_changes</span>
+                                <span>Seguimiento en tiempo real</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="space-y-4">
+                        <h4 class="text-xl font-bold">Devoluciones & Cambios</h4>
+                        <ul class="space-y-3 text-slate-600 dark:text-slate-400">
+                            <li class="flex items-start gap-2">
+                                <span class="material-symbols-outlined text-primary text-sm mt-0.5">assignment_return</span>
+                                <span>30 días para devoluciones gratuitas</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="material-symbols-outlined text-primary text-sm mt-0.5">sync_alt</span>
+                                <span>Cambios de talla sin costo adicional</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="material-symbols-outlined text-primary text-sm mt-0.5">support_agent</span>
+                                <span>Soporte dedicado para devoluciones</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Related Products -->
+        <section class="mt-20">
+            <div class="flex items-center justify-between mb-8">
+                <h2 class="font-display text-3xl font-bold">Productos relacionados</h2>
+                <a href="productos.html" class="text-primary hover:text-red-500 font-medium flex items-center gap-2 transition-colors">
+                    Ver todos
+                    <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                </a>
+            </div>
+            <div id="relatedProducts" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Related products will be loaded dynamically -->
+            </div>
+        </section>
+    </template>
+
+    <script>
+        // Estado del producto
+        const estadoProducto = {
+            id: null,
+            datos: null,
+            tallaSeleccionada: null,
+            cantidad: 1,
+            enFavoritos: false
+        };
+
+        // Obtener ID del producto desde la URL
+        function obtenerIdProducto() {
+            const params = new URLSearchParams(window.location.search);
+            return parseInt(params.get('id')) || 1; // Default to product 1
+        }
+
+        // Cargar datos del producto
+        async function cargarProducto() {
+            try {
+                const productId = obtenerIdProducto();
+                
+                // Cargar todos los productos
+                const respuesta = await fetch('productos.json');
+                const datos = await respuesta.json();
+                
+                // Encontrar el producto específico
+                const producto = datos.productos.find(p => p.id === productId);
+                
+                if (!producto) {
+                    throw new Error('Producto no encontrado');
+                }
+                
+                estadoProducto.id = productId;
+                estadoProducto.datos = producto;
+                
+                // Renderizar el producto
+                renderizarProducto(producto);
+                
+                // Cargar productos relacionados
+                cargarProductosRelacionados(producto, datos.productos);
+                
+                // Ocultar loading, mostrar contenido
+                document.getElementById('loadingState').classList.add('hidden');
+                document.getElementById('productContainer').classList.remove('hidden');
+                
+            } catch (error) {
+                console.error('Error al cargar el producto:', error);
+                mostrarError();
+            }
+        }
+
+        // Renderizar producto
+        function renderizarProducto(producto) {
+            // Clonar template
+            const template = document.getElementById('productTemplate');
+            const contenido = template.content.cloneNode(true);
+            
+            // Actualizar breadcrumb
+            const breadcrumb = document.getElementById('breadcrumb');
+            const breadcrumbText = breadcrumb.querySelector('span:last-child');
+            breadcrumbText.textContent = producto.nombre;
+            
+            // Actualizar título de página
+            document.title = `${producto.nombre} | ATELIER`;
+            
+            // Actualizar contenido principal
+            const container = document.getElementById('productContainer');
+            container.innerHTML = '';
+            container.appendChild(contenido);
+            
+            // Configurar elementos del producto
+            configurarElementosProducto(producto);
+            
+            // Configurar eventos
+            configurarEventosProducto();
+        }
+
+        // Configurar elementos del producto
+        function configurarElementosProducto(producto) {
+            // Información básica
+            document.getElementById('productCategory').textContent = capitalizarPrimeraLetra(producto.categoria);
+            document.getElementById('productCode').textContent = `• Código: ATL-${producto.id.toString().padStart(3, '0')}`;
+            document.getElementById('productName').textContent = producto.nombre;
+            document.getElementById('productDescription').textContent = producto.descripcion;
+            
+            // Precios
+            const currentPrice = document.getElementById('currentPrice');
+            const originalPrice = document.getElementById('originalPrice');
+            const discountBadge = document.getElementById('discountBadge');
+            
+            currentPrice.textContent = `$${producto.precio}`;
+            
+            if (producto.en_oferta && producto.precio_original) {
+                originalPrice.textContent = `$${producto.precio_original}`;
+                const descuento = Math.round((1 - producto.precio / producto.precio_original) * 100);
+                discountBadge.textContent = `-${descuento}%`;
+                discountBadge.classList.remove('hidden');
+            } else {
+                originalPrice.classList.add('hidden');
+                discountBadge.classList.add('hidden');
+            }
+            
+            // Valoración
+            const ratingStars = document.getElementById('ratingStars');
+            const ratingText = document.getElementById('ratingText');
+            const averageRating = document.getElementById('averageRating');
+            const reviewStars = document.getElementById('reviewStars');
+            const reviewCount = document.getElementById('reviewCount');
+            
+            const valoracion = producto.valoracion || 4.2;
+            const reseñas = producto.reseñas || 128;
+            
+            // Generar estrellas para rating
+            ratingStars.innerHTML = generarEstrellasHTML(valoracion);
+            ratingText.textContent = `${valoracion} (${reseñas} reseñas)`;
+            
+            // Generar estrellas para sección de reseñas
+            averageRating.textContent = valoracion;
+            reviewStars.innerHTML = generarEstrellasHTML(valoracion);
+            reviewCount.textContent = `Basado en ${reseñas} reseñas`;
+            
+            // Stock
+            const stockStatus = document.getElementById('stockStatus');
+            const stockInfo = document.getElementById('stockInfo');
+            
+            if (producto.stock > 0) {
+                stockStatus.textContent = 'En stock';
+                stockInfo.innerHTML = `Solo quedan <span class="font-bold text-primary">${producto.stock}</span> unidades`;
+                document.getElementById('quantity').max = Math.min(producto.stock, 10);
+            } else {
+                stockStatus.textContent = 'Agotado';
+                stockStatus.classList.add('text-red-500');
+                stockInfo.textContent = 'Producto agotado';
+                document.getElementById('addToCartBtn').disabled = true;
+                document.getElementById('addToCartBtn').classList.add('opacity-50', 'cursor-not-allowed');
+                document.getElementById('quantity').disabled = true;
+            }
+            
+            // Imágenes
+            const mainImage = document.getElementById('mainImage');
+            const thumbnailsContainer = document.getElementById('thumbnailsContainer');
+            const badgeContainer = document.getElementById('badgeContainer');
+            
+            // Imagen principal
+            mainImage.src = producto.imagen;
+            mainImage.alt = producto.nombre;
+            
+            // Badges
+            badgeContainer.innerHTML = '';
+            if (producto.en_oferta) {
+                badgeContainer.innerHTML += `
+                    <span class="absolute top-4 left-4 bg-primary text-white text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded-lg">
+                        ¡OFERTA ESPECIAL!
+                    </span>
+                `;
+            }
+            
+            if (producto.nuevo) {
+                badgeContainer.innerHTML += `
+                    <span class="absolute top-16 left-4 bg-green-500 text-white text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded-lg">
+                        NUEVO
+                    </span>
+                `;
+            }
+            
+            // Miniaturas
+            thumbnailsContainer.innerHTML = '';
+            
+            // Miniatura para imagen principal
+            const miniaturaPrincipal = document.createElement('button');
+            miniaturaPrincipal.className = 'thumbnail-btn border-2 border-primary rounded-lg overflow-hidden active';
+            miniaturaPrincipal.innerHTML = `<img src="${producto.imagen}" alt="${producto.nombre}" class="w-full aspect-square object-cover"/>`;
+            miniaturaPrincipal.addEventListener('click', () => cambiarImagenPrincipal(producto.imagen, miniaturaPrincipal));
+            thumbnailsContainer.appendChild(miniaturaPrincipal);
+            
+            // Miniaturas para imágenes secundarias
+            if (producto.imagenes_secundarias && producto.imagenes_secundarias.length > 0) {
+                producto.imagenes_secundarias.forEach((imagen, index) => {
+                    const miniatura = document.createElement('button');
+                    miniatura.className = 'thumbnail-btn border-2 border-transparent rounded-lg overflow-hidden hover:border-primary transition-all';
+                    miniatura.innerHTML = `<img src="${imagen}" alt="${producto.nombre} - vista ${index + 1}" class="w-full aspect-square object-cover"/>`;
+                    miniatura.addEventListener('click', () => cambiarImagenPrincipal(imagen, miniatura));
+                    thumbnailsContainer.appendChild(miniatura);
+                });
+            }
+            
+            // Características
+            const featuresList = document.getElementById('featuresList');
+            featuresList.innerHTML = '';
+            
+            const caracteristicas = [
+                `Tela: ${producto.material}`,
+                'Corte: Ajustado en pecho, fluido en falda',
+                'Largo: Mid-calf (65cm desde cintura)',
+                'Forro interior de algodón transpirable'
+            ];
+            
+            caracteristicas.forEach(caracteristica => {
+                const li = document.createElement('li');
+                li.className = 'flex items-start gap-2';
+                li.innerHTML = `
+                    <span class="material-symbols-outlined text-primary text-sm mt-0.5">check</span>
+                    <span>${caracteristica}</span>
+                `;
+                featuresList.appendChild(li);
+            });
+            
+            // Selector de tallas
+            const sizeSelectorContainer = document.getElementById('sizeSelectorContainer');
+            if (producto.tallas && producto.tallas.length > 0) {
+                sizeSelectorContainer.innerHTML = `
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-lg font-bold">Talla</h3>
+                            <button class="text-sm text-primary hover:text-red-500 transition-colors flex items-center gap-1">
+                                <span class="material-symbols-outlined text-sm">straighten</span>
+                                Guía de tallas
+                            </button>
+                        </div>
+                        <div class="grid grid-cols-5 gap-3" id="sizeOptionsContainer">
+                            ${producto.tallas.map((talla, index) => `
+                                <button class="size-option border-2 ${index === 0 ? 'border-primary bg-primary/5' : 'border-slate-200 dark:border-slate-700'} py-3 rounded-lg text-center hover:border-primary transition-all" data-size="${talla.toLowerCase()}">
+                                    <span class="font-medium">${talla.toUpperCase()}</span>
+                                    <div class="text-xs ${index === 0 ? 'text-primary' : 'text-slate-500'} mt-1">EU ${34 + index * 2}</div>
+                                </button>
+                            `).join('')}
+                        </div>
+                        <p class="text-sm text-slate-500">* Producto talla real. Si dudas, escoge una talla más</p>
+                    </div>
+                `;
+                
+                // Establecer primera talla como seleccionada por defecto
+                estadoProducto.tallaSeleccionada = producto.tallas[0].toLowerCase();
+            } else {
+                sizeSelectorContainer.innerHTML = '<p class="text-slate-500">Talla única</p>';
+            }
+            
+            // Especificaciones
+            const specificationsList = document.getElementById('specificationsList');
+            const especificaciones = [
+                { label: 'Composición', value: producto.material },
+                { label: 'Cuidados', value: 'Lavado a mano, Secado plano' },
+                { label: 'Color', value: producto.colores ? producto.colores[0] : 'Principal' },
+                { label: 'Peso', value: '320g' },
+                { label: 'Origen', value: 'Diseñado en España' }
+            ];
+            
+            specificationsList.innerHTML = especificaciones.map(esp => `
+                <div class="flex justify-between py-2 border-b border-slate-100 dark:border-slate-800">
+                    <span class="text-slate-600 dark:text-slate-400">${esp.label}</span>
+                    <span class="font-medium">${esp.value}</span>
+                </div>
+            `).join('');
+        }
+
+        // Configurar eventos del producto
+        function configurarEventosProducto() {
+            // Cambiar imagen principal
+            function cambiarImagenPrincipal(urlImagen, botonClickeado) {
+                document.getElementById('mainImage').src = urlImagen;
+                
+                // Actualizar miniaturas activas
+                document.querySelectorAll('.thumbnail-btn').forEach(btn => {
+                    btn.classList.remove('border-primary', 'active');
+                    btn.classList.add('border-transparent');
+                });
+                
+                botonClickeado.classList.add('border-primary', 'active');
+                botonClickeado.classList.remove('border-transparent');
+            }
+            
+            // Wishlist toggle
+            document.getElementById('wishlistBtn').addEventListener('click', function() {
+                estadoProducto.enFavoritos = !estadoProducto.enFavoritos;
+                const heartIcon = this.querySelector('span');
+                
+                if (estadoProducto.enFavoritos) {
+                    heartIcon.textContent = 'favorite';
+                    heartIcon.classList.remove('text-slate-700', 'dark:text-slate-300');
+                    heartIcon.classList.add('text-primary');
+                    mostrarNotificacion('Producto añadido a favoritos');
+                } else {
+                    heartIcon.textContent = 'favorite';
+                    heartIcon.classList.remove('text-primary');
+                    heartIcon.classList.add('text-slate-700', 'dark:text-slate-300');
+                    mostrarNotificacion('Producto removido de favoritos');
+                }
+            });
+            
+            // Controles de cantidad
+            document.getElementById('decreaseQty').addEventListener('click', function() {
+                const quantityInput = document.getElementById('quantity');
+                let current = parseInt(quantityInput.value);
+                if (current > 1) {
+                    quantityInput.value = current - 1;
+                    estadoProducto.cantidad = quantityInput.value;
+                }
+            });
+            
+            document.getElementById('increaseQty').addEventListener('click', function() {
+                const quantityInput = document.getElementById('quantity');
+                let current = parseInt(quantityInput.value);
+                const max = parseInt(quantityInput.max) || 10;
+                if (current < max) {
+                    quantityInput.value = current + 1;
+                    estadoProducto.cantidad = quantityInput.value;
+                }
+            });
+            
+            document.getElementById('quantity').addEventListener('change', function() {
+                let value = parseInt(this.value);
+                const max = parseInt(this.max) || 10;
+                if (value < 1) this.value = 1;
+                if (value > max) this.value = max;
+                estadoProducto.cantidad = this.value;
+            });
+            
+            // Selección de talla
+            document.querySelectorAll('.size-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    // Actualizar UI
+                    document.querySelectorAll('.size-option').forEach(opt => {
+                        opt.classList.remove('border-primary', 'bg-primary/5', 'active');
+                        const sizeText = opt.querySelector('div');
+                        if (sizeText) {
+                            sizeText.classList.remove('text-primary');
+                            sizeText.classList.add('text-slate-500');
+                        }
+                    });
+                    
+                    this.classList.add('border-primary', 'bg-primary/5', 'active');
+                    const sizeText = this.querySelector('div');
+                    if (sizeText) {
+                        sizeText.classList.remove('text-slate-500');
+                        sizeText.classList.add('text-primary');
+                    }
+                    
+                    // Actualizar estado
+                    estadoProducto.tallaSeleccionada = this.dataset.size;
+                });
+            });
+            
+            // Añadir al carrito
+            document.getElementById('addToCartBtn').addEventListener('click', function() {
+                const producto = estadoProducto.datos;
+                
+                if (producto.tallas && producto.tallas.length > 0 && !estadoProducto.tallaSeleccionada) {
+                    mostrarNotificacion('Por favor selecciona una talla', 'warning');
+                    return;
+                }
+                
+                const itemCarrito = {
+                    id: producto.id,
+                    nombre: producto.nombre,
+                    precio: producto.precio,
+                    imagen: producto.imagen,
+                    talla: estadoProducto.tallaSeleccionada,
+                    cantidad: estadoProducto.cantidad
+                };
+                
+                // Aquí iría la lógica para guardar en el carrito
+                guardarEnCarrito(itemCarrito);
+                
+                mostrarNotificacion(`${producto.nombre} añadido al carrito`);
+            });
+            
+            // Comprar ahora
+            document.getElementById('buyNowBtn').addEventListener('click', function() {
+                const producto = estadoProducto.datos;
+                
+                if (producto.tallas && producto.tallas.length > 0 && !estadoProducto.tallaSeleccionada) {
+                    mostrarNotificacion('Por favor selecciona una talla', 'warning');
+                    return;
+                }
+                
+                const orden = {
+                    id: producto.id,
+                    nombre: producto.nombre,
+                    precio: producto.precio,
+                    talla: estadoProducto.tallaSeleccionada,
+                    cantidad: estadoProducto.cantidad,
+                    total: producto.precio * estadoProducto.cantidad
+                };
+                
+                // En una implementación real, esto redirigiría al checkout
+                mostrarNotificacion('Redirigiendo al checkout...', 'info');
+                // window.location.href = `checkout.html?order=${encodeURIComponent(JSON.stringify(orden))}`;
+            });
+            
+            // Tabs
+            document.querySelectorAll('.tab-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const tabId = this.dataset.tab;
+                    
+                    // Actualizar botones de tab
+                    document.querySelectorAll('.tab-btn').forEach(btn => {
+                        btn.classList.remove('active', 'border-primary', 'text-primary');
+                    });
+                    this.classList.add('active', 'border-primary', 'text-primary');
+                    
+                    // Mostrar contenido del tab
+                    document.querySelectorAll('.tab-content').forEach(content => {
+                        content.classList.add('hidden');
+                    });
+                    document.getElementById(`tab${tabId.charAt(0).toUpperCase() + tabId.slice(1)}`).classList.remove('hidden');
+                });
+            });
+            
+            // Zoom de imagen
+            document.getElementById('mainImage').addEventListener('click', function() {
+                if (this.classList.contains('scale-150')) {
+                    this.classList.remove('scale-150', 'cursor-zoom-out');
+                    this.classList.add('cursor-zoom-in');
+                } else {
+                    this.classList.add('scale-150', 'cursor-zoom-out');
+                    this.classList.remove('cursor-zoom-in');
+                }
+            });
+            
+            // Modo oscuro
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            const htmlElement = document.documentElement;
+            
+            if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                htmlElement.classList.add('dark');
+            } else {
+                htmlElement.classList.remove('dark');
+            }
+            
+            themeToggleBtn.addEventListener('click', () => {
+                htmlElement.classList.toggle('dark');
+                localStorage.setItem('theme', htmlElement.classList.contains('dark') ? 'dark' : 'light');
+            });
+        }
+
+        // Cargar productos relacionados
+        async function cargarProductosRelacionados(productoActual, todosProductos) {
+            const relatedProductsContainer = document.getElementById('relatedProducts');
+            
+            if (!relatedProductsContainer) return;
+            
+            // Filtrar productos relacionados (misma categoría, excluyendo el actual)
+            const productosRelacionados = todosProductos
+                .filter(p => p.id !== productoActual.id && p.categoria === productoActual.categoria)
+                .slice(0, 4); // Tomar máximo 4 productos
+            
+            if (productosRelacionados.length === 0) {
+                // Si no hay productos en la misma categoría, tomar algunos aleatorios
+                const otrosProductos = todosProductos
+                    .filter(p => p.id !== productoActual.id)
+                    .slice(0, 4);
+                renderizarProductosRelacionados(otrosProductos);
+            } else {
+                renderizarProductosRelacionados(productosRelacionados);
+            }
+        }
+
+        // Renderizar productos relacionados
+        function renderizarProductosRelacionados(productos) {
+            const container = document.getElementById('relatedProducts');
+            container.innerHTML = '';
+            
+            productos.forEach(producto => {
+                const productCard = document.createElement('a');
+                productCard.href = `producto.html?id=${producto.id}`;
+                productCard.className = 'group block';
+                
+                const precioOriginalHTML = producto.en_oferta && producto.precio_original ?
+                    `<span class="text-slate-400 line-through text-sm">$${producto.precio_original}</span>` : '';
+                
+                const precioHTML = producto.en_oferta ?
+                    `<div class="flex items-center justify-center gap-2">
+                        <span class="text-primary font-bold text-lg">$${producto.precio}</span>
+                        ${precioOriginalHTML}
+                    </div>` :
+                    `<p class="text-slate-900 dark:text-white font-bold text-lg">$${producto.precio}</p>`;
+                
+                productCard.innerHTML = `
+                    <div class="relative overflow-hidden rounded-lg aspect-[3/4] mb-3 bg-slate-100 dark:bg-slate-800">
+                        <img src="${producto.imagen}" alt="${producto.nombre}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"/>
+                    </div>
+                    <div class="text-center">
+                        <h3 class="font-medium text-base mb-1">${producto.nombre}</h3>
+                        ${precioHTML}
+                    </div>
+                `;
+                
+                container.appendChild(productCard);
+            });
+        }
+
+        // Guardar en carrito (simulación)
+        function guardarEnCarrito(item) {
+            // Obtener carrito actual de localStorage
+            let carrito = JSON.parse(localStorage.getItem('carritoAtelier')) || [];
+            
+            // Verificar si el producto ya está en el carrito
+            const itemIndex = carrito.findIndex(i => 
+                i.id === item.id && i.talla === item.talla
+            );
+            
+            if (itemIndex > -1) {
+                // Actualizar cantidad
+                carrito[itemIndex].cantidad += item.cantidad;
+            } else {
+                // Añadir nuevo item
+                carrito.push(item);
+            }
+            
+            // Guardar en localStorage
+            localStorage.setItem('carritoAtelier', JSON.stringify(carrito));
+            
+            // Actualizar contador del carrito si existe
+            const cartCount = document.querySelector('.cart-count');
+            if (cartCount) {
+                const totalItems = carrito.reduce((sum, item) => sum + item.cantidad, 0);
+                cartCount.textContent = totalItems;
+                cartCount.classList.remove('hidden');
+            }
+        }
+
+        // Generar HTML de estrellas
+        function generarEstrellasHTML(rating) {
+            const estrellasLlenas = Math.floor(rating);
+            const tieneMediaEstrella = rating % 1 >= 0.5;
+            const estrellasVacias = 5 - estrellasLlenas - (tieneMediaEstrella ? 1 : 0);
+            
+            let html = '';
+            
+            // Estrellas llenas
+            for (let i = 0; i < estrellasLlenas; i++) {
+                html += '<span class="material-symbols-outlined text-amber-500">star</span>';
+            }
+            
+            // Media estrella
+            if (tieneMediaEstrella) {
+                html += '<span class="material-symbols-outlined text-amber-500">star_half</span>';
+            }
+            
+            // Estrellas vacías
+            for (let i = 0; i < estrellasVacias; i++) {
+                html += '<span class="material-symbols-outlined text-slate-300">star</span>';
+            }
+            
+            return html;
+        }
+
+        // Mostrar notificación
+        function mostrarNotificacion(mensaje, tipo = 'success') {
+            const colores = {
+                success: 'bg-green-500',
+                warning: 'bg-yellow-500',
+                info: 'bg-blue-500'
+            };
+            
+            const notification = document.createElement('div');
+            notification.className = `fixed top-4 right-4 ${colores[tipo]} text-white px-6 py-3 rounded-lg shadow-lg z-50 animate-fade-in flex items-center gap-3`;
+            notification.innerHTML = `
+                <span class="material-symbols-outlined">
+                    ${tipo === 'success' ? 'check_circle' : tipo === 'warning' ? 'warning' : 'info'}
+                </span>
+                <span>${mensaje}</span>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+
+        // Mostrar error
+        function mostrarError() {
+            document.getElementById('loadingState').classList.add('hidden');
+            document.getElementById('errorState').classList.remove('hidden');
+        }
+
+        // Helper: Capitalizar primera letra
+        function capitalizarPrimeraLetra(string) {
+            return string.charAt(0).toUpperCase() + string.slice(1);
+        }
+
+        // Inicializar cuando el DOM esté listo
+        document.addEventListener('DOMContentLoaded', cargarProducto);
+    </script>
+</body>
+</html>
