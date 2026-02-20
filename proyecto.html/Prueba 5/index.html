@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>ATELIER | E-commerce Fashion</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#f0625d",
+                        "background-light": "#ffffff",
+                        "background-dark": "#0f172a",
+                    },
+                    fontFamily: {
+                        display: ["Playfair Display", "serif"],
+                        sans: ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.5rem",
+                    },
+                },
+            },
+        };
+    </script>
+    <style>
+        .hero-gradient {
+            background: linear-gradient(to right, rgba(0,0,0,0.1), rgba(0,0,0,0.05)), url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+    <!-- Header Manager -->
+    <script src="header-manager.js" defer></script>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-sans transition-colors duration-300">
+<header class="border-b border-slate-200 dark:border-slate-800 sticky top-0 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-20 gap-8">
+            <!-- Logo -->
+            <div class="flex-shrink-0">
+                <a class="font-display text-3xl font-bold tracking-tight text-slate-900 dark:text-white uppercase" href="index.html">Atelier</a>
+            </div>
+            
+            <!-- ÁREA DEL BUSCADOR (ESTA ES LA QUE MODIFICARÁ EL SCRIPT) -->
+            <div class="flex-1 max-w-2xl relative">
+                <!-- El buscador actual se mantiene aquí -->
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <span class="material-symbols-outlined text-slate-400 text-sm">search</span>
+                </div>
+                <input class="block w-full pl-10 pr-3 py-2 border border-slate-300 dark:border-slate-700 rounded-full leading-5 bg-slate-50 dark:bg-slate-800 placeholder-slate-500 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary sm:text-sm transition-all" 
+                       placeholder="Buscar productos..." 
+                       type="text"/>
+            </div>
+            
+            <!-- Botones derecho -->
+            <div class="flex items-center gap-4">
+                <button class="p-2 text-slate-500 hover:text-primary dark:text-slate-400 dark:hover:text-primary transition-colors" id="theme-toggle">
+                    <span class="material-symbols-outlined dark:hidden">dark_mode</span>
+                    <span class="material-symbols-outlined hidden dark:inline">light_mode</span>
+                </button>
+                <button class="bg-primary hover:bg-red-500 text-white px-6 py-2.5 rounded-full text-sm font-semibold transition-all shadow-sm">
+                    <a href="login.html">Regístrate o inicia sesión</a>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Navegación (si aplica) -->
+        <nav class="flex justify-center space-x-8 md:space-x-12 py-3 border-t border-slate-100 dark:border-slate-800">
+            <!-- Tus enlaces de navegación -->
+        </nav>
+    </div>
+</header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="relative h-[500px] overflow-hidden">
+            <img alt="Fashion background with vibrant colors" class="absolute inset-0 w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAv8z4dfDQCBiy5TuUcVJwTgxo1wNak5r5ZRAucsEQJkBCN3wHRzVQTw39ntTxpIt3sfmkM4OhHWgf9zzF0BjWDrSusjWJUY6lA43t-jLUewhiZQYBjd4HlxeQ3fTSyhWqs3jP1UgA_xMEu6iaZl4tLkiMA8gA_4xJjsodh-Xb_rbbr7Q7Gr2rbCay4cS5bOJBUCRl9J8YksQvoKohiwstIdof8GL9IWGcc2C_ZDrzpUSpy8rOOHW6p2Fp3eaLAZifmkJg-_-7xhS6q"/>
+            <div class="absolute inset-0 bg-black/10 dark:bg-black/20"></div>
+            <div class="relative max-w-7xl mx-auto px-4 h-full flex items-center">
+                <div class="max-w-xl text-white">
+                    <span class="inline-block text-[#c4ff00] font-bold text-lg mb-3">Ofertas exclusivas 2024</span>
+                    <h1 class="text-5xl md:text-7xl font-bold font-display leading-tight mb-4">Todo lo que Necesitas</h1>
+                    <p class="text-base mb-6 opacity-90 font-medium">Miles de productos en un solo lugar. Ofertas increíbles, envío gratis y la mejor calidad.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trust Badges -->
+        <section class="py-8 border-y border-slate-100 dark:border-slate-800">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                    <div class="space-y-1">
+                        <span class="material-symbols-outlined text-primary text-2xl">local_shipping</span>
+                        <p class="text-xs font-medium">Envío gratis +$50</p>
+                    </div>
+                    <div class="space-y-1">
+                        <span class="material-symbols-outlined text-primary text-2xl">security</span>
+                        <p class="text-xs font-medium">Compra 100% segura</p>
+                    </div>
+                    <div class="space-y-1">
+                        <span class="material-symbols-outlined text-primary text-2xl">assignment_return</span>
+                        <p class="text-xs font-medium">Devoluciones fáciles</p>
+                    </div>
+                    <div class="space-y-1">
+                        <span class="material-symbols-outlined text-primary text-2xl">support_agent</span>
+                        <p class="text-xs font-medium">Soporte 24/7</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Products -->
+        <section class="max-w-7xl mx-auto px-4 py-12">
+            <div class="text-center mb-10">
+                <p class="text-primary font-semibold text-sm uppercase tracking-widest mb-2">Colección exclusiva</p>
+                <h2 class="text-3xl font-display font-bold mb-3">Productos Destacados</h2>
+                <p class="text-slate-500 dark:text-slate-400 max-w-xl mx-auto">Selección cuidadosa de nuestras mejores piezas</p>
+            </div>
+            
+            <!-- Filters -->
+            <div class="flex flex-col sm:flex-row justify-between items-center gap-4 mb-8">
+                <p class="text-sm text-slate-500">Mostrando 4 productos</p>
+                <select class="border border-slate-200 dark:border-slate-700 rounded-full px-4 py-2 text-sm bg-transparent w-full sm:w-auto">
+                    <option>Ordenar por: Destacados</option>
+                    <option>Precio: menor a mayor</option>
+                    <option>Precio: mayor a menor</option>
+                </select>
+            </div>
+            
+            <!-- Products Grid (Only 4 products) -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Product 1 -->
+                <div class="group">
+                    <div class="relative aspect-[3/4] rounded-xl overflow-hidden mb-4 bg-slate-100 dark:bg-slate-800">
+                        <img alt="Vestido chic rojo" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzskSXsWZYxwjTyq-F0o4VZhfIL5rknRU4A9m2cigUTqYw3dZBItX9Dv3rUmff9aeO8PmZ1DNLnwBzNVY5bOYMvGcOiWt_zfhKM4aMa_Nwp4ppx54HOH1JkZjt2ojHKK6hLZZAHQkZda6e7d9JqtUWyTSOSa-seAWqnR8rLf4jYzzXcU6FamY1WWQHN3LQg6Cl2rru7oroLxj8--7-5uxFC9bKZUTw1Tb5Aa1kkaoy18tw5DSYSXK7IqC9gHmCyBORfXwdonCv_Vq6"/>
+                        <span class="absolute top-3 left-3 bg-primary text-white text-[10px] font-bold px-2 py-1 rounded italic uppercase tracking-wider">¡OFERTA!</span>
+                    </div>
+                    <div class="space-y-3">
+                        <div>
+                            <h3 class="font-bold text-slate-800 dark:text-slate-200 text-base">Vestido chic rojo</h3>
+                            <p class="font-semibold text-slate-600 dark:text-slate-400">$200</p>
+                        </div>
+                        <button class="w-full bg-slate-900 dark:bg-slate-700 text-white py-2.5 rounded-full text-sm font-semibold hover:bg-primary transition-colors flex items-center justify-center gap-2">
+                            <span class="material-symbols-outlined text-sm">shopping_cart</span>
+                            Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="group">
+                    <div class="relative aspect-[3/4] rounded-xl overflow-hidden mb-4 bg-slate-100 dark:bg-slate-800">
+                        <img alt="Chaqueta sport Nike" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCb7s2vaJFu89EtkS6OG2ntR5pj1VM7nr4WSAQbmfLcyajCzhbAUhOqFQSUMxJVJOAEX9XROWkf5sY7v5lytacBNiuNRyfikKJyBvHSPYZNOgnvsKMHk0_z4xe5n6ZxYQX_JCTg6n1zAVorxXZrP669MtHWujd_kLkcOL5tjreJQZZxwfa7y8wqOtKHJLxtnjzzo7dcideu81BYsMLv9FJEdhpob5Iu6z14lx2Iv3fhFELH4aw-uklqjAIB2cccvcMSKF6RNQ0NHjnd"/>
+                        <span class="absolute top-3 left-3 bg-primary text-white text-[10px] font-bold px-2 py-1 rounded italic uppercase tracking-wider">¡OFERTA!</span>
+                    </div>
+                    <div class="space-y-3">
+                        <div>
+                            <h3 class="font-bold text-slate-800 dark:text-slate-200 text-base">Chaqueta sport Nike</h3>
+                            <p class="font-semibold text-slate-600 dark:text-slate-400">$100</p>
+                        </div>
+                        <button class="w-full bg-slate-900 dark:bg-slate-700 text-white py-2.5 rounded-full text-sm font-semibold hover:bg-primary transition-colors flex items-center justify-center gap-2">
+                            <span class="material-symbols-outlined text-sm">shopping_cart</span>
+                            Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="group">
+                    <div class="relative aspect-[3/4] rounded-xl overflow-hidden mb-4 bg-slate-100 dark:bg-slate-800">
+                        <img alt="Bolso de Mano" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQOrzCzhGqkOu2au_nrIXvDIko3ZP5Ye6v5Xjr6GrmUxVB6d61pKtYU61-Ds8JAf73O32v6HNpw2HtMeiu5JfGNb_NE0NUuA0gLbqSCKfgqPEmc6yap8gAv0LZyrTBOLTZBa4teJ5Q0nrYPnIVWZWn1E6BDHPLRDTTqWnaMYeRgKCqW66V6sJD9xynB08yFcToeHWZ72sHLOl1EJROme1jnBkrnL_i_Gitz2uB_kIzxhf7l-aX6Yo1qXinQZDfJawaX0s7yBM9fFoW"/>
+                    </div>
+                    <div class="space-y-3">
+                        <div>
+                            <h3 class="font-bold text-slate-800 dark:text-slate-200 text-base">Bolso de Mano</h3>
+                            <p class="font-semibold text-slate-600 dark:text-slate-400">$200</p>
+                        </div>
+                        <button class="w-full bg-slate-900 dark:bg-slate-700 text-white py-2.5 rounded-full text-sm font-semibold hover:bg-primary transition-colors flex items-center justify-center gap-2">
+                            <span class="material-symbols-outlined text-sm">shopping_cart</span>
+                            Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Product 4 -->
+                <div class="group">
+                    <div class="relative aspect-[3/4] rounded-xl overflow-hidden mb-4 bg-slate-100 dark:bg-slate-800">
+                        <img alt="Gafas de sol polarizados" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnPCWhPUUPAAwFZhCurRdPo7Q4-tE7kS0_8-DzRySJdcTpiGeQLxByz4p5ld6Ait2brqtrx1eRHafRZYZqzMlg5TWWv0wUnBv59m2UhaGx7bAWJBSBXuYrTyuZqkkSDe4159Tg7CjUCTl7TAAqxD_FsBYQOw0eVnz0yZ3mo6jPGVmBEQUV4mFVXP_UxPo8ZUpfLF-uaGxaf9wgDPW6fj7Nhw5TEe6ltenIhiJ4UL2wFB9mk-iHcPdeqPCqm4WuJY0wLrzOvWtyIloJ"/>
+                    </div>
+                    <div class="space-y-3">
+                        <div>
+                            <h3 class="font-bold text-slate-800 dark:text-slate-200 text-base">Gafas de sol polarizados</h3>
+                            <p class="font-semibold text-slate-600 dark:text-slate-400">$300</p>
+                        </div>
+                        <button class="w-full bg-slate-900 dark:bg-slate-700 text-white py-2.5 rounded-full text-sm font-semibold hover:bg-primary transition-colors flex items-center justify-center gap-2">
+                            <span class="material-symbols-outlined text-sm">shopping_cart</span>
+                            Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- View More Button -->
+            <div class="text-center mt-10">
+                <a href="productos2.html" class="inline-block border border-slate-300 dark:border-slate-700 hover:border-primary text-slate-700 dark:text-slate-300 hover:text-primary px-6 py-3 rounded-full font-medium transition-all duration-300">
+                    Explorar todos los productos →
+                </a>
+            </div>
+        </section>
+
+        <!-- Newsletter Section -->
+        <section class="bg-slate-50 dark:bg-slate-900 py-12">
+            <div class="max-w-3xl mx-auto px-4 text-center">
+                <h3 class="text-2xl font-display font-bold mb-3">Únete a nuestra comunidad</h3>
+                <p class="text-slate-600 dark:text-slate-400 mb-6">Recibe ofertas exclusivas y novedades de moda antes que nadie</p>
+                <div class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+                    <input type="email" placeholder="Tu correo electrónico" class="flex-1 px-4 py-3 rounded-full border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 focus:outline-none focus:ring-1 focus:ring-primary"/>
+                    <button class="bg-primary hover:bg-red-500 text-white px-6 py-3 rounded-full font-semibold transition-colors">Suscribirse</button>
+                </div>
+                <p class="text-xs text-slate-500 mt-3">Al suscribirte aceptas nuestra política de privacidad</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-12">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-start gap-8">
+                <div class="max-w-sm">
+                    <h2 class="font-display text-3xl font-bold tracking-tight uppercase mb-3">Atelier</h2>
+                    <p class="text-slate-400 text-sm">Diseño de alta gama y elegancia para el mundo moderno. Encuentra tu estilo hoy.</p>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-8">
+                    <div class="space-y-3">
+                        <h4 class="font-bold text-xs uppercase tracking-widest text-slate-500">Explorar</h4>
+                        <ul class="text-sm space-y-2">
+                            <li><a class="hover:text-primary transition-colors" href="nosotros.html">Nosotros</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="servicios.html">Servicios</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="error.html">Ofertas</a></li>
+                        </ul>
+                    </div>
+                    <div class="space-y-3">
+                        <h4 class="font-bold text-xs uppercase tracking-widest text-slate-500">Ayuda</h4>
+                        <ul class="text-sm space-y-2">
+                            <li><a class="hover:text-primary transition-colors" href="error.html">Soporte</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="error.html">Envíos</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="error.html">Devoluciones</a></li>
+                        </ul>
+                    </div>
+                    <div class="space-y-3">
+                        <h4 class="font-bold text-xs uppercase tracking-widest text-slate-500">Legal</h4>
+                        <ul class="text-sm space-y-2">
+                            <li><a class="hover:text-primary transition-colors" href="error.html">Términos</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="error.html">Privacidad</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="error.html">Cookies</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 pt-6 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-500">
+                <p>© 2024 ATELIER S.A. Todos los derechos reservados.</p>
+                <div class="flex gap-6">
+                    <a class="hover:text-white transition-colors" href="#">
+                        <span class="material-symbols-outlined text-base">photo_camera</span>
+                    </a>
+                    <a class="hover:text-white transition-colors" href="#">
+                        <span class="material-symbols-outlined text-base">thumb_up</span>
+                    </a>
+                    <a class="hover:text-white transition-colors" href="#">
+                        <span class="material-symbols-outlined text-base">chat</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Add to cart functionality (basic)
+        document.querySelectorAll('button').forEach(button => {
+            if (button.textContent.includes('Añadir al carrito')) {
+                button.addEventListener('click', function() {
+                    const productName = this.parentElement.querySelector('h3').textContent;
+                    const productPrice = this.parentElement.querySelector('p').textContent;
+                    
+                    // Create notification
+                    const notification = document.createElement('div');
+                    notification.className = 'fixed top-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg z-50 animate-fade-in';
+                    notification.innerHTML = `
+                        <div class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-sm">check_circle</span>
+                            <span>${productName} añadido al carrito</span>
+                        </div>
+                    `;
+                    
+                    document.body.appendChild(notification);
+                    
+                    // Remove notification after 3 seconds
+                    setTimeout(() => {
+                        notification.remove();
+                    }, 3000);
+                });
+            }
+        });
+
+        // Add CSS for fade-in animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fade-in {
+                from { opacity: 0; transform: translateY(-10px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+            .animate-fade-in {
+                animation: fade-in 0.3s ease-out;
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

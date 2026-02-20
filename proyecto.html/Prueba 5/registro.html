@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Registro | ATELIER</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#f0625d",
+                        "background-light": "#ffffff",
+                        "background-dark": "#0f172a",
+                    },
+                    fontFamily: {
+                        display: ["Playfair Display", "serif"],
+                        sans: ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.5rem",
+                    },
+                },
+            },
+        };
+    </script>
+    <style>
+        .password-strength-bar {
+            height: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        .strength-weak { background-color: #ef4444; width: 25%; }
+        .strength-fair { background-color: #f59e0b; width: 50%; }
+        .strength-good { background-color: #10b981; width: 75%; }
+        .strength-strong { background-color: #059669; width: 100%; }
+        
+        .error-shake {
+            animation: shake 0.5s ease-in-out;
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-8px); }
+            75% { transform: translateX(8px); }
+        }
+        
+        .form-checkbox:checked {
+            background-color: #f0625d;
+            border-color: #f0625d;
+        }
+        
+        .password-toggle {
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .password-toggle:hover {
+            color: #f0625d;
+        }
+        
+        .terms-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .terms-modal.active {
+            display: flex;
+        }
+        
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 16px 24px;
+            border-radius: 8px;
+            color: white;
+            font-weight: 500;
+            z-index: 9999;
+            animation: slideIn 0.3s ease-out;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            max-width: 400px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .toast.success {
+            background-color: #10b981;
+            border-left: 4px solid #059669;
+        }
+        
+        .toast.error {
+            background-color: #ef4444;
+            border-left: 4px solid #dc2626;
+        }
+        
+        .toast.info {
+            background-color: #3b82f6;
+            border-left: 4px solid #2563eb;
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes slideOut {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .general-error-message {
+            color: #ef4444;
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+            text-align: center;
+            font-weight: 500;
+            padding: 0.5rem;
+            background-color: rgba(239, 68, 68, 0.1);
+            border-radius: 0.375rem;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-sans transition-colors duration-300 min-h-screen flex flex-col">
+
+    <!-- Header -->
+    <header class="border-b border-slate-200 dark:border-slate-800 sticky top-0 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0">
+                    <a class="font-display text-3xl font-bold tracking-tight text-slate-900 dark:text-white uppercase" href="index.html">Atelier</a>
+                </div>
+                
+                <!-- Enlace a Login -->
+                <div class="flex items-center gap-4">
+                    <button class="p-2 text-slate-500 hover:text-primary dark:text-slate-400 dark:hover:text-primary transition-colors" id="theme-toggle">
+                        <span class="material-symbols-outlined dark:hidden">dark_mode</span>
+                        <span class="material-symbols-outlined hidden dark:inline">light_mode</span>
+                    </button>
+                    <a href="login.html" class="text-slate-700 dark:text-slate-300 hover:text-primary dark:hover:text-primary font-medium transition-colors">
+                        ¿Ya tienes cuenta? Inicia sesión
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow flex items-center justify-center py-12 px-4">
+        <div class="w-full max-w-md">
+            <!-- Header del Formulario -->
+            <div class="text-center mb-8">
+                <h1 class="text-3xl font-display font-bold mb-2">Crear cuenta</h1>
+                <p class="text-slate-500 dark:text-slate-400">Únete a la comunidad ATELIER</p>
+            </div>
+
+            <!-- Formulario -->
+            <form id="registerForm" class="space-y-6" novalidate>
+                
+                <!-- Nombre(s) -->
+                <div class="form-group">
+                    <label for="firstName" class="block text-sm font-medium mb-2">
+                        Nombre(s) <span class="text-primary">*</span>
+                    </label>
+                    <div class="relative">
+                        <input type="text" 
+                               id="firstName" 
+                               name="firstName"
+                               class="w-full px-4 py-3 border border-slate-300 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-800 placeholder-slate-500 dark:placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                               placeholder="Ej. María Elena"
+                               required>
+                    </div>
+                    <div class="error-message text-sm text-red-500 mt-1 hidden" id="firstName-error"></div>
+                </div>
+
+                <!-- Apellido(s) -->
+                <div class="form-group">
+                    <label for="lastName" class="block text-sm font-medium mb-2">
+                        Apellido(s) <span class="text-primary">*</span>
+                    </label>
+                    <div class="relative">
+                        <input type="text" 
+                               id="lastName" 
+                               name="lastName"
+                               class="w-full px-4 py-3 border border-slate-300 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-800 placeholder-slate-500 dark:placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                               placeholder="Ej. Rodríguez López"
+                               required>
+                    </div>
+                    <div class="error-message text-sm text-red-500 mt-1 hidden" id="lastName-error"></div>
+                </div>
+
+                <!-- Correo electrónico -->
+                <div class="form-group">
+                    <label for="email" class="block text-sm font-medium mb-2">
+                        Correo electrónico <span class="text-primary">*</span>
+                    </label>
+                    <div class="relative">
+                        <input type="email" 
+                               id="email" 
+                               name="email"
+                               class="w-full px-4 py-3 border border-slate-300 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-800 placeholder-slate-500 dark:placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                               placeholder="tucorreo@ejemplo.com"
+                               required>
+                    </div>
+                    <div class="error-message text-sm text-red-500 mt-1 hidden" id="email-error"></div>
+                </div>
+
+                <!-- Teléfono -->
+                <div class="form-group">
+                    <label for="phone" class="block text-sm font-medium mb-2">
+                        Teléfono <span class="text-primary">*</span>
+                    </label>
+                    <div class="relative">
+                        <input type="tel" 
+                               id="phone" 
+                               name="phone"
+                               class="w-full px-4 py-3 border border-slate-300 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-800 placeholder-slate-500 dark:placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                               placeholder="Ej. 3001234567"
+                               required>
+                    </div>
+                    <div class="error-message text-sm text-red-500 mt-1 hidden" id="phone-error"></div>
+                </div>
+
+                <!-- Contraseña -->
+                <div class="form-group">
+                    <label for="password" class="block text-sm font-medium mb-2">
+                        Contraseña <span class="text-primary">*</span>
+                    </label>
+                    <div class="relative">
+                        <input type="password" 
+                               id="password" 
+                               name="password"
+                               class="w-full px-4 py-3 border border-slate-300 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-800 placeholder-slate-500 dark:placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all pr-10"
+                               placeholder="••••••••"
+                               required>
+                        <span class="material-symbols-outlined absolute right-3 top-3 password-toggle text-slate-400">
+                            visibility
+                        </span>
+                    </div>
+                    
+                    <!-- Indicador de fortaleza -->
+                    <div class="mt-2">
+                        <div class="password-strength-bar rounded-full bg-slate-200 dark:bg-slate-700"></div>
+                        <div class="text-xs text-slate-500 mt-1" id="password-strength-text">Seguridad: débil</div>
+                    </div>
+                    
+                    <!-- Requisitos de contraseña -->
+                    <div class="mt-3 space-y-1 text-xs text-slate-500">
+                        <div class="flex items-center" id="req-length">
+                            <span class="material-symbols-outlined text-xs mr-1">close</span>
+                            Al menos 8 caracteres
+                        </div>
+                        <div class="flex items-center" id="req-uppercase">
+                            <span class="material-symbols-outlined text-xs mr-1">close</span>
+                            Al menos una mayúscula
+                        </div>
+                        <div class="flex items-center" id="req-number">
+                            <span class="material-symbols-outlined text-xs mr-1">close</span>
+                            Al menos un número
+                        </div>
+                        <div class="flex items-center" id="req-special">
+                            <span class="material-symbols-outlined text-xs mr-1">close</span>
+                            Al menos un carácter especial (!@#$%^&*)
+                        </div>
+                    </div>
+                    
+                    <div class="error-message text-sm text-red-500 mt-1 hidden" id="password-error"></div>
+                </div>
+
+                <!-- Confirmación de contraseña -->
+                <div class="form-group">
+                    <label for="confirmPassword" class="block text-sm font-medium mb-2">
+                        Confirmar contraseña <span class="text-primary">*</span>
+                    </label>
+                    <div class="relative">
+                        <input type="password" 
+                               id="confirmPassword" 
+                               name="confirmPassword"
+                               class="w-full px-4 py-3 border border-slate-300 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-800 placeholder-slate-500 dark:placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all pr-10"
+                               placeholder="••••••••"
+                               required>
+                        <span class="material-symbols-outlined absolute right-3 top-3 password-toggle text-slate-400">
+                            visibility
+                        </span>
+                    </div>
+                    <div class="error-message text-sm text-red-500 mt-1 hidden" id="confirmPassword-error"></div>
+                </div>
+
+                <!-- Verificación Humana -->
+                <div class="form-group p-4 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
+                    <label class="block text-sm font-medium mb-2">
+                        Verificación de seguridad <span class="text-primary">*</span>
+                    </label>
+                    <div class="flex items-center gap-3">
+                        <span class="text-sm text-slate-600 dark:text-slate-400">Marque la casilla para confirmar que no es un robot</span>
+                        <input type="checkbox" 
+                               id="humanVerification" 
+                               name="humanVerification"
+                               class="h-5 w-5 rounded border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-primary focus:ring-primary">
+                    </div>
+                    <div class="error-message text-sm text-red-500 mt-1 hidden" id="humanVerification-error"></div>
+                </div>
+
+                <!-- Términos y Condiciones -->
+                <div class="form-group">
+                    <div class="flex items-start gap-3">
+                        <input type="checkbox" 
+                               id="terms" 
+                               name="terms"
+                               class="mt-1 form-checkbox h-4 w-4 text-primary rounded border-slate-300 dark:border-slate-700 focus:ring-primary focus:ring-offset-0"
+                               required>
+                        <label for="terms" class="text-sm">
+                            Acepto los <a href="#" class="text-primary hover:text-red-500 underline" id="termsLink">Términos y Condiciones</a> 
+                            <span class="text-primary">*</span>
+                        </label>
+                    </div>
+                    <div class="error-message text-sm text-red-500 mt-1 hidden" id="terms-error"></div>
+                </div>
+
+                <!-- Aviso de Privacidad -->
+                <div class="form-group">
+                    <div class="flex items-start gap-3">
+                        <input type="checkbox" 
+                               id="privacy" 
+                               name="privacy"
+                               class="mt-1 form-checkbox h-4 w-4 text-primary rounded border-slate-300 dark:border-slate-700 focus:ring-primary focus:ring-offset-0">
+                        <label for="privacy" class="text-sm">
+                            He leído y acepto el <a href="#" class="text-primary hover:text-red-500 underline" id="privacyLink">Aviso de Privacidad</a>
+                        </label>
+                    </div>
+                    <div class="error-message text-sm text-red-500 mt-1 hidden" id="privacy-error"></div>
+                </div>
+
+                <!-- Botón de Registro -->
+                <button type="submit" 
+                        class="w-full bg-primary hover:bg-red-500 text-white py-3 px-4 rounded-lg font-bold transition-all shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                        id="submitBtn">
+                    Crear cuenta
+                </button>
+
+                <!-- Mensaje de error general debajo del botón -->
+                <div id="general-error" class="general-error-message hidden">
+                    Por favor, completa todos los campos correctamente
+                </div>
+
+                <!-- Enlace a Login -->
+                <div class="text-center text-sm text-slate-500 dark:text-slate-400">
+                    ¿Ya tienes una cuenta? 
+                    <a href="login.html" class="text-primary hover:text-red-500 font-medium">
+                        Inicia sesión aquí
+                    </a>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <!-- Modal para Términos y Condiciones -->
+    <div class="terms-modal" id="termsModal">
+        <div class="bg-white dark:bg-slate-800 rounded-xl w-full max-w-2xl max-h-[80vh] overflow-hidden m-4">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-xl font-display font-bold">Términos y Condiciones</h3>
+                    <button type="button" id="closeTermsModal" class="text-slate-500 hover:text-primary">
+                        <span class="material-symbols-outlined">close</span>
+                    </button>
+                </div>
+                <div class="prose dark:prose-invert max-h-[60vh] overflow-y-auto pr-4">
+                    <p><strong>TÉRMINOS Y CONDICIONES DE ATELIER</strong></p>
+                    <p>Al registrarte, aceptas nuestros términos y condiciones...</p>
+                </div>
+                <div class="mt-6 text-center">
+                    <button type="button" id="acceptTerms" class="bg-primary hover:bg-red-500 text-white px-6 py-2 rounded-lg font-medium">
+                        Aceptar Términos
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para Aviso de Privacidad -->
+    <div class="terms-modal" id="privacyModal">
+        <div class="bg-white dark:bg-slate-800 rounded-xl w-full max-w-2xl max-h-[80vh] overflow-hidden m-4">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-xl font-display font-bold">Aviso de Privacidad</h3>
+                    <button type="button" id="closePrivacyModal" class="text-slate-500 hover:text-primary">
+                        <span class="material-symbols-outlined">close</span>
+                    </button>
+                </div>
+                <div class="prose dark:prose-invert max-h-[60vh] overflow-y-auto pr-4">
+                    <p><strong>AVISO DE PRIVACIDAD</strong></p>
+                    <p>Tu información está protegida y no se almacena en este momento...</p>
+                </div>
+                <div class="mt-6 text-center">
+                    <button type="button" id="acceptPrivacy" class="bg-primary hover:bg-red-500 text-white px-6 py-2 rounded-lg font-medium">
+                        Entendido
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-8 mt-12">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="text-slate-400 text-sm">© 2024 ATELIER S.A. - Validación de campos</p>
+        </div>
+    </footer>
+
+    <script>
+        // ============================================
+        // VALIDACIÓN DE CAMPOS - REDIRECCIÓN A LOGIN
+        // ============================================
+        
+        // Configurar modo oscuro
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const htmlElement = document.documentElement;
+        
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            htmlElement.classList.add('dark');
+        } else {
+            htmlElement.classList.remove('dark');
+        }
+        
+        themeToggleBtn.addEventListener('click', () => {
+            htmlElement.classList.toggle('dark');
+            localStorage.setItem('theme', htmlElement.classList.contains('dark') ? 'dark' : 'light');
+        });
+
+        // Función para mostrar notificaciones
+        function showToast(message, type = 'success') {
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.innerHTML = `
+                <span class="material-symbols-outlined">
+                    ${type === 'success' ? 'check_circle' : type === 'error' ? 'error' : 'info'}
+                </span>
+                <span>${message}</span>
+            `;
+            
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.style.animation = 'slideOut 0.3s ease-out';
+                setTimeout(() => toast.remove(), 300);
+            }, 4000);
+            
+            toast.addEventListener('click', () => {
+                toast.style.animation = 'slideOut 0.3s ease-out';
+                setTimeout(() => toast.remove(), 300);
+            });
+        }
+
+        // Mostrar/ocultar error general
+        function showGeneralError(show) {
+            const generalError = document.getElementById('general-error');
+            if (show) {
+                generalError.classList.remove('hidden');
+            } else {
+                generalError.classList.add('hidden');
+            }
+        }
+
+        // Mostrar/ocultar contraseña
+        document.querySelectorAll('.password-toggle').forEach(toggle => {
+            toggle.addEventListener('click', function() {
+                const input = this.parentElement.querySelector('input');
+                const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
+                input.setAttribute('type', type);
+                this.textContent = type === 'password' ? 'visibility' : 'visibility_off';
+            });
+        });
+
+        // Modales para términos y privacidad
+        const termsModal = document.getElementById('termsModal');
+        const privacyModal = document.getElementById('privacyModal');
+        const termsLink = document.getElementById('termsLink');
+        const privacyLink = document.getElementById('privacyLink');
+        const termsCheckbox = document.getElementById('terms');
+        const privacyCheckbox = document.getElementById('privacy');
+
+        termsLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            termsModal.classList.add('active');
+        });
+
+        privacyLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            privacyModal.classList.add('active');
+        });
+
+        document.getElementById('closeTermsModal').addEventListener('click', () => {
+            termsModal.classList.remove('active');
+        });
+
+        document.getElementById('closePrivacyModal').addEventListener('click', () => {
+            privacyModal.classList.remove('active');
+        });
+
+        document.getElementById('acceptTerms').addEventListener('click', () => {
+            termsCheckbox.checked = true;
+            validateField(termsCheckbox, 'terms');
+            termsModal.classList.remove('active');
+            showToast('Términos aceptados', 'success');
+        });
+
+        document.getElementById('acceptPrivacy').addEventListener('click', () => {
+            privacyCheckbox.checked = true;
+            validateField(privacyCheckbox, 'privacy');
+            privacyModal.classList.remove('active');
+            showToast('Aviso de privacidad aceptado', 'success');
+        });
+
+        // Cerrar modales al hacer clic fuera
+        [termsModal, privacyModal].forEach(modal => {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                }
+            });
+        });
+
+        // Estado del formulario
+        const formState = {
+            firstName: { valid: false, message: '' },
+            lastName: { valid: false, message: '' },
+            email: { valid: false, message: '' },
+            phone: { valid: false, message: '' },
+            password: { valid: false, message: '' },
+            confirmPassword: { valid: false, message: '' },
+            humanVerification: { valid: false, message: '' },
+            terms: { valid: false, message: '' },
+            privacy: { valid: true, message: '' }
+        };
+
+        // Validación en tiempo real
+        const form = document.getElementById('registerForm');
+        const fields = [
+            'firstName',
+            'lastName',
+            'email',
+            'phone',
+            'password',
+            'confirmPassword',
+            'humanVerification'
+        ];
+
+        fields.forEach(fieldName => {
+            const field = document.getElementById(fieldName);
+            if (field) {
+                field.addEventListener('blur', () => validateField(field, fieldName));
+                field.addEventListener('input', () => {
+                    if (formState[fieldName].valid === false) {
+                        validateField(field, fieldName);
+                    }
+                    // Ocultar error general cuando el usuario empieza a escribir
+                    showGeneralError(false);
+                });
+            }
+        });
+
+        // Validar checkboxes
+        termsCheckbox.addEventListener('change', () => {
+            validateField(termsCheckbox, 'terms');
+            showGeneralError(false);
+        });
+        
+        privacyCheckbox.addEventListener('change', () => {
+            validateField(privacyCheckbox, 'privacy');
+            showGeneralError(false);
+        });
+        
+        // Verificación humana
+        const humanVerificationCheckbox = document.getElementById('humanVerification');
+        humanVerificationCheckbox.addEventListener('change', () => {
+            validateField(humanVerificationCheckbox, 'humanVerification');
+            showGeneralError(false);
+        });
+
+        // Validar campo individual
+        function validateField(field, fieldName) {
+            const value = field.type === 'checkbox' ? field.checked : field.value.trim();
+            let isValid = true;
+            let message = '';
+            
+            if (field.parentElement && field.parentElement.parentElement) {
+                field.parentElement.parentElement.classList.remove('error-shake');
+            }
+            
+            switch(fieldName) {
+                case 'firstName':
+                case 'lastName':
+                    if (!value) {
+                        isValid = false;
+                        message = 'Este campo es obligatorio';
+                    } else if (value.length < 2) {
+                        isValid = false;
+                        message = 'Mínimo 2 caracteres';
+                    } else if (value.length > 40) {
+                        isValid = false;
+                        message = 'Máximo 40 caracteres';
+                    } else if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(value)) {
+                        isValid = false;
+                        message = 'Solo letras y espacios';
+                    }
+                    break;
+                    
+                case 'email':
+                    if (!value) {
+                        isValid = false;
+                        message = 'Este campo es obligatorio';
+                    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+                        isValid = false;
+                        message = 'Ingresa un email válido';
+                    } else if (value.length > 20) {
+                        isValid = false;
+                        message = 'Máximo 30 caracteres';
+                    }
+                    break;       
+
+                case 'phone':
+                    if (!value) {
+                        isValid = false;
+                        message = 'Este campo es obligatorio';
+                    } else {
+                        const phoneDigits = value.replace(/\D/g, '');
+                        if (!/^\d+$/.test(value)) {
+                            isValid = false;
+                            message = 'Solo se permiten números';
+                        } else if (phoneDigits.length < 10) {
+                            isValid = false;
+                            message = 'Debe tener al menos 10 dígitos';
+                        } else if (phoneDigits.length > 15) {
+                            isValid = false;
+                            message = 'Máximo 15 dígitos';
+                        }
+                    }
+                    break;
+                    
+                case 'password':
+                    if (!value) {
+                        isValid = false;
+                        message = 'Este campo es obligatorio';
+                    } else {
+                        updatePasswordRequirements(value);
+                        
+                        if (value.length < 8) {
+                            isValid = false;
+                            message = 'Mínimo 8 caracteres';
+                        } else if (value.length > 15) {
+                            isValid = false;
+                            message = 'Máximo 15 caracteres';
+                        } else if (!/(?=.*[A-Z])/.test(value)) {
+                            isValid = false;
+                            message = 'Al menos una mayúscula';
+                        } else if (!/(?=.*\d)/.test(value)) {
+                            isValid = false;
+                            message = 'Al menos un número';
+                        } else if (!/(?=.*[!@#$%^&*])/.test(value)) {
+                            isValid = false;
+                            message = 'Al menos un carácter especial';
+                        }
+                        
+                        updatePasswordStrength(value);
+                    }
+                    break;
+                    
+                case 'confirmPassword':
+                    if (!value) {
+                        isValid = false;
+                        message = 'Este campo es obligatorio';
+                    } else if (value !== document.getElementById('password').value) {
+                        isValid = false;
+                        message = 'Las contraseñas no coinciden';
+                    }
+                    break;
+                    
+                case 'humanVerification':
+                    if (!value) {
+                        isValid = false;
+                        message = 'Debes confirmar que no eres un robot';
+                    }
+                    break;
+                    
+                case 'terms':
+                    if (!value) {
+                        isValid = false;
+                        message = 'Debes aceptar los términos y condiciones';
+                    }
+                    break;
+                    
+                case 'privacy':
+                    isValid = true;
+                    break;
+            }
+            
+            formState[fieldName].valid = isValid;
+            formState[fieldName].message = message;
+            
+            const errorElement = document.getElementById(`${fieldName}-error`);
+            
+            if (!isValid) {
+                if (errorElement) {
+                    errorElement.textContent = message;
+                    errorElement.classList.remove('hidden');
+                }
+                if (field.parentElement && field.parentElement.parentElement) {
+                    field.parentElement.parentElement.classList.add('error-shake');
+                }
+                if (field.style) {
+                    field.style.borderColor = '#f0625d';
+                    field.style.backgroundColor = 'rgba(240, 98, 93, 0.05)';
+                }
+            } else {
+                if (errorElement) errorElement.classList.add('hidden');
+                if (field.style) {
+                    field.style.borderColor = '';
+                    field.style.backgroundColor = '';
+                }
+            }
+            
+            updateSubmitButton();
+            
+            return isValid;
+        }
+
+        // Actualizar requisitos de contraseña
+        function updatePasswordRequirements(password) {
+            const requirements = {
+                length: password.length >= 8,
+                uppercase: /[A-Z]/.test(password),
+                number: /\d/.test(password),
+                special: /[!@#$%^&*]/.test(password)
+            };
+            
+            Object.keys(requirements).forEach(req => {
+                const element = document.getElementById(`req-${req}`);
+                if (element) {
+                    const icon = element.querySelector('.material-symbols-outlined');
+                    if (icon) {
+                        icon.textContent = requirements[req] ? 'check' : 'close';
+                        icon.style.color = requirements[req] ? '#10b981' : '#ef4444';
+                    }
+                }
+            });
+        }
+
+        // Actualizar fuerza de contraseña
+        function updatePasswordStrength(password) {
+            const strengthBar = document.querySelector('.password-strength-bar');
+            const strengthText = document.getElementById('password-strength-text');
+            
+            if (!strengthBar || !strengthText) return;
+            
+            let score = 0;
+            if (password.length >= 8) score++;
+            if (/[A-Z]/.test(password)) score++;
+            if (/\d/.test(password)) score++;
+            if (/[!@#$%^&*]/.test(password)) score++;
+            
+            const strengths = [
+                { class: 'strength-weak', text: 'Débil' },
+                { class: 'strength-fair', text: 'Regular' },
+                { class: 'strength-good', text: 'Buena' },
+                { class: 'strength-strong', text: 'Fuerte' }
+            ];
+            
+            const currentStrength = strengths[score] || strengths[0];
+            strengthBar.className = `password-strength-bar rounded-full ${currentStrength.class}`;
+            strengthText.textContent = `Seguridad: ${currentStrength.text}`;
+        }
+
+        // Actualizar estado del botón de envío
+        function updateSubmitButton() {
+            const submitBtn = document.getElementById('submitBtn');
+            if (!submitBtn) return;
+            
+            const allValid = Object.values(formState).every(field => field.valid);
+            submitBtn.disabled = !allValid;
+        }
+
+        // Validar formulario completo
+        function validateForm() {
+            let isValid = true;
+            
+            isValid &= validateField(document.getElementById('firstName'), 'firstName');
+            isValid &= validateField(document.getElementById('lastName'), 'lastName');
+            isValid &= validateField(document.getElementById('email'), 'email');
+            isValid &= validateField(document.getElementById('phone'), 'phone');
+            isValid &= validateField(document.getElementById('password'), 'password');
+            isValid &= validateField(document.getElementById('confirmPassword'), 'confirmPassword');
+            isValid &= validateField(humanVerificationCheckbox, 'humanVerification');
+            isValid &= validateField(termsCheckbox, 'terms');
+            isValid &= validateField(privacyCheckbox, 'privacy');
+            
+            return isValid;
+        }
+
+        // Envío del formulario - REDIRIGE A LOGIN SI ES VÁLIDO
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // Ocultar error general al intentar nuevo envío
+            showGeneralError(false);
+            
+            if (validateForm()) {
+                const submitBtn = document.getElementById('submitBtn');
+                
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = `
+                    <span class="inline-block animate-spin mr-2">⟳</span>
+                    Procesando...
+                `;
+                
+                // Simular procesamiento y redirigir a login
+                setTimeout(() => {
+                    showToast('¡Registro exitoso! Redirigiendo a login...', 'success');
+                    
+                    submitBtn.textContent = '¡Registro Exitoso!';
+                    submitBtn.classList.add('bg-green-500', 'hover:bg-green-600');
+                    
+                    // REDIRIGIR A LOGIN.HTML DESPUÉS DE 1 SEGUNDO
+                    setTimeout(() => {
+                        window.location.href = 'login.html';
+                    }, 1000);
+                    
+                }, 1000);
+            } else {
+                // Mostrar mensaje de error general
+                showGeneralError(true);
+                
+                // Enfocar el primer campo inválido
+                const firstInvalid = Object.keys(formState).find(key => !formState[key].valid && key !== 'privacy');
+                if (firstInvalid) {
+                    document.getElementById(firstInvalid).focus();
+                }
+            }
+        });
+
+        // Inicializar cuando el DOM esté listo
+        document.addEventListener('DOMContentLoaded', () => {
+            updateSubmitButton();
+            showToast('Sistema de registro: validación de campos', 'info');
+        });
+    </script>
+</body>
+</html>

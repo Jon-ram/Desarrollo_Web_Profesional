@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Nosotros | ATELIER</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#f0625d",
+                        "background-light": "#ffffff",
+                        "background-dark": "#0f172a",
+                    },
+                    fontFamily: {
+                        display: ["Playfair Display", "serif"],
+                        sans: ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.5rem",
+                    },
+                },
+            },
+        };
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .vintage-sepia {
+                filter: sepia(0.3) contrast(1.1);
+            }
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+    <!-- Header Manager -->
+<script src="header-manager.js" defer></script>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-sans transition-colors duration-300">
+    <!-- Header -->
+<header class="border-b border-slate-200 dark:border-slate-800 sticky top-0 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-20 gap-8">
+            <!-- Logo -->
+            <div class="flex-shrink-0">
+                <a class="font-display text-3xl font-bold tracking-tight text-slate-900 dark:text-white uppercase" href="index.html">Atelier</a>
+            </div>
+            
+            <!-- ÁREA DEL BUSCADOR (ESTA ES LA QUE MODIFICARÁ EL SCRIPT) -->
+            <div class="flex-1 max-w-2xl relative">
+                <!-- El buscador actual se mantiene aquí -->
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <span class="material-symbols-outlined text-slate-400 text-sm">search</span>
+                </div>
+                <input class="block w-full pl-10 pr-3 py-2 border border-slate-300 dark:border-slate-700 rounded-full leading-5 bg-slate-50 dark:bg-slate-800 placeholder-slate-500 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary sm:text-sm transition-all" 
+                       placeholder="Buscar productos..." 
+                       type="text"/>
+            </div>
+            
+            <!-- Botones derecho -->
+            <div class="flex items-center gap-4">
+                <button class="p-2 text-slate-500 hover:text-primary dark:text-slate-400 dark:hover:text-primary transition-colors" id="theme-toggle">
+                    <span class="material-symbols-outlined dark:hidden">dark_mode</span>
+                    <span class="material-symbols-outlined hidden dark:inline">light_mode</span>
+                </button>
+                <button class="bg-primary hover:bg-red-500 text-white px-6 py-2.5 rounded-full text-sm font-semibold transition-all shadow-sm">
+                    <a href="login.html">Regístrate o inicia sesión</a>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Navegación (si aplica) -->
+        <nav class="flex justify-center space-x-8 md:space-x-12 py-3 border-t border-slate-100 dark:border-slate-800">
+            <!-- Tus enlaces de navegación -->
+        </nav>
+    </div>
+</header>
+
+    <!-- Breadcrumb -->
+    <nav class="max-w-7xl mx-auto px-4 py-4">
+        <ol class="flex items-center space-x-2 text-xs uppercase tracking-widest text-slate-500">
+            <li><a class="hover:text-primary transition-colors" href="index.html">Home</a></li>
+            <li class="flex items-center space-x-2">
+                <span class="material-symbols-outlined text-sm">chevron_right</span>
+                <span class="text-slate-900 dark:text-white font-semibold">Nosotros</span>
+            </li>
+        </ol>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4">
+        <!-- Hero Section -->
+        <section class="py-12 md:py-16">
+            <div class="text-center mb-12">
+                <h1 class="text-4xl md:text-5xl font-display font-bold mb-4">Nuestra Esencia</h1>
+                <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">Redefiniendo la elegancia desde 1992</p>
+            </div>
+        </section>
+
+        <!-- History Section -->
+        <section class="py-12 md:py-16">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                <div class="relative order-2 lg:order-1">
+                    <div class="aspect-[4/5] rounded-xl overflow-hidden shadow-lg vintage-sepia">
+                        <img alt="Atelier History Vintage Image" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAv8z4dfDQCBiy5TuUcVJwTgxo1wNak5r5ZRAucsEQJkBCN3wHRzVQTw39ntTxpIt3sfmkM4OhHWgf9zzF0BjWDrSusjWJUY6lA43t-jLUewhiZQYBjd4HlxeQ3fTSyhWqs3jP1UgA_xMEu6iaZl4tLkiMA8gA_4xJjsodh-Xb_rbbr7Q7Gr2rbCay4cS5bOJBUCRl9J8YksQvoKohiwstIdof8GL9IWGcc2C_ZDrzpUSpy8rOOHW6p2Fp3eaLAZifmkJg-_-7xhS6q"/>
+                    </div>
+                </div>
+                <div class="space-y-6 order-1 lg:order-2">
+                    <h2 class="text-3xl md:text-4xl font-display font-bold">Nuestra Historia</h2>
+                    <div class="space-y-4">
+                        <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                            Fundada en 1992, Atelier nació de una pequeña sastrería familiar con una visión clara: redefinir la elegancia moderna a través del respeto por la artesanía tradicional.
+                        </p>
+                        <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                            Cada pieza que creamos lleva consigo décadas de perfeccionamiento y un compromiso inquebrantable con la calidad. Lo que comenzó como una búsqueda personal de la prenda perfecta se ha transformado en un referente de la moda contemporánea.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mission Section -->
+        <section class="py-12 md:py-16">
+            <div class="max-w-3xl mx-auto text-center">
+                <div class="mb-8">
+                    <h2 class="text-xs font-bold uppercase tracking-[0.3em] text-primary mb-4">Nuestra Misión</h2>
+                    <p class="text-2xl md:text-3xl font-display font-medium leading-relaxed text-slate-900 dark:text-white">
+                        Elevar el espíritu a través del diseño, creando piezas que no solo visten el cuerpo, sino que celebran la individualidad y el arte del buen vivir.
+                    </p>
+                </div>
+                <div class="w-20 h-1 bg-primary mx-auto"></div>
+            </div>
+        </section>
+
+        <!-- Values Section -->
+        <section class="py-12 md:py-16">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-display font-bold mb-4">Nuestros Valores</h2>
+                <p class="text-slate-500 dark:text-slate-400">Los principios que guían cada creación</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="text-center p-6 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-primary/50 transition-colors">
+                    <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="material-symbols-outlined text-primary">handyman</span>
+                    </div>
+                    <h3 class="text-xl font-display font-bold mb-3">Artesanía</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm">Cada detalle cuenta. Trabajamos con técnicas tradicionales y materiales de la más alta calidad.</p>
+                </div>
+                <div class="text-center p-6 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-primary/50 transition-colors">
+                    <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="material-symbols-outlined text-primary">eco</span>
+                    </div>
+                    <h3 class="text-xl font-display font-bold mb-3">Sostenibilidad</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm">Comprometidos con prácticas éticas y materiales sostenibles en cada proceso.</p>
+                </div>
+                <div class="text-center p-6 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-primary/50 transition-colors">
+                    <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="material-symbols-outlined text-primary">diversity_3</span>
+                    </div>
+                    <h3 class="text-xl font-display font-bold mb-3">Comunidad</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm">Creemos en el poder de la moda para unir personas y celebrar la diversidad.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section class="py-12 md:py-16">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-display font-bold mb-4">Nuestro Equipo</h2>
+                <p class="text-slate-500 dark:text-slate-400">Las mentes creativas detrás de cada colección</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Team Member 1 -->
+                <div class="group text-center">
+                    <div class="relative aspect-square overflow-hidden rounded-xl mb-6 mx-auto max-w-xs">
+                        <img alt="Fundadora Principal" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzskSXsWZYxwjTyq-F0o4VZhfIL5rknRU4A9m2cigUTqYw3dZBItX9Dv3rUmff9aeO8PmZ1DNLnwBzNVY5bOYMvGcOiWt_zfhKM4aMa_Nwp4ppx54HOH1JkZjt2ojHKK6hLZZAHQkZda6e7d9JqtUWyTSOSa-seAWqnR8rLf4jYzzXcU6FamY1WWQHN3LQg6Cl2rru7oroLxj8--7-5uxFC9bKZUTw1Tb5Aa1kkaoy18tw5DSYSXK7IqC9gHmCyBORfXwdonCv_Vq6"/>
+                    </div>
+                    <div>
+                        <h3 class="font-display text-xl font-bold mb-1">Elena Valery</h3>
+                        <p class="text-primary font-semibold text-xs uppercase tracking-widest mb-3">Fundadora & Directora Creativa</p>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm italic">"La moda es la armadura para sobrevivir a la realidad cotidiana."</p>
+                    </div>
+                </div>
+                <!-- Team Member 2 -->
+                <div class="group text-center">
+                    <div class="relative aspect-square overflow-hidden rounded-xl mb-6 mx-auto max-w-xs">
+                        <img alt="Diseñador Senior" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCFQKNcfPOULabJWys0ytJhTW9jCn25LYRBlWifni0X7Y7Scj79L5g0W-F1DiWJ4IZT3AplA_ap7CcdAso-G6FhQIjvf5AKuskJVjE0hitVib9G2MCp4Sqp5DFnSJ8QD4RuSA3TXRTv2BqW-NWwOK6-FIoJ4XPZmYO_JYxHqofdHOL1YaRjKSsVvkJldYLwLS2oumG_jPzTLcPGMlysY1gQYnqeTJFtBu0kvCKBbjWGs2JwIJ7MU3r84iO6aGWYtHr7VxsCF8enLA1"/>
+                    </div>
+                    <div>
+                        <h3 class="font-display text-xl font-bold mb-1">Julian Rossi</h3>
+                        <p class="text-primary font-semibold text-xs uppercase tracking-widest mb-3">Jefe de Diseño</p>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm italic">"Buscamos la belleza en la simplicidad de la forma."</p>
+                    </div>
+                </div>
+                <!-- Team Member 3 -->
+                <div class="group text-center">
+                    <div class="relative aspect-square overflow-hidden rounded-xl mb-6 mx-auto max-w-xs">
+                        <img alt="Estratega de Marca" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTfKQy7MXlEDXSZrJHOeHOELK5w6P5_LKe8y2YMn6hjAQoibaMmBcL93iOuuAUKMY8_4-SIJxNk_z8USC2sol3V0ZwlkmqtQTs025n0yhMHqAuyyaMm6B3cSlFQygzIUvEaPaMZH1h3pDkpUxam4rw87G9EJY91xoRE7hYivyUHvUTFLiV7fjDnHx6S4m5acTObSGqRixiehAJyPLR2kzn4P48pYExh8mDnPV8jwPmOPcOnLOdN_IpJZH7rZxpg96RGXcI5VvWdvgv"/>
+                    </div>
+                    <div>
+                        <h3 class="font-display text-xl font-bold mb-1">Sofia Méndez</h3>
+                        <p class="text-primary font-semibold text-xs uppercase tracking-widest mb-3">Estratega de Marca</p>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm italic">"Contamos historias a través de texturas y colores."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="py-12 md:py-16">
+            <div class="bg-primary/5 rounded-2xl p-8 md:p-12 text-center">
+                <h2 class="text-2xl md:text-3xl font-display font-bold mb-4">Conoce Nuestras Colecciones</h2>
+                <p class="text-slate-600 dark:text-slate-400 mb-6 max-w-2xl mx-auto">Descubre las piezas que reflejan nuestro compromiso con la excelencia y la belleza atemporal.</p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="productos.html" class="bg-primary hover:bg-red-500 text-white px-8 py-3 rounded-full font-semibold transition-colors">
+                        Ver Productos
+                    </a>
+                    <a href="contacto.html" class="border border-primary text-primary hover:bg-primary/10 px-8 py-3 rounded-full font-semibold transition-colors">
+                        Contactar
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-12">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-start gap-8">
+                <div class="max-w-sm">
+                    <h2 class="font-display text-3xl font-bold tracking-tight uppercase mb-3">Atelier</h2>
+                    <p class="text-slate-400 text-sm">Diseño de alta gama y elegancia para el mundo moderno. Encuentra tu estilo hoy.</p>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-8">
+                    <div class="space-y-3">
+                        <h4 class="font-bold text-xs uppercase tracking-widest text-slate-500">Explorar</h4>
+                        <ul class="text-sm space-y-2">
+                            <li><a class="hover:text-primary transition-colors" href="nosotros.html">Nosotros</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="servicios.html">Servicios</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="#">Ofertas</a></li>
+                        </ul>
+                    </div>
+                    <div class="space-y-3">
+                        <h4 class="font-bold text-xs uppercase tracking-widest text-slate-500">Ayuda</h4>
+                        <ul class="text-sm space-y-2">
+                            <li><a class="hover:text-primary transition-colors" href="#">Soporte</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="#">Envíos</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="#">Devoluciones</a></li>
+                        </ul>
+                    </div>
+                    <div class="space-y-3">
+                        <h4 class="font-bold text-xs uppercase tracking-widest text-slate-500">Empresa</h4>
+                        <ul class="text-sm space-y-2">
+                            <li><a class="hover:text-primary transition-colors" href="nosotros.html">Nosotros</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="#">Términos</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="#">Privacidad</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 pt-6 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-500">
+                <p>© 2024 ATELIER S.A. Todos los derechos reservados.</p>
+                <div class="flex gap-6">
+                    <a class="hover:text-white transition-colors" href="#">
+                        <span class="material-symbols-outlined text-base">photo_camera</span>
+                    </a>
+                    <a class="hover:text-white transition-colors" href="#">
+                        <span class="material-symbols-outlined text-base">thumb_up</span>
+                    </a>
+                    <a class="hover:text-white transition-colors" href="#">
+                        <span class="material-symbols-outlined text-base">chat</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const htmlElement = document.documentElement;
+        
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            htmlElement.classList.add('dark');
+        } else {
+            htmlElement.classList.remove('dark');
+        }
+        
+        themeToggleBtn.addEventListener('click', () => {
+            htmlElement.classList.toggle('dark');
+            if (htmlElement.classList.contains('dark')) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
+            }
+        });
+    </script>
+</body>
+</html>
