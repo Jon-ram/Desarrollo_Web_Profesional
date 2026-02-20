@@ -69,12 +69,12 @@ function ProductCard({ product }) {
                     <div className="flex items-center justify-between">
                         {en_oferta ? (
                             <div className="flex items-center gap-2">
-                                <span className="text-primary font-bold text-lg">${precio}</span>
+                                <span className="text-white font-bold text-lg">${precio}</span>
                                 {precio_original && (
-                                    <span className="text-slate-500 line-through text-sm">${precio_original}</span>
+                                    <span className="text-white line-through text-sm">${precio_original}</span>
                                 )}
                                 {descuento > 0 && (
-                                    <span className="text-primary text-xs font-bold">-{descuento}%</span>
+                                    <span className="text-white text-xs font-bold">-{descuento}%</span>
                                 )}
                             </div>
                         ) : (

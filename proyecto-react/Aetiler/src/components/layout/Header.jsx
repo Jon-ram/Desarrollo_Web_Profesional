@@ -1,10 +1,23 @@
 // src/components/layout/Header.jsx
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import ThemeToggle from '../common/ThemeToggle';
 
-function Header() {
+function Header({ showSearch = false, onSearch }) {
+    const [searchTerm, setSearchTerm] = useState('');
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const navigate = useNavigate();
+
+    const handleSearch = (e) => {
+        e.preventDefault();
+        if (searchTerm.trim()) {
+            if (onSearch) {
+                onSearch(searchTerm);
+            } else {
+                navigate(`/productos?search=${encodeURIComponent(searchTerm)}`);
+            }
+        }
+    };
 
     return (
         <header className="border-b border-slate-800 sticky top-0 bg-slate-900/90 backdrop-blur-md z-50">
@@ -14,26 +27,42 @@ function Header() {
                     <div className="flex-shrink-0">
                         <Link 
                             to="/" 
-                            className="font-display text-3xl font-bold tracking-tight text-white uppercase"
+                            className="font-display text-3xl font-bold text-white uppercase"
                         >
                             Atelier
                         </Link>
                     </div>
                     
-                    {/* Botón de Productos (reemplaza la barra de búsqueda) */}
-                    <div className="flex-1 max-w-2xl flex justify-center">
-                        <Link
-                            to="/productos"
-                            className="bg-primary hover:bg-red-500 text-white px-8 py-2.5 rounded-full text-sm font-semibold transition-all shadow-sm inline-flex items-center gap-2"
-                        >
-                            <span className="material-symbols-outlined text-sm">inventory_2</span>
-                            Productos
-                        </Link>
-                    </div>
+                    {/* Área central: Buscador o Botón de Productos */}
+                    {showSearch ? (
+                        // Buscador - SOLO en página de productos
+                        <form onSubmit={handleSearch} className="flex-1 max-w-2xl relative mx-4">
+                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <span className="material-symbols-outlined text-slate-400 text-sm">search</span>
+                            </div>
+                            <input 
+                                className="block w-full pl-10 pr-3 py-2 border border-slate-700 rounded-full leading-5 bg-slate-800 placeholder-slate-500 text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent sm:text-sm transition-all" 
+                                placeholder="Buscar productos..." 
+                                type="text"
+                                value={searchTerm}
+                                onChange={(e) => setSearchTerm(e.target.value)}
+                            />
+                        </form>
+                    ) : (
+                        // Botón de Productos - EN TODAS LAS DEMÁS PÁGINAS
+                        <div className="flex-1 max-w-2xl flex justify-center mx-4">
+                            <Link
+                                to="/productos"
+                                className="bg-primary hover:bg-red-500 text-white px-8 py-2.5 rounded-full text-sm font-semibold transition-all shadow-sm inline-flex items-center gap-2"
+                            >
+                                <span className="material-symbols-outlined text-sm">inventory_2</span>
+                                Productos
+                            </Link>
+                        </div>
+                    )}
                     
                     {/* Botones derecho */}
                     <div className="flex items-center gap-4">
-                        <ThemeToggle />
                         <Link 
                             to="/login" 
                             className="bg-primary hover:bg-red-500 text-white px-6 py-2.5 rounded-full text-sm font-semibold transition-all shadow-sm"
@@ -58,6 +87,13 @@ function Header() {
                     <nav className="md:hidden py-4 border-t border-slate-800">
                         <div className="flex flex-col space-y-3">
                             <Link 
+                                to="/" 
+                                className="text-slate-300 hover:text-primary transition-colors py-2"
+                                onClick={() => setIsMenuOpen(false)}
+                            >
+                                Inicio
+                            </Link>
+                            <Link 
                                 to="/productos" 
                                 className="text-slate-300 hover:text-primary transition-colors py-2"
                                 onClick={() => setIsMenuOpen(false)}
@@ -65,18 +101,25 @@ function Header() {
                                 Productos
                             </Link>
                             <Link 
-                                to="/login" 
+                                to="/nosotros" 
                                 className="text-slate-300 hover:text-primary transition-colors py-2"
                                 onClick={() => setIsMenuOpen(false)}
                             >
-                                Iniciar Sesión
+                                Nosotros
                             </Link>
                             <Link 
-                                to="/registro" 
+                                to="/servicios" 
                                 className="text-slate-300 hover:text-primary transition-colors py-2"
                                 onClick={() => setIsMenuOpen(false)}
                             >
-                                Registrarse
+                                Servicios
+                            </Link>
+                            <Link 
+                                to="/ofertas" 
+                                className="text-slate-300 hover:text-primary transition-colors py-2"
+                                onClick={() => setIsMenuOpen(false)}
+                            >
+                                Ofertas
                             </Link>
                         </div>
                     </nav>

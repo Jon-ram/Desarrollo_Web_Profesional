@@ -1,53 +1,62 @@
 // src/App.jsx
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import Header from './components/layout/Header';
-import SimpleHeader from './components/layout/SimpleHeader';
-import Footer from './components/layout/Footer';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import MainLayout from './components/layout/MainLayout';
 import Home from './components/pages/Home';
-import Login from './components/pages/Login';
-import Registro from './components/pages/Registro';
 import Productos from './components/pages/Productos';
 import Nosotros from './components/pages/Nosotros';
 import Servicios from './components/pages/Servicios';
-// ... otros imports
-
-function AppContent() {
-  const location = useLocation();
-  
-  // Rutas de autenticación
-  const authRoutes = ['/login', '/registro'];
-  const isAuthPage = authRoutes.includes(location.pathname);
-  
-  return (
-    <div className="flex flex-col min-h-screen bg-slate-900">
-      {/* Header condicional */}
-      {isAuthPage ? <SimpleHeader /> : <Header />}
-      
-      <main className="flex-grow">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/registro" element={<Registro />} />
-          <Route path="/productos" element={<Productos />} />
-          <Route path="/nosotros" element={<Nosotros />} />
-          <Route path="/servicios" element={<Servicios />} />
-          {/* ... otras rutas */}
-        </Routes>
-      </main>
-      
-      {/* Footer solo en páginas no-auth (opcional) */}
-      {!isAuthPage && <Footer />}
-    </div>
-  );
-}
+import Login from './components/pages/Login';
+import Registro from './components/pages/Registro';
+import Error404 from './components/pages/Error404';
 
 function App() {
-  return (
-    <Router>
-      <AppContent />
-    </Router>
-  );
+    return (
+        <Router>
+            <Routes>
+                <Route path="/" element={
+                    <MainLayout>
+                        <Home />
+                    </MainLayout>
+                } />
+                
+                <Route path="/productos" element={
+                    <MainLayout>
+                        <Productos />
+                    </MainLayout>
+                } />
+                
+                <Route path="/nosotros" element={
+                    <MainLayout>
+                        <Nosotros />
+                    </MainLayout>
+                } />
+                
+                <Route path="/servicios" element={
+                    <MainLayout>
+                        <Servicios />
+                    </MainLayout>
+                } />
+                
+                <Route path="/login" element={
+                    <MainLayout>
+                        <Login />
+                    </MainLayout>
+                } />
+                
+                <Route path="/registro" element={
+                    <MainLayout>
+                        <Registro />
+                    </MainLayout>
+                } />
+                <Route path="/*" element={
+                    <MainLayout>
+                        <Error404 />
+                    </MainLayout>
+                } />
+            </Routes>
+        </Router>
+    );
 }
 
 export default App;

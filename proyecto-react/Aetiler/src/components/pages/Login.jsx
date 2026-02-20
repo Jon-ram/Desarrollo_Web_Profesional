@@ -523,24 +523,6 @@ function Login() {
                             </div>
                         </form>
 
-                        {/* Usuario demo info */}
-                        <div className="mt-8 p-4 bg-gradient-to-r from-primary/10 to-primary/5 border-l-4 border-primary rounded-lg">
-                            <div className="flex items-start gap-3">
-                                <span className="material-symbols-outlined text-primary drop-shadow-[0_0_4px_rgba(240,98,93,0.5)]">info</span>
-                                <div>
-                                    <h4 className="font-medium text-sm text-white mb-2">
-                                        Usuario de prueba:
-                                    </h4>
-                                    <div className="bg-slate-900 rounded-lg p-3 border border-primary/20">
-                                        <p className="text-sm font-medium text-white">demo@atelier.com</p>
-                                        <p className="text-xs text-slate-400 mt-1">Contraseña: Atelier123!</p>
-                                    </div>
-                                    <p className="text-xs text-slate-500 mt-2 italic">
-                                        * Único usuario válido para iniciar sesión
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </main>
