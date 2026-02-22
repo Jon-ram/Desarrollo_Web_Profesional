@@ -34,7 +34,7 @@ function ProductCard({ product }) {
 
     return (
         <div className="group bg-slate-800 rounded-xl overflow-hidden hover:shadow-xl hover:shadow-black/30 transition-all">
-            <Link to={`/producto/${id}`} className="block">
+            <Link to={`/productos/${id}`} className="block">
                 <div className="relative aspect-[3/4] overflow-hidden">
                     <img 
                         alt={nombre} 
@@ -69,7 +69,7 @@ function ProductCard({ product }) {
                     <div className="flex items-center justify-between">
                         {en_oferta ? (
                             <div className="flex items-center gap-2">
-                                <span className="text-white font-bold text-lg">${precio}</span>
+                                <span className="text-primary font-bold text-lg">${precio}</span>
                                 {precio_original && (
                                     <span className="text-white line-through text-sm">${precio_original}</span>
                                 )}
@@ -108,7 +108,7 @@ function ProductCard({ product }) {
                 </button>
                 
                 <Link 
-                    to={`/producto/${id}`}
+                    to={`/productos/${id}`}
                     className="block w-full bg-slate-700 hover:bg-slate-600 text-white py-2 rounded-lg text-sm font-medium transition-colors text-center"
                 >
                     Ver detalles

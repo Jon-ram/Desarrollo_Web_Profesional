@@ -9,6 +9,7 @@ import Servicios from './components/pages/Servicios';
 import Login from './components/pages/Login';
 import Registro from './components/pages/Registro';
 import Error404 from './components/pages/Error404';
+import ProductoDetalle from './components/pages/ProductoDetalle';
 
 function App() {
     return (
@@ -23,6 +24,12 @@ function App() {
                 <Route path="/productos" element={
                     <MainLayout>
                         <Productos />
+                    </MainLayout>
+                } />
+
+                <Route path="/productos/:id" element={
+                    <MainLayout>
+                        <ProductoDetalle />
                     </MainLayout>
                 } />
                 

@@ -36,10 +36,10 @@
       "subcategoria": "chaquetas-urbana",
       "tallas": ["M", "L", "XL"],
       "colores": ["Terracota"],
-      "imagen": "img/chaqueta3(frente).png",
+      "imagen": "/src/assets/img/chaqueta3(frente).png",
       "imagenes_secundarias": [
-        "img/chaqueta3(detras).png",
-        "img/chaqueta3(cuello).png"
+        "/src/assets/img/chaqueta3(detras).png",
+        "/src/assets/img/chaqueta3(cuello).png"
       ],
       "en_oferta": true,
       "descuento": 44,
@@ -114,10 +114,10 @@
       "subcategoria": "vestidos-midi",
       "tallas": ["XS", "S", "M", "L"],
       "colores": ["Negro"],
-      "imagen": "img/vestido1(frente).jpg",
+      "imagen": "/src/assets/img/vestido1(frente).jpg",
       "imagenes_secundarias": [
-        "img/vestido1(detras).jpg",
-        "img/vestido1(frente2).jpg"
+        "/src/assets/img/vestido1(detras).jpg",
+        "/src/assets/img/vestido1(frente2).jpg"
       ],
       "en_oferta": true,
       "descuento": 24,
@@ -140,11 +140,11 @@
       "subcategoria": "sudaderas",
       "tallas": ["M", "L", "XL"],
       "colores": ["Gris", "Negro"],
-      "imagen": "img/sudadera1(frente).jpg",
+      "imagen": "/src/assets/img/sudadera1(frente).jpg",
       "imagenes_secundarias": [
-        "img/sudadera1(detras).jpg",
-        "img/sudadera1(lado).jpg",
-        "img/sudadera1(capucha).jpg"
+        "/src/assets/img/sudadera1(detras).jpg",
+        "/src/assets/img/sudadera1(lado).jpg",
+        "/src/assets/img/sudadera1(capucha).jpg"
       ],
       "en_oferta": false,
       "descuento": 0,
@@ -167,11 +167,11 @@
       "subcategoria": "pantalones-cargo",
       "tallas": ["S", "M", "L"],
       "colores": ["Beige", "Caqui"],
-      "imagen": "img/pantalon2(frente).jpg",
+      "imagen": "/src/assets/img/pantalon2(frente).jpg",
       "imagenes_secundarias": [
-        "img/pantalon2(detras).jpg",
-        "img/pantalon2(lado).jpg",
-        "img/pantalon2(cintura).jpg"
+        "/src/assets/img/pantalon2(detras).jpg",
+        "/src/assets/img/pantalon2(lado).jpg",
+        "/src/assets/img/pantalon2(cintura).jpg"
       ],
       "en_oferta": false,
       "descuento": 0,
@@ -194,9 +194,9 @@
       "subcategoria": "chaquetas-denim",
       "tallas": ["M", "L", "XL"],
       "colores": ["Azul denim", "Negro"],
-      "imagen": "img/chaqueta2(frente).jpg",
+      "imagen": "/src/assets/img/chaqueta2(frente).jpg",
       "imagenes_secundarias": [
-        "img/chaqueta2(detras).jpg"
+        "/src/assets/img/chaqueta2(detras).jpg"
       ],
       "en_oferta": true,
       "descuento": 18,
@@ -219,10 +219,10 @@
       "subcategoria": "tops",
       "tallas": ["XS", "S", "M"],
       "colores": ["Blanco", "Rosa pálido"],
-      "imagen": "img/top(frente).jpg",
+      "imagen": "/src/assets/img/top(frente).jpg",
       "imagenes_secundarias": [
-        "img/top(tela).jpg",
-        "img/top(zoon).jpg"
+        "/src/assets/img/top(tela).jpg",
+        "/src/assets/img/top(zoon).jpg"
       ],
       "en_oferta": false,
       "descuento": 0,
@@ -245,10 +245,10 @@
       "subcategoria": "faldas",
       "tallas": ["S", "M"],
       "colores": ["Negro", "Bordó"],
-      "imagen": "img/falda1(frente).jpg",
+      "imagen": "/src/assets/img/falda1(frente).jpg",
       "imagenes_secundarias": [
-        "img/falda1(frente2).jpg",
-        "img/falda1(cintura).jpg"
+        "/src/assets/img/falda1(frente2).jpg",
+        "/src/assets/img/falda1(cintura).jpg"
       ],
       "en_oferta": false,
       "descuento": 0,
@@ -271,11 +271,11 @@
       "subcategoria": "pantalones-piel",
       "tallas": ["S", "M", "L"],
       "colores": ["Negro"],
-      "imagen": "img/pantalon1(frente).jpg",
+      "imagen": "/src/assets/img/pantalon1(frente).jpg",
       "imagenes_secundarias": [
-        "img/pantalon1(detras).jpg",
-        "img/pantalon1(lado).jpg",
-        "img/pantalon1(lado2).jpg"
+        "/src/assets/img/pantalon1(detras).jpg",
+        "/src/assets/img/pantalon1(lado).jpg",
+        "/src/assets/img/pantalon1(lado2).jpg"
       ],
       "en_oferta": false,
       "descuento": 0,
@@ -298,11 +298,11 @@
       "subcategoria": "chaquetas-vaqueras",
       "tallas": ["M", "L"],
       "colores": ["Azul denim", "Gris"],
-      "imagen": "img/chaqueta1(frente).jpg",
+      "imagen": "/src/assets/img/chaqueta1(frente).jpg",
       "imagenes_secundarias": [
-        "img/chaqueta1(detras).jpg",
-        "img/chaqueta1(cuello).jpg",
-        "img/chaqueta1(bolsa).jpg"
+        "/src/assets/img/chaqueta1(detras).jpg",
+        "/src/assets/img/chaqueta1(cuello).jpg",
+        "/src/assets/img/chaqueta1(bolsa).jpg"
       ],
       "en_oferta": true,
       "descuento": 24,

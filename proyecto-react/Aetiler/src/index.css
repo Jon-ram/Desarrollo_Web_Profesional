@@ -1,1 +1,35 @@
+/* src/index.css */
 @import "tailwindcss";
+
+/* Define tus colores personalizados */
+@theme {
+  --color-primary: #f0625d;
+  --color-background-light: #ffffff;
+  --color-background-dark: #0f172a;
+}
+
+/* Opcional: También puedes crear clases personalizadas */
+@layer base {
+  body {
+    @apply bg-[#0f172a] text-slate-100;
+  }
+}
+
+@layer components {
+  /* Clases de utilidad personalizadas */
+  .text-primary {
+    color: var(--color-primary);
+  }
+  
+  .bg-primary {
+    background-color: var(--color-primary);
+  }
+  
+  .border-primary {
+    border-color: var(--color-primary);
+  }
+  
+  .ring-primary {
+    --tw-ring-color: var(--color-primary);
+  }
+}
