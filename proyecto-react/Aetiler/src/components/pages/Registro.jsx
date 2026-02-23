@@ -1,6 +1,7 @@
 // src/components/pages/Registro.jsx
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import SimpleHeader from '../layout/SimpleHeader';
 
 function Registro() {
     const navigate = useNavigate();
@@ -280,327 +281,332 @@ function Registro() {
 
     // Estilo condicional para inputs
     const inputClassName = (fieldName) => {
-        const baseClass = "w-full px-4 py-3 bg-slate-800 border rounded-lg text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-primary transition-all";
+        const baseClass = "w-full px-4 py-3 bg-white dark:bg-slate-800 border rounded-lg text-slate-900 dark:text-white placeholder-slate-500 dark:placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary transition-all duration-300";
         if (touched[fieldName] && errors[fieldName]) {
-            return `${baseClass} border-red-500 bg-red-500/10 focus:ring-red-500`;
+            return `${baseClass} border-red-500 bg-red-50 dark:bg-red-500/10 focus:ring-red-500`;
         }
         if (touched[fieldName] && !errors[fieldName] && formData[fieldName]) {
-            return `${baseClass} border-green-500 bg-green-500/5 focus:ring-green-500`;
+            return `${baseClass} border-green-500 bg-green-50 dark:bg-green-500/5 focus:ring-green-500`;
         }
-        return `${baseClass} border-slate-700`;
+        return `${baseClass} border-slate-300 dark:border-slate-700`;
     };
 
     return (
-        <div className="min-h-screen bg-slate-900 flex flex-col">
+        <div className="min-h-screen bg-white dark:bg-slate-900 flex flex-col transition-colors duration-300">
+            <SimpleHeader />
+            
             {/* Main Content */}
             <main className="flex-grow flex items-center justify-center py-12 px-4">
                 <div className="w-full max-w-md">
-                    {/* Header del Formulario */}
-                    <div className="text-center mb-8">
-                        <h1 className="text-3xl font-display font-bold text-white mb-2">
-                            Crear cuenta
-                        </h1>
-                        <p className="text-slate-400">
-                            Únete a la comunidad ATELIER
-                        </p>
-                    </div>
-
-                    {/* Formulario */}
-                    <form onSubmit={handleSubmit} className="space-y-6">
-                        {/* Nombre(s) */}
-                        <div>
-                            <label className="block text-sm font-medium text-slate-400 mb-2">
-                                Nombre(s) <span className="text-primary">*</span>
-                            </label>
-                            <input
-                                type="text"
-                                name="firstName"
-                                value={formData.firstName}
-                                onChange={handleChange}
-                                onBlur={() => handleBlur('firstName')}
-                                className={inputClassName('firstName')}
-                                placeholder="Ej. María Elena"
-                            />
-                            {touched.firstName && errors.firstName && (
-                                <p className="text-sm text-red-500 mt-1">{errors.firstName}</p>
-                            )}
+                    {/* Card del Formulario */}
+                    <div className="bg-white dark:bg-slate-800 rounded-2xl p-8 border border-slate-200 dark:border-slate-700 shadow-xl transition-colors duration-300">
+                        {/* Header del Formulario */}
+                        <div className="text-center mb-8">
+                            <h1 className="text-3xl font-display font-bold text-slate-900 dark:text-white mb-2 transition-colors duration-300">
+                                Crear cuenta
+                            </h1>
+                            <p className="text-slate-600 dark:text-slate-400 transition-colors duration-300">
+                                Únete a la comunidad ATELIER
+                            </p>
                         </div>
 
-                        {/* Apellido(s) */}
-                        <div>
-                            <label className="block text-sm font-medium text-slate-400 mb-2">
-                                Apellido(s) <span className="text-primary">*</span>
-                            </label>
-                            <input
-                                type="text"
-                                name="lastName"
-                                value={formData.lastName}
-                                onChange={handleChange}
-                                onBlur={() => handleBlur('lastName')}
-                                className={inputClassName('lastName')}
-                                placeholder="Ej. Rodríguez López"
-                            />
-                            {touched.lastName && errors.lastName && (
-                                <p className="text-sm text-red-500 mt-1">{errors.lastName}</p>
-                            )}
-                        </div>
-
-                        {/* Correo electrónico */}
-                        <div>
-                            <label className="block text-sm font-medium text-slate-400 mb-2">
-                                Correo electrónico <span className="text-primary">*</span>
-                            </label>
-                            <input
-                                type="email"
-                                name="email"
-                                value={formData.email}
-                                onChange={handleChange}
-                                onBlur={() => handleBlur('email')}
-                                className={inputClassName('email')}
-                                placeholder="tucorreo@ejemplo.com"
-                            />
-                            {touched.email && errors.email && (
-                                <p className="text-sm text-red-500 mt-1">{errors.email}</p>
-                            )}
-                        </div>
-
-                        {/* Teléfono */}
-                        <div>
-                            <label className="block text-sm font-medium text-slate-400 mb-2">
-                                Teléfono <span className="text-primary">*</span>
-                            </label>
-                            <input
-                                type="tel"
-                                name="phone"
-                                value={formData.phone}
-                                onChange={handleChange}
-                                onBlur={() => handleBlur('phone')}
-                                className={inputClassName('phone')}
-                                placeholder="Ej. 3001234567"
-                            />
-                            {touched.phone && errors.phone && (
-                                <p className="text-sm text-red-500 mt-1">{errors.phone}</p>
-                            )}
-                        </div>
-
-                        {/* Contraseña */}
-                        <div>
-                            <label className="block text-sm font-medium text-slate-400 mb-2">
-                                Contraseña <span className="text-primary">*</span>
-                            </label>
-                            <div className="relative">
+                        {/* Formulario */}
+                        <form onSubmit={handleSubmit} className="space-y-6">
+                            {/* Nombre(s) */}
+                            <div>
+                                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2 transition-colors duration-300">
+                                    Nombre(s) <span className="text-primary">*</span>
+                                </label>
                                 <input
-                                    type={showPassword ? "text" : "password"}
-                                    name="password"
-                                    value={formData.password}
+                                    type="text"
+                                    name="firstName"
+                                    value={formData.firstName}
                                     onChange={handleChange}
-                                    onBlur={() => handleBlur('password')}
-                                    className={`${inputClassName('password')} pr-10`}
-                                    placeholder="••••••••"
+                                    onBlur={() => handleBlur('firstName')}
+                                    className={inputClassName('firstName')}
+                                    placeholder="Ej. María Elena"
                                 />
-                                <button
-                                    type="button"
-                                    onClick={() => setShowPassword(!showPassword)}
-                                    className="absolute right-3 top-3 text-slate-400 hover:text-primary"
-                                >
-                                    <span className="material-symbols-outlined">
-                                        {showPassword ? 'visibility_off' : 'visibility'}
-                                    </span>
-                                </button>
+                                {touched.firstName && errors.firstName && (
+                                    <p className="text-sm text-red-500 mt-1">{errors.firstName}</p>
+                                )}
                             </div>
-                            
-                            {/* Indicador de fortaleza */}
-                            {formData.password && (
-                                <div className="mt-2">
-                                    <div className="h-1 bg-slate-700 rounded-full overflow-hidden">
-                                        <div className={`h-full ${passwordStrength.class} transition-all`}></div>
-                                    </div>
-                                    <p className="text-xs text-slate-500 mt-1">
-                                        Seguridad: {passwordStrength.text}
-                                    </p>
-                                </div>
-                            )}
-                            
-                            {/* Requisitos de contraseña */}
-                            {formData.password && (
-                                <div className="mt-3 space-y-1 text-xs">
-                                    <div className="flex items-center text-slate-500">
-                                        <span className={`material-symbols-outlined text-xs mr-1 ${
-                                            passwordReqs.length ? 'text-green-500' : 'text-red-500'
-                                        }`}>
-                                            {passwordReqs.length ? 'check' : 'close'}
-                                        </span>
-                                        Al menos 8 caracteres
-                                    </div>
-                                    <div className="flex items-center text-slate-500">
-                                        <span className={`material-symbols-outlined text-xs mr-1 ${
-                                            passwordReqs.uppercase ? 'text-green-500' : 'text-red-500'
-                                        }`}>
-                                            {passwordReqs.uppercase ? 'check' : 'close'}
-                                        </span>
-                                        Al menos una mayúscula
-                                    </div>
-                                    <div className="flex items-center text-slate-500">
-                                        <span className={`material-symbols-outlined text-xs mr-1 ${
-                                            passwordReqs.number ? 'text-green-500' : 'text-red-500'
-                                        }`}>
-                                            {passwordReqs.number ? 'check' : 'close'}
-                                        </span>
-                                        Al menos un número
-                                    </div>
-                                    <div className="flex items-center text-slate-500">
-                                        <span className={`material-symbols-outlined text-xs mr-1 ${
-                                            passwordReqs.special ? 'text-green-500' : 'text-red-500'
-                                        }`}>
-                                            {passwordReqs.special ? 'check' : 'close'}
-                                        </span>
-                                        Al menos un carácter especial (!@#$%^&*)
-                                    </div>
-                                </div>
-                            )}
-                            
-                            {touched.password && errors.password && (
-                                <p className="text-sm text-red-500 mt-1">{errors.password}</p>
-                            )}
-                        </div>
 
-                        {/* Confirmación de contraseña */}
-                        <div>
-                            <label className="block text-sm font-medium text-slate-400 mb-2">
-                                Confirmar contraseña <span className="text-primary">*</span>
-                            </label>
-                            <div className="relative">
+                            {/* Apellido(s) */}
+                            <div>
+                                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2 transition-colors duration-300">
+                                    Apellido(s) <span className="text-primary">*</span>
+                                </label>
                                 <input
-                                    type={showConfirmPassword ? "text" : "password"}
-                                    name="confirmPassword"
-                                    value={formData.confirmPassword}
+                                    type="text"
+                                    name="lastName"
+                                    value={formData.lastName}
                                     onChange={handleChange}
-                                    onBlur={() => handleBlur('confirmPassword')}
-                                    className={`${inputClassName('confirmPassword')} pr-10`}
-                                    placeholder="••••••••"
+                                    onBlur={() => handleBlur('lastName')}
+                                    className={inputClassName('lastName')}
+                                    placeholder="Ej. Rodríguez López"
                                 />
-                                <button
-                                    type="button"
-                                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                                    className="absolute right-3 top-3 text-slate-400 hover:text-primary"
-                                >
-                                    <span className="material-symbols-outlined">
-                                        {showConfirmPassword ? 'visibility_off' : 'visibility'}
-                                    </span>
-                                </button>
+                                {touched.lastName && errors.lastName && (
+                                    <p className="text-sm text-red-500 mt-1">{errors.lastName}</p>
+                                )}
                             </div>
-                            {touched.confirmPassword && errors.confirmPassword && (
-                                <p className="text-sm text-red-500 mt-1">{errors.confirmPassword}</p>
-                            )}
-                        </div>
 
-                        {/* Verificación Humana */}
-                        <div className="p-4 bg-slate-800/50 rounded-lg">
-                            <label className="flex items-center gap-3 cursor-pointer">
+                            {/* Correo electrónico */}
+                            <div>
+                                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2 transition-colors duration-300">
+                                    Correo electrónico <span className="text-primary">*</span>
+                                </label>
+                                <input
+                                    type="email"
+                                    name="email"
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                    onBlur={() => handleBlur('email')}
+                                    className={inputClassName('email')}
+                                    placeholder="tucorreo@ejemplo.com"
+                                />
+                                {touched.email && errors.email && (
+                                    <p className="text-sm text-red-500 mt-1">{errors.email}</p>
+                                )}
+                            </div>
+
+                            {/* Teléfono */}
+                            <div>
+                                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2 transition-colors duration-300">
+                                    Teléfono <span className="text-primary">*</span>
+                                </label>
+                                <input
+                                    type="tel"
+                                    name="phone"
+                                    value={formData.phone}
+                                    onChange={handleChange}
+                                    onBlur={() => handleBlur('phone')}
+                                    className={inputClassName('phone')}
+                                    placeholder="Ej. 3001234567"
+                                />
+                                {touched.phone && errors.phone && (
+                                    <p className="text-sm text-red-500 mt-1">{errors.phone}</p>
+                                )}
+                            </div>
+
+                            {/* Contraseña */}
+                            <div>
+                                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2 transition-colors duration-300">
+                                    Contraseña <span className="text-primary">*</span>
+                                </label>
+                                <div className="relative">
+                                    <input
+                                        type={showPassword ? "text" : "password"}
+                                        name="password"
+                                        value={formData.password}
+                                        onChange={handleChange}
+                                        onBlur={() => handleBlur('password')}
+                                        className={`${inputClassName('password')} pr-10`}
+                                        placeholder="••••••••"
+                                    />
+                                    <button
+                                        type="button"
+                                        onClick={() => setShowPassword(!showPassword)}
+                                        className="absolute right-3 top-3 text-slate-400 dark:text-slate-500 hover:text-primary transition-colors"
+                                    >
+                                        <span className="material-symbols-outlined">
+                                            {showPassword ? 'visibility_off' : 'visibility'}
+                                        </span>
+                                    </button>
+                                </div>
+                                
+                                {/* Indicador de fortaleza */}
+                                {formData.password && (
+                                    <div className="mt-2">
+                                        <div className="h-1 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
+                                            <div className={`h-full ${passwordStrength.class} transition-all`}></div>
+                                        </div>
+                                        <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 transition-colors duration-300">
+                                            Seguridad: {passwordStrength.text}
+                                        </p>
+                                    </div>
+                                )}
+                                
+                                {/* Requisitos de contraseña */}
+                                {formData.password && (
+                                    <div className="mt-3 space-y-1 text-xs">
+                                        <div className="flex items-center text-slate-600 dark:text-slate-400">
+                                            <span className={`material-symbols-outlined text-xs mr-1 ${
+                                                passwordReqs.length ? 'text-green-500' : 'text-red-500'
+                                            }`}>
+                                                {passwordReqs.length ? 'check' : 'close'}
+                                            </span>
+                                            Al menos 8 caracteres
+                                        </div>
+                                        <div className="flex items-center text-slate-600 dark:text-slate-400">
+                                            <span className={`material-symbols-outlined text-xs mr-1 ${
+                                                passwordReqs.uppercase ? 'text-green-500' : 'text-red-500'
+                                            }`}>
+                                                {passwordReqs.uppercase ? 'check' : 'close'}
+                                            </span>
+                                            Al menos una mayúscula
+                                        </div>
+                                        <div className="flex items-center text-slate-600 dark:text-slate-400">
+                                            <span className={`material-symbols-outlined text-xs mr-1 ${
+                                                passwordReqs.number ? 'text-green-500' : 'text-red-500'
+                                            }`}>
+                                                {passwordReqs.number ? 'check' : 'close'}
+                                            </span>
+                                            Al menos un número
+                                        </div>
+                                        <div className="flex items-center text-slate-600 dark:text-slate-400">
+                                            <span className={`material-symbols-outlined text-xs mr-1 ${
+                                                passwordReqs.special ? 'text-green-500' : 'text-red-500'
+                                            }`}>
+                                                {passwordReqs.special ? 'check' : 'close'}
+                                            </span>
+                                            Al menos un carácter especial (!@#$%^&*)
+                                        </div>
+                                    </div>
+                                )}
+                                
+                                {touched.password && errors.password && (
+                                    <p className="text-sm text-red-500 mt-1">{errors.password}</p>
+                                )}
+                            </div>
+
+                            {/* Confirmación de contraseña */}
+                            <div>
+                                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2 transition-colors duration-300">
+                                    Confirmar contraseña <span className="text-primary">*</span>
+                                </label>
+                                <div className="relative">
+                                    <input
+                                        type={showConfirmPassword ? "text" : "password"}
+                                        name="confirmPassword"
+                                        value={formData.confirmPassword}
+                                        onChange={handleChange}
+                                        onBlur={() => handleBlur('confirmPassword')}
+                                        className={`${inputClassName('confirmPassword')} pr-10`}
+                                        placeholder="••••••••"
+                                    />
+                                    <button
+                                        type="button"
+                                        onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                                        className="absolute right-3 top-3 text-slate-400 dark:text-slate-500 hover:text-primary transition-colors"
+                                    >
+                                        <span className="material-symbols-outlined">
+                                            {showConfirmPassword ? 'visibility_off' : 'visibility'}
+                                        </span>
+                                    </button>
+                                </div>
+                                {touched.confirmPassword && errors.confirmPassword && (
+                                    <p className="text-sm text-red-500 mt-1">{errors.confirmPassword}</p>
+                                )}
+                            </div>
+
+                            {/* Verificación Humana */}
+                            <div className="p-4 bg-slate-50 dark:bg-slate-800/50 rounded-lg border border-slate-200 dark:border-slate-700 transition-colors duration-300">
+                                <label className="flex items-center gap-3 cursor-pointer">
+                                    <input
+                                        type="checkbox"
+                                        name="humanVerification"
+                                        checked={formData.humanVerification}
+                                        onChange={handleChange}
+                                        onBlur={() => handleBlur('humanVerification')}
+                                        className="h-5 w-5 rounded border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-primary focus:ring-primary transition-colors duration-300"
+                                    />
+                                    <span className="text-sm text-slate-700 dark:text-slate-300 transition-colors duration-300">
+                                        Marque la casilla para confirmar que no es un robot
+                                    </span>
+                                </label>
+                                {touched.humanVerification && errors.humanVerification && (
+                                    <p className="text-sm text-red-500 mt-1">{errors.humanVerification}</p>
+                                )}
+                            </div>
+
+                            {/* Términos y Condiciones */}
+                            <div className="flex items-start gap-3">
                                 <input
                                     type="checkbox"
-                                    name="humanVerification"
-                                    checked={formData.humanVerification}
+                                    name="terms"
+                                    checked={formData.terms}
                                     onChange={handleChange}
-                                    onBlur={() => handleBlur('humanVerification')}
-                                    className="h-5 w-5 rounded border-slate-700 bg-slate-800 text-primary focus:ring-primary"
+                                    onBlur={() => handleBlur('terms')}
+                                    className="mt-1 h-4 w-4 rounded border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-primary focus:ring-primary transition-colors duration-300"
                                 />
-                                <span className="text-sm text-slate-400">
-                                    Marque la casilla para confirmar que no es un robot
-                                </span>
-                            </label>
-                            {touched.humanVerification && errors.humanVerification && (
-                                <p className="text-sm text-red-500 mt-1">{errors.humanVerification}</p>
-                            )}
-                        </div>
-
-                        {/* Términos y Condiciones */}
-                        <div className="flex items-start gap-3">
-                            <input
-                                type="checkbox"
-                                name="terms"
-                                checked={formData.terms}
-                                onChange={handleChange}
-                                onBlur={() => handleBlur('terms')}
-                                className="mt-1 h-4 w-4 rounded border-slate-700 bg-slate-800 text-primary focus:ring-primary"
-                            />
-                            <label className="text-sm text-slate-400">
-                                Acepto los{' '}
-                                <button
-                                    type="button"
-                                    onClick={() => setShowTermsModal(true)}
-                                    className="text-primary hover:text-red-500 underline"
-                                >
-                                    Términos y Condiciones
-                                </button>
-                                {' '}<span className="text-primary">*</span>
-                            </label>
-                        </div>
-                        {touched.terms && errors.terms && (
-                            <p className="text-sm text-red-500 mt-1">{errors.terms}</p>
-                        )}
-
-                        {/* Aviso de Privacidad */}
-                        <div className="flex items-start gap-3">
-                            <input
-                                type="checkbox"
-                                name="privacy"
-                                checked={formData.privacy}
-                                onChange={handleChange}
-                                className="mt-1 h-4 w-4 rounded border-slate-700 bg-slate-800 text-primary focus:ring-primary"
-                            />
-                            <label className="text-sm text-slate-400">
-                                He leído y acepto el{' '}
-                                <button
-                                    type="button"
-                                    onClick={() => setShowPrivacyModal(true)}
-                                    className="text-primary hover:text-red-500 underline"
-                                >
-                                    Aviso de Privacidad
-                                </button>
-                            </label>
-                        </div>
-
-                        {/* Error general */}
-                        {generalError && (
-                            <div className="text-center text-sm text-red-500 bg-red-500/10 p-3 rounded-lg">
-                                {generalError}
+                                <label className="text-sm text-slate-700 dark:text-slate-300 transition-colors duration-300">
+                                    Acepto los{' '}
+                                    <button
+                                        type="button"
+                                        onClick={() => setShowTermsModal(true)}
+                                        className="text-primary hover:text-red-500 underline transition-colors"
+                                    >
+                                        Términos y Condiciones
+                                    </button>
+                                    {' '}<span className="text-primary">*</span>
+                                </label>
                             </div>
-                        )}
+                            {touched.terms && errors.terms && (
+                                <p className="text-sm text-red-500 mt-1">{errors.terms}</p>
+                            )}
 
-                        {/* Botón de Registro */}
-                        <button
-                            type="submit"
-                            disabled={!isFormValid()}
-                            className="w-full bg-primary hover:bg-red-500 text-white py-3 rounded-lg font-bold transition-all shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
-                        >
-                            Crear cuenta
-                        </button>
+                            {/* Aviso de Privacidad */}
+                            <div className="flex items-start gap-3">
+                                <input
+                                    type="checkbox"
+                                    name="privacy"
+                                    checked={formData.privacy}
+                                    onChange={handleChange}
+                                    className="mt-1 h-4 w-4 rounded border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-primary focus:ring-primary transition-colors duration-300"
+                                />
+                                <label className="text-sm text-slate-700 dark:text-slate-300 transition-colors duration-300">
+                                    He leído y acepto el{' '}
+                                    <button
+                                        type="button"
+                                        onClick={() => setShowPrivacyModal(true)}
+                                        className="text-primary hover:text-red-500 underline transition-colors"
+                                    >
+                                        Aviso de Privacidad
+                                    </button>
+                                </label>
+                            </div>
 
-                        {/* Enlace a Login */}
-                        <div className="text-center text-sm text-slate-500">
-                            ¿Ya tienes una cuenta?{' '}
-                            <Link to="/login" className="text-primary hover:text-red-500 font-medium">
-                                Inicia sesión aquí
-                            </Link>
-                        </div>
-                    </form>
+                            {/* Error general */}
+                            {generalError && (
+                                <div className="text-center text-sm text-red-500 bg-red-50 dark:bg-red-500/10 p-3 rounded-lg border border-red-200 dark:border-red-800 transition-colors duration-300">
+                                    {generalError}
+                                </div>
+                            )}
+
+                            {/* Botón de Registro */}
+                            <button
+                                type="submit"
+                                disabled={!isFormValid()}
+                                className="w-full bg-primary hover:bg-red-500 text-white py-3 rounded-lg font-bold transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
+                            >
+                                Crear cuenta
+                            </button>
+
+                            {/* Enlace a Login */}
+                            <div className="text-center text-sm text-slate-600 dark:text-slate-400 transition-colors duration-300">
+                                ¿Ya tienes una cuenta?{' '}
+                                <Link to="/login" className="text-primary hover:text-red-500 font-medium transition-colors">
+                                    Inicia sesión aquí
+                                </Link>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </main>
 
             {/* Modal de Términos y Condiciones */}
             {showTermsModal && (
                 <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50" onClick={() => setShowTermsModal(false)}>
-                    <div className="bg-slate-800 rounded-xl w-full max-w-2xl max-h-[80vh] overflow-hidden" onClick={e => e.stopPropagation()}>
+                    <div className="bg-white dark:bg-slate-800 rounded-xl w-full max-w-2xl max-h-[80vh] overflow-hidden border border-slate-200 dark:border-slate-700 shadow-xl transition-colors duration-300" onClick={e => e.stopPropagation()}>
                         <div className="p-6">
                             <div className="flex justify-between items-center mb-6">
-                                <h3 className="text-xl font-display font-bold text-white">Términos y Condiciones</h3>
-                                <button onClick={() => setShowTermsModal(false)} className="text-slate-500 hover:text-primary">
+                                <h3 className="text-xl font-display font-bold text-slate-900 dark:text-white transition-colors duration-300">Términos y Condiciones</h3>
+                                <button onClick={() => setShowTermsModal(false)} className="text-slate-400 hover:text-primary transition-colors">
                                     <span className="material-symbols-outlined">close</span>
                                 </button>
                             </div>
-                            <div className="text-slate-300 max-h-[60vh] overflow-y-auto pr-4">
-                                <p className="mb-4"><strong className="text-white">TÉRMINOS Y CONDICIONES DE ATELIER</strong></p>
+                            <div className="text-slate-600 dark:text-slate-300 max-h-[60vh] overflow-y-auto pr-4 transition-colors duration-300">
+                                <p className="mb-4"><strong className="text-slate-900 dark:text-white">TÉRMINOS Y CONDICIONES DE ATELIER</strong></p>
                                 <p className="mb-4">Al registrarte, aceptas nuestros términos y condiciones...</p>
                                 <p className="mb-4">1. Aceptas recibir comunicaciones de nuestra parte.</p>
                                 <p className="mb-4">2. Tus datos serán tratados conforme a nuestra política de privacidad.</p>
@@ -612,7 +618,7 @@ function Registro() {
                                         setFormData(prev => ({ ...prev, terms: true }));
                                         setShowTermsModal(false);
                                     }}
-                                    className="bg-primary hover:bg-red-500 text-white px-6 py-2 rounded-lg font-medium"
+                                    className="bg-primary hover:bg-red-500 text-white px-6 py-2 rounded-lg font-medium transition-colors"
                                 >
                                     Aceptar Términos
                                 </button>
@@ -625,16 +631,16 @@ function Registro() {
             {/* Modal de Aviso de Privacidad */}
             {showPrivacyModal && (
                 <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50" onClick={() => setShowPrivacyModal(false)}>
-                    <div className="bg-slate-800 rounded-xl w-full max-w-2xl max-h-[80vh] overflow-hidden" onClick={e => e.stopPropagation()}>
+                    <div className="bg-white dark:bg-slate-800 rounded-xl w-full max-w-2xl max-h-[80vh] overflow-hidden border border-slate-200 dark:border-slate-700 shadow-xl transition-colors duration-300" onClick={e => e.stopPropagation()}>
                         <div className="p-6">
                             <div className="flex justify-between items-center mb-6">
-                                <h3 className="text-xl font-display font-bold text-white">Aviso de Privacidad</h3>
-                                <button onClick={() => setShowPrivacyModal(false)} className="text-slate-500 hover:text-primary">
+                                <h3 className="text-xl font-display font-bold text-slate-900 dark:text-white transition-colors duration-300">Aviso de Privacidad</h3>
+                                <button onClick={() => setShowPrivacyModal(false)} className="text-slate-400 hover:text-primary transition-colors">
                                     <span className="material-symbols-outlined">close</span>
                                 </button>
                             </div>
-                            <div className="text-slate-300 max-h-[60vh] overflow-y-auto pr-4">
-                                <p className="mb-4"><strong className="text-white">AVISO DE PRIVACIDAD</strong></p>
+                            <div className="text-slate-600 dark:text-slate-300 max-h-[60vh] overflow-y-auto pr-4 transition-colors duration-300">
+                                <p className="mb-4"><strong className="text-slate-900 dark:text-white">AVISO DE PRIVACIDAD</strong></p>
                                 <p className="mb-4">Tu información está protegida y no se almacena en este momento...</p>
                                 <p className="mb-4">Recopilamos tu nombre, email y teléfono para mejorar tu experiencia.</p>
                                 <p className="mb-4">No compartimos tus datos con terceros sin tu consentimiento.</p>
@@ -645,7 +651,7 @@ function Registro() {
                                         setFormData(prev => ({ ...prev, privacy: true }));
                                         setShowPrivacyModal(false);
                                     }}
-                                    className="bg-primary hover:bg-red-500 text-white px-6 py-2 rounded-lg font-medium"
+                                    className="bg-primary hover:bg-red-500 text-white px-6 py-2 rounded-lg font-medium transition-colors"
                                 >
                                     Entendido
                                 </button>

@@ -25,7 +25,7 @@ const productos = [
         "id": 3,
         "nombre": "Bolso de Mano",
         "precio": 200,
-        "imagen": "https://lh3.googleusercontent.com/aida-public/AB6AXuAQOrzCzhGqkOu2au_nrIXvDIko3ZP5Ye6v5Xjr6GrmUxVB6d61pKtYU61-Ds8JAf73O32v6HNpw2HtMeiu5JfGNb_NE0NUuA0gLbqSCKfgqPEmc6yap8gAv0LZyrTBOLTZBa4teJ5Q0nrYPnIVWZWn1E6BDHPLRDTTqWnaMYeRgKCqW66V6sJD9xynB08yFcToeHWZ72sHLOl1EJROme1jnBkrnL_i_Gitz2uB_kIzxhf7l-aX6Yo1qXinQZDfJawaX0s7yBM9fFoW",
+        "imagen": "https://lh3.googleusercaontent.com/aida-public/AB6AXuAQOrzCzhGqkOu2au_nrIXvDIko3ZP5Ye6v5Xjr6GrmUxVB6d61pKtYU61-Ds8JAf73O32v6HNpw2HtMeiu5JfGNb_NE0NUuA0gLbqSCKfgqPEmc6yap8gAv0LZyrTBOLTZBa4teJ5Q0nrYPnIVWZWn1E6BDHPLRDTTqWnaMYeRgKCqW66V6sJD9xynB08yFcToeHWZ72sHLOl1EJROme1jnBkrnL_i_Gitz2uB_kIzxhf7l-aX6Yo1qXinQZDfJawaX0s7yBM9fFoW",
         "oferta": false,
         "categoria": "accesorios"
     },

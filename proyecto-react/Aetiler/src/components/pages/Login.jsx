@@ -1,6 +1,7 @@
 // src/components/pages/Login.jsx
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import SimpleHeader from '../layout/SimpleHeader';
 
 // Referencia a grecaptcha de window
 const grecaptcha = window.grecaptcha;
@@ -76,7 +77,7 @@ function Login() {
         if (recaptchaLoaded && recaptchaRef.current) {
             try {
                 window.grecaptcha.render(recaptchaRef.current, {
-                    sitekey: '6Le0UGcsAAAAAEd0bNIj7FP4sgYfBGwPKlnLwquV', // Tu sitekey
+                    sitekey: '6Le0UGcsAAAAAEd0bNIj7FP4sgYfBGwPKlnLwquV',
                     callback: (token) => {
                         setRecaptchaToken(token);
                         setRecaptchaError(false);
@@ -282,7 +283,7 @@ function Login() {
                 } else {
                     setGeneralError('Email o contraseña incorrectos');
                     setIsLoading(false);
-                    resetRecaptcha(); // Resetear reCAPTCHA en caso de error
+                    resetRecaptcha();
                 }
             }, 1000);
         }
@@ -325,34 +326,36 @@ function Login() {
 
     // Estilo condicional para inputs
     const inputClassName = (fieldName) => {
-        const baseClass = "w-full px-4 py-3 bg-slate-800 border rounded-lg text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-primary transition-all";
+        const baseClass = "w-full px-4 py-3 bg-white dark:bg-slate-800 border rounded-lg text-slate-900 dark:text-white placeholder-slate-500 dark:placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary transition-all duration-300";
         if (touched[fieldName] && errors[fieldName]) {
-            return `${baseClass} border-red-500 bg-red-500/10 focus:ring-red-500`;
+            return `${baseClass} border-red-500 bg-red-50 dark:bg-red-500/10 focus:ring-red-500`;
         }
         if (touched[fieldName] && !errors[fieldName] && formData[fieldName]) {
-            return `${baseClass} border-green-500 bg-green-500/5 focus:ring-green-500`;
+            return `${baseClass} border-green-500 bg-green-50 dark:bg-green-500/5 focus:ring-green-500`;
         }
-        return `${baseClass} border-slate-700`;
+        return `${baseClass} border-slate-300 dark:border-slate-700`;
     };
 
     return (
-        <div className="min-h-screen bg-slate-900 flex flex-col">
+        <div className="min-h-screen bg-white dark:bg-slate-900 flex flex-col transition-colors duration-300">
+            <SimpleHeader />
+            
             {/* Main Content */}
             <main className="flex-grow flex items-center justify-center py-12 px-4">
                 <div className="w-full max-w-md">
                     {/* Card de Login */}
-                    <div className="bg-slate-800 rounded-2xl p-8 border border-slate-700">
+                    <div className="bg-white dark:bg-slate-800 rounded-2xl p-8 border border-slate-200 dark:border-slate-700 shadow-xl transition-colors duration-300">
                         {/* Logo y Bienvenida */}
                         <div className="text-center mb-8">
-                            <div className="inline-flex items-center justify-center w-16 h-16 bg-primary/20 rounded-full mb-4 shadow-lg shadow-primary/20">
-                                <span className="material-symbols-outlined text-white text-3xl drop-shadow-[0_0_8px_rgba(240,98,93,0.8)]">
+                            <div className="inline-flex items-center justify-center w-16 h-16 bg-primary/10 dark:bg-primary/20 rounded-full mb-4 shadow-lg shadow-primary/20">
+                                <span className="material-symbols-outlined text-primary text-3xl drop-shadow-[0_0_8px_rgba(240,98,93,0.8)]">
                                     account_circle
                                 </span>
                             </div>
-                            <h1 className="text-3xl font-display font-bold text-white mb-2">
+                            <h1 className="text-3xl font-display font-bold text-slate-900 dark:text-white mb-2 transition-colors duration-300">
                                 Bienvenido de vuelta
                             </h1>
-                            <p className="text-slate-400">
+                            <p className="text-slate-600 dark:text-slate-400 transition-colors duration-300">
                                 Ingresa a tu cuenta ATELIER
                             </p>
                         </div>
@@ -361,7 +364,7 @@ function Login() {
                         <form onSubmit={handleSubmit} className="space-y-6">
                             {/* Email */}
                             <div>
-                                <label className="block text-sm font-medium text-slate-400 mb-2">
+                                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2 transition-colors duration-300">
                                     Correo electrónico <span className="text-primary">*</span>
                                 </label>
                                 <div className="relative">
@@ -374,7 +377,7 @@ function Login() {
                                         className={inputClassName('email')}
                                         placeholder="demo@atelier.com"
                                     />
-                                    <span className="material-symbols-outlined absolute right-3 top-3 text-slate-400">
+                                    <span className="material-symbols-outlined absolute right-3 top-3 text-slate-400 dark:text-slate-500">
                                         mail
                                     </span>
                                 </div>
@@ -385,7 +388,7 @@ function Login() {
 
                             {/* Contraseña */}
                             <div>
-                                <label className="block text-sm font-medium text-slate-400 mb-2">
+                                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2 transition-colors duration-300">
                                     Contraseña <span className="text-primary">*</span>
                                 </label>
                                 <div className="relative">
@@ -401,7 +404,7 @@ function Login() {
                                     <button
                                         type="button"
                                         onClick={() => setShowPassword(!showPassword)}
-                                        className="absolute right-3 top-3 text-slate-400 hover:text-primary"
+                                        className="absolute right-3 top-3 text-slate-400 dark:text-slate-500 hover:text-primary transition-colors"
                                     >
                                         <span className="material-symbols-outlined">
                                             {showPassword ? 'visibility_off' : 'visibility'}
@@ -415,7 +418,7 @@ function Login() {
 
                             {/* Mensaje de error general */}
                             {generalError && (
-                                <div className="text-center text-sm text-red-500 bg-red-500/10 p-3 rounded-lg">
+                                <div className="text-center text-sm text-red-500 bg-red-50 dark:bg-red-500/10 p-3 rounded-lg border border-red-200 dark:border-red-800 transition-colors duration-300">
                                     {generalError}
                                 </div>
                             )}
@@ -433,7 +436,7 @@ function Login() {
                                     </p>
                                 )}
                                 {!recaptchaLoaded && (
-                                    <p className="text-sm text-slate-400 mt-2">
+                                    <p className="text-sm text-slate-500 dark:text-slate-400 mt-2 transition-colors duration-300">
                                         Cargando verificación de seguridad...
                                     </p>
                                 )}
@@ -447,16 +450,16 @@ function Login() {
                                         name="remember"
                                         checked={formData.remember}
                                         onChange={handleChange}
-                                        className="h-4 w-4 rounded border-slate-700 bg-slate-800 text-primary focus:ring-primary"
+                                        className="h-4 w-4 rounded border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-primary focus:ring-primary transition-colors duration-300"
                                     />
-                                    <span className="ml-2 text-sm text-white hover:text-primary transition-colors">
+                                    <span className="ml-2 text-sm text-slate-700 dark:text-slate-300 hover:text-primary transition-colors">
                                         Recordar sesión
                                     </span>
                                 </label>
                                 <button
                                     type="button"
                                     onClick={() => setShowForgotModal(true)}
-                                    className="text-sm text-white font-medium hover:text-primary transition-colors"
+                                    className="text-sm text-slate-700 dark:text-slate-300 font-medium hover:text-primary transition-colors"
                                 >
                                     ¿Olvidaste tu contraseña?
                                 </button>
@@ -466,7 +469,7 @@ function Login() {
                             <button
                                 type="submit"
                                 disabled={isLoading}
-                                className="w-full bg-primary hover:bg-[#ff8a85] text-white py-3 rounded-lg font-bold transition-all shadow-lg hover:shadow-xl hover:shadow-primary/30 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                                className="w-full bg-primary hover:bg-red-500 text-white py-3 rounded-lg font-bold transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-primary/30 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                             >
                                 {isLoading ? (
                                     <>
@@ -480,11 +483,11 @@ function Login() {
 
                             {/* Divisor */}
                             <div className="relative flex items-center py-2">
-                                <div className="flex-grow border-t border-slate-700"></div>
-                                <span className="flex-shrink mx-4 text-sm text-slate-500">
+                                <div className="flex-grow border-t border-slate-200 dark:border-slate-700 transition-colors duration-300"></div>
+                                <span className="flex-shrink mx-4 text-sm text-slate-500 dark:text-slate-400 transition-colors duration-300">
                                     O continúa con
                                 </span>
-                                <div className="flex-grow border-t border-slate-700"></div>
+                                <div className="flex-grow border-t border-slate-200 dark:border-slate-700 transition-colors duration-300"></div>
                             </div>
 
                             {/* Login con redes sociales (simulado) */}
@@ -492,7 +495,7 @@ function Login() {
                                 <button
                                     type="button"
                                     onClick={() => showToast('Login con Google no disponible - Solo usuario demo', 'info')}
-                                    className="flex items-center justify-center gap-2 px-4 py-3 rounded-lg bg-slate-900 border border-slate-700 text-slate-300 hover:bg-slate-800 hover:text-white hover:border-primary transition-all"
+                                    className="flex items-center justify-center gap-2 px-4 py-3 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 hover:border-primary transition-all duration-300"
                                 >
                                     <svg className="w-5 h-5" viewBox="0 0 24 24">
                                         <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
@@ -505,7 +508,7 @@ function Login() {
                                 <button
                                     type="button"
                                     onClick={() => showToast('Login con Facebook no disponible - Solo usuario demo', 'info')}
-                                    className="flex items-center justify-center gap-2 px-4 py-3 rounded-lg bg-slate-900 border border-slate-700 text-slate-300 hover:bg-slate-800 hover:text-white hover:border-primary transition-all"
+                                    className="flex items-center justify-center gap-2 px-4 py-3 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 hover:border-primary transition-all duration-300"
                                 >
                                     <svg className="w-5 h-5 text-[#1877F2]" fill="currentColor" viewBox="0 0 24 24">
                                         <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
@@ -515,14 +518,32 @@ function Login() {
                             </div>
 
                             {/* Enlace a Registro */}
-                            <div className="text-center text-sm text-slate-500">
+                            <div className="text-center text-sm text-slate-600 dark:text-slate-400 transition-colors duration-300">
                                 ¿No tienes una cuenta?{' '}
-                                <Link to="/registro" className="text-primary hover:text-[#ff8a85] font-bold transition-colors">
+                                <Link to="/registro" className="text-primary hover:text-red-500 font-bold transition-colors">
                                     Regístrate aquí
                                 </Link>
                             </div>
                         </form>
 
+                        {/* Demo user info - ahora más integrado */}
+                        <div className="mt-8 p-4 bg-primary/5 dark:bg-primary/10 rounded-lg border border-primary/20 dark:border-primary/30 transition-colors duration-300">
+                            <div className="flex items-start gap-3">
+                                <span className="material-symbols-outlined text-primary">info</span>
+                                <div>
+                                    <h4 className="font-medium text-sm text-slate-900 dark:text-white mb-2">
+                                        Usuario de prueba:
+                                    </h4>
+                                    <div className="bg-white dark:bg-slate-900 rounded-lg p-3 border border-slate-200 dark:border-slate-700 transition-colors duration-300">
+                                        <p className="text-sm font-medium text-slate-900 dark:text-white">demo@atelier.com</p>
+                                        <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">Contraseña: Atelier123!</p>
+                                    </div>
+                                    <p className="text-xs text-slate-500 dark:text-slate-400 mt-2 italic">
+                                        * Único usuario válido para iniciar sesión
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </main>
@@ -534,16 +555,16 @@ function Login() {
                     onClick={() => setShowForgotModal(false)}
                 >
                     <div 
-                        className="bg-slate-800 rounded-2xl w-full max-w-md p-6"
+                        className="bg-white dark:bg-slate-800 rounded-2xl w-full max-w-md p-6 border border-slate-200 dark:border-slate-700 shadow-xl transition-colors duration-300"
                         onClick={e => e.stopPropagation()}
                     >
                         <div className="flex justify-between items-center mb-6">
-                            <h3 className="text-xl font-display font-bold text-white">
+                            <h3 className="text-xl font-display font-bold text-slate-900 dark:text-white">
                                 Recuperar contraseña
                             </h3>
                             <button
                                 onClick={() => setShowForgotModal(false)}
-                                className="text-slate-500 hover:text-primary"
+                                className="text-slate-400 hover:text-primary transition-colors"
                             >
                                 <span className="material-symbols-outlined">close</span>
                             </button>
@@ -556,14 +577,14 @@ function Login() {
                                         check_circle
                                     </span>
                                 </div>
-                                <p className="text-white mb-2">¡Correo enviado!</p>
-                                <p className="text-sm text-slate-400">
+                                <p className="text-slate-900 dark:text-white mb-2">¡Correo enviado!</p>
+                                <p className="text-sm text-slate-500 dark:text-slate-400">
                                     Revisa tu bandeja de entrada para restablecer tu contraseña.
                                 </p>
                             </div>
                         ) : (
                             <>
-                                <p className="text-slate-400 mb-6">
+                                <p className="text-slate-600 dark:text-slate-400 mb-6">
                                     Ingresa tu correo electrónico y te enviaremos un enlace para restablecer tu contraseña.
                                 </p>
                                 
@@ -576,7 +597,7 @@ function Login() {
                                                 setRecoveryEmail(e.target.value);
                                                 setRecoveryError('');
                                             }}
-                                            className="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-primary"
+                                            className="w-full px-4 py-3 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg text-slate-900 dark:text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-primary transition-colors duration-300"
                                             placeholder="tu@email.com"
                                         />
                                         {recoveryError && (
@@ -588,14 +609,14 @@ function Login() {
                                         <button
                                             type="button"
                                             onClick={() => setShowForgotModal(false)}
-                                            className="flex-1 px-4 py-3 border border-slate-700 rounded-lg text-slate-400 hover:bg-slate-700 transition-colors"
+                                            className="flex-1 px-4 py-3 border border-slate-300 dark:border-slate-700 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors"
                                         >
                                             Cancelar
                                         </button>
                                         <button
                                             type="submit"
                                             disabled={isLoading}
-                                            className="flex-1 bg-primary hover:bg-[#ff8a85] text-white px-4 py-3 rounded-lg font-medium transition-colors disabled:opacity-50"
+                                            className="flex-1 bg-primary hover:bg-red-500 text-white px-4 py-3 rounded-lg font-medium transition-colors disabled:opacity-50"
                                         >
                                             {isLoading ? 'Enviando...' : 'Enviar enlace'}
                                         </button>

@@ -1,6 +1,10 @@
 /* src/index.css */
 @import "tailwindcss";
 
+/* Configuración del tema oscuro en V4 */
+@custom-variant dark (&:where(.dark, .dark *));
+
+
 /* Define tus colores personalizados */
 @theme {
   --color-primary: #f0625d;
@@ -8,10 +12,10 @@
   --color-background-dark: #0f172a;
 }
 
-/* Opcional: También puedes crear clases personalizadas */
+/* Estilos base */
 @layer base {
   body {
-    @apply bg-[#0f172a] text-slate-100;
+    @apply bg-white dark:bg-slate-900 text-slate-900 dark:text-white transition-colors duration-300;
   }
 }
 

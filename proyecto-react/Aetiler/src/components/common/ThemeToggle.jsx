@@ -1,40 +1,21 @@
 // src/components/common/ThemeToggle.jsx
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { useTheme } from '../../hooks/useTheme';
 
 function ThemeToggle() {
-    const [isDark, setIsDark] = useState(() => {
-        const savedTheme = localStorage.getItem('theme');
-        // Verifica si hay tema guardado o prefiere el tema del sistema
-        if (savedTheme) {
-            return savedTheme === 'dark';
-        }
-        return window.matchMedia('(prefers-color-scheme: dark)').matches;
-    });
-
-    useEffect(() => {
-        // Aplica el tema cuando cambia
-        if (isDark) {
-            document.documentElement.classList.add('dark');
-            localStorage.setItem('theme', 'dark');
-        } else {
-            document.documentElement.classList.remove('dark');
-            localStorage.setItem('theme', 'light');
-        }
-    }, [isDark]);
-
-    const toggleTheme = () => {
-        setIsDark(!isDark);
-    };
+    const { isDark, toggleTheme } = useTheme();
 
     return (
-        <button 
+        <button
             onClick={toggleTheme}
-            className="p-2 text-slate-500 hover:text-primary dark:text-slate-400 dark:hover:text-primary transition-colors"
-            id="theme-toggle"
+            className="p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
             aria-label="Cambiar tema"
         >
-            <span className="material-symbols-outlined dark:hidden">dark_mode</span>
-            <span className="material-symbols-outlined hidden dark:inline">light_mode</span>
+            {isDark ? (
+                <span className="material-symbols-outlined text-yellow-400">light_mode</span>
+            ) : (
+                <span className="material-symbols-outlined text-slate-700">dark_mode</span>
+            )}
         </button>
     );
 }

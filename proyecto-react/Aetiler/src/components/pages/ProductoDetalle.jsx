@@ -2,6 +2,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import ProductCard from '../common/ProductCard';
+import Header from '../layout/Header';
+import Footer from '../layout/Footer';
 
 function ProductoDetalle() {
     const { id } = useParams();
@@ -100,7 +102,7 @@ function ProductoDetalle() {
         
         // Estrellas vacías
         for (let i = 0; i < estrellasVacias; i++) {
-            estrellas.push(<span key={`vacia-${i}`} className="material-symbols-outlined text-slate-600">star</span>);
+            estrellas.push(<span key={`vacia-${i}`} className="material-symbols-outlined text-slate-300 dark:text-slate-600">star</span>);
         }
         
         return estrellas;
@@ -163,10 +165,10 @@ function ProductoDetalle() {
     // Mostrar loading
     if (loading) {
         return (
-            <div className="min-h-screen bg-slate-900 flex items-center justify-center">
+            <div className="min-h-screen bg-white dark:bg-slate-900 flex items-center justify-center transition-colors duration-300">
                 <div className="text-center">
                     <div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-                    <p className="text-slate-400">Cargando producto...</p>
+                    <p className="text-slate-600 dark:text-slate-400 transition-colors duration-300">Cargando producto...</p>
                 </div>
             </div>
         );
@@ -175,14 +177,14 @@ function ProductoDetalle() {
     // Mostrar error
     if (error || !producto) {
         return (
-            <div className="min-h-screen bg-slate-900 flex items-center justify-center p-4">
+            <div className="min-h-screen bg-white dark:bg-slate-900 flex items-center justify-center p-4 transition-colors duration-300">
                 <div className="text-center max-w-md">
                     <span className="material-symbols-outlined text-6xl text-red-500 mb-4">error</span>
-                    <h3 className="text-2xl font-display font-bold text-white mb-2">Producto no encontrado</h3>
-                    <p className="text-slate-400 mb-6">El producto que buscas no existe o ha sido removido.</p>
+                    <h3 className="text-2xl font-display font-bold text-slate-900 dark:text-white mb-2 transition-colors duration-300">Producto no encontrado</h3>
+                    <p className="text-slate-600 dark:text-slate-400 mb-6 transition-colors duration-300">El producto que buscas no existe o ha sido removido.</p>
                     <Link 
                         to="/productos" 
-                        className="bg-primary hover:bg-red-500 text-white px-6 py-3 rounded-lg font-semibold transition-colors inline-block"
+                        className="bg-primary hover:bg-red-500 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 inline-block"
                     >
                         Volver a productos
                     </Link>
@@ -192,7 +194,8 @@ function ProductoDetalle() {
     }
 
     return (
-        <div className="min-h-screen bg-slate-900">
+        <div className="min-h-screen bg-white dark:bg-slate-900 transition-colors duration-300">
+            <Header showSearch={false} />
             <main className="max-w-7xl mx-auto px-4 py-8">
                 {/* Notificación */}
                 {notificacion && (
@@ -209,12 +212,12 @@ function ProductoDetalle() {
                 )}
 
                 {/* Breadcrumb */}
-                <nav aria-label="Breadcrumb" className="flex text-xs text-slate-500 mb-8 uppercase tracking-widest">
+                <nav aria-label="Breadcrumb" className="flex text-xs text-slate-500 dark:text-slate-400 mb-8 uppercase tracking-widest transition-colors duration-300">
                     <Link to="/" className="hover:text-primary transition-colors">Inicio</Link>
                     <span className="mx-2">/</span>
                     <Link to="/productos" className="hover:text-primary transition-colors">Productos</Link>
                     <span className="mx-2">/</span>
-                    <span className="text-white font-semibold">{producto.nombre}</span>
+                    <span className="text-slate-900 dark:text-white font-semibold transition-colors duration-300">{producto.nombre}</span>
                 </nav>
 
                 {/* Product Details */}
@@ -222,7 +225,7 @@ function ProductoDetalle() {
                     {/* Product Images */}
                     <div>
                         {/* Main Image */}
-                        <div className="relative rounded-xl overflow-hidden mb-4 bg-slate-800">
+                        <div className="relative rounded-xl overflow-hidden mb-4 bg-slate-100 dark:bg-slate-800 transition-colors duration-300">
                             <img 
                                 src={imagenPrincipal} 
                                 alt={producto.nombre} 
@@ -265,7 +268,9 @@ function ProductoDetalle() {
                             <button 
                                 onClick={() => cambiarImagen(producto.imagen)}
                                 className={`border-2 rounded-lg overflow-hidden transition-all ${
-                                    imagenPrincipal === producto.imagen ? 'border-primary' : 'border-transparent hover:border-primary'
+                                    imagenPrincipal === producto.imagen 
+                                        ? 'border-primary' 
+                                        : 'border-transparent hover:border-primary'
                                 }`}
                             >
                                 <img src={producto.imagen} alt={producto.nombre} className="w-full aspect-square object-cover"/>
@@ -277,7 +282,9 @@ function ProductoDetalle() {
                                     key={index}
                                     onClick={() => cambiarImagen(img)}
                                     className={`border-2 rounded-lg overflow-hidden transition-all ${
-                                        imagenPrincipal === img ? 'border-primary' : 'border-transparent hover:border-primary'
+                                        imagenPrincipal === img 
+                                            ? 'border-primary' 
+                                            : 'border-transparent hover:border-primary'
                                     }`}
                                 >
                                     <img src={img} alt={`${producto.nombre} - vista ${index + 1}`} className="w-full aspect-square object-cover"/>
@@ -294,11 +301,11 @@ function ProductoDetalle() {
                                 <span className="text-xs font-bold uppercase tracking-widest text-primary">
                                     {producto.categoria}
                                 </span>
-                                <span className="text-xs text-slate-500">
+                                <span className="text-xs text-slate-500 dark:text-slate-400 transition-colors duration-300">
                                     • Código: ATL-{producto.id.toString().padStart(3, '0')}
                                 </span>
                             </div>
-                            <h1 className="font-display text-4xl md:text-5xl font-bold text-white mb-3">
+                            <h1 className="font-display text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-3 transition-colors duration-300">
                                 {producto.nombre}
                             </h1>
                             <div className="flex items-center gap-4 mb-4">
@@ -306,13 +313,13 @@ function ProductoDetalle() {
                                     <div className="flex">
                                         {generarEstrellas(producto.valoracion || 4.2)}
                                     </div>
-                                    <span className="text-sm text-slate-500">
+                                    <span className="text-sm text-slate-500 dark:text-slate-400 transition-colors duration-300">
                                         {producto.valoracion || 4.2} ({producto.reseñas || 128} reseñas)
                                     </span>
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <span className="material-symbols-outlined text-green-500 text-sm">check_circle</span>
-                                    <span className="text-sm text-slate-500">
+                                    <span className="text-sm text-slate-500 dark:text-slate-400 transition-colors duration-300">
                                         {producto.stock > 0 ? 'En stock' : 'Agotado'}
                                     </span>
                                 </div>
@@ -325,21 +332,21 @@ function ProductoDetalle() {
                                 <span className="text-4xl font-bold text-primary">${producto.precio}</span>
                                 {producto.en_oferta && producto.precio_original && (
                                     <>
-                                        <span className="text-2xl text-slate-500 line-through">${producto.precio_original}</span>
+                                        <span className="text-2xl text-slate-400 dark:text-slate-500 line-through transition-colors duration-300">${producto.precio_original}</span>
                                         <span className="bg-red-500 text-white text-xs font-bold uppercase px-3 py-1 rounded-full">
                                             -{Math.round((1 - producto.precio / producto.precio_original) * 100)}%
                                         </span>
                                     </>
                                 )}
                             </div>
-                            <p className="text-sm text-slate-500">Precio incluye IVA. Envío gratuito en pedidos +$50</p>
+                            <p className="text-sm text-slate-500 dark:text-slate-400 transition-colors duration-300">Precio incluye IVA. Envío gratuito en pedidos +$50</p>
                         </div>
 
                         {/* Description */}
                         <div className="space-y-4">
-                            <h3 className="text-lg font-bold text-white">Descripción</h3>
-                            <p className="text-slate-400 leading-relaxed">{producto.descripcion}</p>
-                            <ul className="space-y-2 text-slate-400">
+                            <h3 className="text-lg font-bold text-slate-900 dark:text-white transition-colors duration-300">Descripción</h3>
+                            <p className="text-slate-600 dark:text-slate-400 leading-relaxed transition-colors duration-300">{producto.descripcion}</p>
+                            <ul className="space-y-2 text-slate-600 dark:text-slate-400 transition-colors duration-300">
                                 <li className="flex items-start gap-2">
                                     <span className="material-symbols-outlined text-primary text-sm mt-0.5">check</span>
                                     <span>Tela: {producto.material}</span>
@@ -363,7 +370,7 @@ function ProductoDetalle() {
                         {producto.tallas && producto.tallas.length > 0 && (
                             <div className="space-y-4">
                                 <div className="flex items-center justify-between">
-                                    <h3 className="text-lg font-bold text-white">Talla</h3>
+                                    <h3 className="text-lg font-bold text-slate-900 dark:text-white transition-colors duration-300">Talla</h3>
                                     <button className="text-sm text-primary hover:text-red-500 transition-colors flex items-center gap-1">
                                         <span className="material-symbols-outlined text-sm">straighten</span>
                                         Guía de tallas
@@ -377,31 +384,33 @@ function ProductoDetalle() {
                                             className={`border-2 py-3 rounded-lg text-center transition-all ${
                                                 tallaSeleccionada === talla.toLowerCase()
                                                     ? 'border-primary bg-primary/5'
-                                                    : 'border-slate-700 hover:border-primary'
+                                                    : 'border-slate-200 dark:border-slate-700 hover:border-primary'
                                             }`}
                                         >
-                                            <span className="font-medium text-white">{talla.toUpperCase()}</span>
+                                            <span className="font-medium text-slate-900 dark:text-white transition-colors duration-300">{talla.toUpperCase()}</span>
                                             <div className={`text-xs mt-1 ${
-                                                tallaSeleccionada === talla.toLowerCase() ? 'text-primary' : 'text-slate-500'
-                                            }`}>
+                                                tallaSeleccionada === talla.toLowerCase() 
+                                                    ? 'text-primary' 
+                                                    : 'text-slate-500 dark:text-slate-400'
+                                            } transition-colors duration-300`}>
                                                 EU {34 + index * 2}
                                             </div>
                                         </button>
                                     ))}
                                 </div>
-                                <p className="text-sm text-slate-500">* Producto talla real. Si dudas, escoge una talla más</p>
+                                <p className="text-sm text-slate-500 dark:text-slate-400 transition-colors duration-300">* Producto talla real. Si dudas, escoge una talla más</p>
                             </div>
                         )}
 
                         {/* Quantity & Actions */}
                         <div className="space-y-6">
                             <div className="space-y-3">
-                                <h3 className="text-lg font-bold text-white">Cantidad</h3>
+                                <h3 className="text-lg font-bold text-slate-900 dark:text-white transition-colors duration-300">Cantidad</h3>
                                 <div className="flex items-center gap-4">
-                                    <div className="flex items-center border border-slate-700 rounded-lg">
+                                    <div className="flex items-center border border-slate-200 dark:border-slate-700 rounded-lg transition-colors duration-300">
                                         <button 
                                             onClick={() => setCantidad(Math.max(1, cantidad - 1))}
-                                            className="w-12 h-12 flex items-center justify-center text-slate-400 hover:text-primary transition-colors"
+                                            className="w-12 h-12 flex items-center justify-center text-slate-500 dark:text-slate-400 hover:text-primary transition-colors"
                                         >
                                             <span className="material-symbols-outlined">remove</span>
                                         </button>
@@ -416,16 +425,16 @@ function ProductoDetalle() {
                                                     setCantidad(val);
                                                 }
                                             }}
-                                            className="w-16 h-12 text-center border-x border-slate-700 bg-transparent text-white focus:outline-none"
+                                            className="w-16 h-12 text-center border-x border-slate-200 dark:border-slate-700 bg-transparent text-slate-900 dark:text-white focus:outline-none transition-colors duration-300"
                                         />
                                         <button 
                                             onClick={() => setCantidad(Math.min(cantidad + 1, producto.stock || 10, 10))}
-                                            className="w-12 h-12 flex items-center justify-center text-slate-400 hover:text-primary transition-colors"
+                                            className="w-12 h-12 flex items-center justify-center text-slate-500 dark:text-slate-400 hover:text-primary transition-colors"
                                         >
                                             <span className="material-symbols-outlined">add</span>
                                         </button>
                                     </div>
-                                    <div className="text-sm text-slate-500">
+                                    <div className="text-sm text-slate-500 dark:text-slate-400 transition-colors duration-300">
                                         {producto.stock > 0 ? (
                                             <>Solo quedan <span className="font-bold text-primary">{producto.stock}</span> unidades</>
                                         ) : (
@@ -448,7 +457,7 @@ function ProductoDetalle() {
                                 <button 
                                     onClick={handleBuyNow}
                                     disabled={!producto.stock}
-                                    className="bg-white text-slate-900 hover:bg-slate-200 py-4 rounded-lg font-bold flex items-center justify-center gap-3 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className="bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-700 py-4 rounded-lg font-bold flex items-center justify-center gap-3 transition-all disabled:opacity-50 disabled:cursor-not-allowed border border-slate-200 dark:border-slate-700"
                                 >
                                     <span className="material-symbols-outlined">bolt</span>
                                     Comprar ahora
@@ -456,19 +465,19 @@ function ProductoDetalle() {
                             </div>
 
                             {/* Additional Info */}
-                            <div className="grid grid-cols-2 gap-4 pt-4 border-t border-slate-800">
+                            <div className="grid grid-cols-2 gap-4 pt-4 border-t border-slate-200 dark:border-slate-800 transition-colors duration-300">
                                 <div className="flex items-center gap-3">
-                                    <span className="material-symbols-outlined text-slate-500">local_shipping</span>
+                                    <span className="material-symbols-outlined text-slate-400 dark:text-slate-500">local_shipping</span>
                                     <div>
-                                        <p className="text-sm font-medium text-white">Envío gratis</p>
-                                        <p className="text-xs text-slate-500">En 24-48h</p>
+                                        <p className="text-sm font-medium text-slate-900 dark:text-white transition-colors duration-300">Envío gratis</p>
+                                        <p className="text-xs text-slate-500 dark:text-slate-400 transition-colors duration-300">En 24-48h</p>
                                     </div>
                                 </div>
                                 <div className="flex items-center gap-3">
-                                    <span className="material-symbols-outlined text-slate-500">assignment_return</span>
+                                    <span className="material-symbols-outlined text-slate-400 dark:text-slate-500">assignment_return</span>
                                     <div>
-                                        <p className="text-sm font-medium text-white">Devolución fácil</p>
-                                        <p className="text-xs text-slate-500">30 días</p>
+                                        <p className="text-sm font-medium text-slate-900 dark:text-white transition-colors duration-300">Devolución fácil</p>
+                                        <p className="text-xs text-slate-500 dark:text-slate-400 transition-colors duration-300">30 días</p>
                                     </div>
                                 </div>
                             </div>
@@ -477,9 +486,9 @@ function ProductoDetalle() {
                 </div>
 
                 {/* Product Tabs */}
-                <div className="mt-16 pt-12 border-t border-slate-800">
+                <div className="mt-16 pt-12 border-t border-slate-200 dark:border-slate-800 transition-colors duration-300">
                     {/* Tab Navigation */}
-                    <div className="flex border-b border-slate-800 mb-8">
+                    <div className="flex border-b border-slate-200 dark:border-slate-800 mb-8 transition-colors duration-300">
                         {['details', 'reviews', 'shipping'].map((tab) => (
                             <button
                                 key={tab}
@@ -487,7 +496,7 @@ function ProductoDetalle() {
                                 className={`py-4 px-6 text-lg font-medium border-b-2 transition-colors ${
                                     tabActivo === tab
                                         ? 'border-primary text-primary'
-                                        : 'border-transparent text-slate-500 hover:text-primary'
+                                        : 'border-transparent text-slate-500 dark:text-slate-400 hover:text-primary'
                                 }`}
                             >
                                 {tab === 'details' && 'Detalles'}
@@ -502,54 +511,54 @@ function ProductoDetalle() {
                         <div className="space-y-6">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                 <div>
-                                    <h4 className="text-xl font-bold text-white mb-4">Especificaciones</h4>
+                                    <h4 className="text-xl font-bold text-slate-900 dark:text-white mb-4 transition-colors duration-300">Especificaciones</h4>
                                     <div className="space-y-3">
-                                        <div className="flex justify-between py-2 border-b border-slate-800">
-                                            <span className="text-slate-400">Composición</span>
-                                            <span className="font-medium text-white">{producto.material}</span>
+                                        <div className="flex justify-between py-2 border-b border-slate-200 dark:border-slate-800 transition-colors duration-300">
+                                            <span className="text-slate-500 dark:text-slate-400">Composición</span>
+                                            <span className="font-medium text-slate-900 dark:text-white">{producto.material}</span>
                                         </div>
-                                        <div className="flex justify-between py-2 border-b border-slate-800">
-                                            <span className="text-slate-400">Cuidados</span>
-                                            <span className="font-medium text-white">Lavado a mano, Secado plano</span>
+                                        <div className="flex justify-between py-2 border-b border-slate-200 dark:border-slate-800">
+                                            <span className="text-slate-500 dark:text-slate-400">Cuidados</span>
+                                            <span className="font-medium text-slate-900 dark:text-white">Lavado a mano, Secado plano</span>
                                         </div>
-                                        <div className="flex justify-between py-2 border-b border-slate-800">
-                                            <span className="text-slate-400">Color</span>
-                                            <span className="font-medium text-white">
+                                        <div className="flex justify-between py-2 border-b border-slate-200 dark:border-slate-800">
+                                            <span className="text-slate-500 dark:text-slate-400">Color</span>
+                                            <span className="font-medium text-slate-900 dark:text-white">
                                                 {producto.colores ? producto.colores[0] : 'Principal'}
                                             </span>
                                         </div>
-                                        <div className="flex justify-between py-2 border-b border-slate-800">
-                                            <span className="text-slate-400">Peso</span>
-                                            <span className="font-medium text-white">320g</span>
+                                        <div className="flex justify-between py-2 border-b border-slate-200 dark:border-slate-800">
+                                            <span className="text-slate-500 dark:text-slate-400">Peso</span>
+                                            <span className="font-medium text-slate-900 dark:text-white">320g</span>
                                         </div>
-                                        <div className="flex justify-between py-2 border-b border-slate-800">
-                                            <span className="text-slate-400">Origen</span>
-                                            <span className="font-medium text-white">Diseñado en España</span>
+                                        <div className="flex justify-between py-2 border-b border-slate-200 dark:border-slate-800">
+                                            <span className="text-slate-500 dark:text-slate-400">Origen</span>
+                                            <span className="font-medium text-slate-900 dark:text-white">Diseñado en España</span>
                                         </div>
                                     </div>
                                 </div>
                                 <div>
-                                    <h4 className="text-xl font-bold text-white mb-4">Medidas</h4>
+                                    <h4 className="text-xl font-bold text-slate-900 dark:text-white mb-4">Medidas</h4>
                                     <div className="space-y-3">
-                                        <div className="flex justify-between py-2 border-b border-slate-800">
-                                            <span className="text-slate-400">Largo total</span>
-                                            <span className="font-medium text-white">110 cm</span>
+                                        <div className="flex justify-between py-2 border-b border-slate-200 dark:border-slate-800">
+                                            <span className="text-slate-500 dark:text-slate-400">Largo total</span>
+                                            <span className="font-medium text-slate-900 dark:text-white">110 cm</span>
                                         </div>
-                                        <div className="flex justify-between py-2 border-b border-slate-800">
-                                            <span className="text-slate-400">Pecho</span>
-                                            <span className="font-medium text-white">45 cm</span>
+                                        <div className="flex justify-between py-2 border-b border-slate-200 dark:border-slate-800">
+                                            <span className="text-slate-500 dark:text-slate-400">Pecho</span>
+                                            <span className="font-medium text-slate-900 dark:text-white">45 cm</span>
                                         </div>
-                                        <div className="flex justify-between py-2 border-b border-slate-800">
-                                            <span className="text-slate-400">Cintura</span>
-                                            <span className="font-medium text-white">38 cm</span>
+                                        <div className="flex justify-between py-2 border-b border-slate-200 dark:border-slate-800">
+                                            <span className="text-slate-500 dark:text-slate-400">Cintura</span>
+                                            <span className="font-medium text-slate-900 dark:text-white">38 cm</span>
                                         </div>
-                                        <div className="flex justify-between py-2 border-b border-slate-800">
-                                            <span className="text-slate-400">Cadera</span>
-                                            <span className="font-medium text-white">48 cm</span>
+                                        <div className="flex justify-between py-2 border-b border-slate-200 dark:border-slate-800">
+                                            <span className="text-slate-500 dark:text-slate-400">Cadera</span>
+                                            <span className="font-medium text-slate-900 dark:text-white">48 cm</span>
                                         </div>
-                                        <div className="flex justify-between py-2 border-b border-slate-800">
-                                            <span className="text-slate-400">Manga</span>
-                                            <span className="font-medium text-white">62 cm</span>
+                                        <div className="flex justify-between py-2 border-b border-slate-200 dark:border-slate-800">
+                                            <span className="text-slate-500 dark:text-slate-400">Manga</span>
+                                            <span className="font-medium text-slate-900 dark:text-white">62 cm</span>
                                         </div>
                                     </div>
                                 </div>
@@ -562,12 +571,12 @@ function ProductoDetalle() {
                             <div className="flex items-center justify-between mb-8">
                                 <div>
                                     <div className="flex items-center gap-4 mb-2">
-                                        <div className="text-4xl font-bold text-white">{producto.valoracion || 4.2}</div>
+                                        <div className="text-4xl font-bold text-slate-900 dark:text-white">{producto.valoracion || 4.2}</div>
                                         <div>
                                             <div className="flex mb-1">
                                                 {generarEstrellas(producto.valoracion || 4.2)}
                                             </div>
-                                            <p className="text-sm text-slate-500">Basado en {producto.reseñas || 128} reseñas</p>
+                                            <p className="text-sm text-slate-500 dark:text-slate-400">Basado en {producto.reseñas || 128} reseñas</p>
                                         </div>
                                     </div>
                                 </div>
@@ -579,15 +588,15 @@ function ProductoDetalle() {
                             {/* Reviews Container */}
                             <div className="space-y-6">
                                 {/* Review 1 */}
-                                <div className="bg-slate-800/50 rounded-lg p-6">
+                                <div className="bg-slate-50 dark:bg-slate-800/50 rounded-lg p-6 transition-colors duration-300">
                                     <div className="flex items-center justify-between mb-4">
                                         <div className="flex items-center gap-3">
                                             <div className="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center">
                                                 <span className="text-primary font-bold">M</span>
                                             </div>
                                             <div>
-                                                <p className="font-medium text-white">María García</p>
-                                                <p className="text-xs text-slate-500">Hace 2 semanas</p>
+                                                <p className="font-medium text-slate-900 dark:text-white">María García</p>
+                                                <p className="text-xs text-slate-500 dark:text-slate-400">Hace 2 semanas</p>
                                             </div>
                                         </div>
                                         <div className="flex">
@@ -598,22 +607,22 @@ function ProductoDetalle() {
                                             ))}
                                         </div>
                                     </div>
-                                    <p className="text-slate-400">
+                                    <p className="text-slate-600 dark:text-slate-400">
                                         ¡Me encantó! La tela es súper suave y el color es exactamente como en la foto. 
                                         La talla M me quedó perfecta.
                                     </p>
                                 </div>
 
                                 {/* Review 2 */}
-                                <div className="bg-slate-800/50 rounded-lg p-6">
+                                <div className="bg-slate-50 dark:bg-slate-800/50 rounded-lg p-6">
                                     <div className="flex items-center justify-between mb-4">
                                         <div className="flex items-center gap-3">
                                             <div className="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center">
                                                 <span className="text-primary font-bold">C</span>
                                             </div>
                                             <div>
-                                                <p className="font-medium text-white">Carlos Rodríguez</p>
-                                                <p className="text-xs text-slate-500">Hace 1 mes</p>
+                                                <p className="font-medium text-slate-900 dark:text-white">Carlos Rodríguez</p>
+                                                <p className="text-xs text-slate-500 dark:text-slate-400">Hace 1 mes</p>
                                             </div>
                                         </div>
                                         <div className="flex">
@@ -624,7 +633,7 @@ function ProductoDetalle() {
                                             ))}
                                         </div>
                                     </div>
-                                    <p className="text-slate-400">
+                                    <p className="text-slate-600 dark:text-slate-400">
                                         Excelente calidad, el envío llegó antes de lo esperado. Muy recomendado.
                                     </p>
                                 </div>
@@ -635,8 +644,8 @@ function ProductoDetalle() {
                     {tabActivo === 'shipping' && (
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                             <div className="space-y-4">
-                                <h4 className="text-xl font-bold text-white">Política de Envío</h4>
-                                <ul className="space-y-3 text-slate-400">
+                                <h4 className="text-xl font-bold text-slate-900 dark:text-white">Política de Envío</h4>
+                                <ul className="space-y-3 text-slate-600 dark:text-slate-400">
                                     <li className="flex items-start gap-2">
                                         <span className="material-symbols-outlined text-primary text-sm mt-0.5">local_shipping</span>
                                         <span>Envío gratuito en pedidos superiores a $50</span>
@@ -652,8 +661,8 @@ function ProductoDetalle() {
                                 </ul>
                             </div>
                             <div className="space-y-4">
-                                <h4 className="text-xl font-bold text-white">Devoluciones & Cambios</h4>
-                                <ul className="space-y-3 text-slate-400">
+                                <h4 className="text-xl font-bold text-slate-900 dark:text-white">Devoluciones & Cambios</h4>
+                                <ul className="space-y-3 text-slate-600 dark:text-slate-400">
                                     <li className="flex items-start gap-2">
                                         <span className="material-symbols-outlined text-primary text-sm mt-0.5">assignment_return</span>
                                         <span>30 días para devoluciones gratuitas</span>
@@ -676,7 +685,7 @@ function ProductoDetalle() {
                 {productosRelacionados.length > 0 && (
                     <section className="mt-20">
                         <div className="flex items-center justify-between mb-8">
-                            <h2 className="font-display text-3xl font-bold text-white">Productos relacionados</h2>
+                            <h2 className="font-display text-3xl font-bold text-slate-900 dark:text-white transition-colors duration-300">Productos relacionados</h2>
                             <Link to="/productos" className="text-primary hover:text-red-500 font-medium flex items-center gap-2 transition-colors">
                                 Ver todos
                                 <span className="material-symbols-outlined text-sm">arrow_forward</span>
@@ -707,6 +716,7 @@ function ProductoDetalle() {
                     animation: fade-in 0.3s ease-out;
                 }
             `}</style>
+            <Footer />
         </div>
     );
 }

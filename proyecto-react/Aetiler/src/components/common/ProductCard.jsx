@@ -33,9 +33,9 @@ function ProductCard({ product }) {
     const badge = getBadge();
 
     return (
-        <div className="group bg-slate-800 rounded-xl overflow-hidden hover:shadow-xl hover:shadow-black/30 transition-all">
+        <div className="group bg-white dark:bg-slate-800 rounded-xl overflow-hidden hover:shadow-lg hover:shadow-black/10 dark:hover:shadow-black/30 transition-all duration-300 border border-slate-200 dark:border-slate-700">
             <Link to={`/productos/${id}`} className="block">
-                <div className="relative aspect-[3/4] overflow-hidden">
+                <div className="relative aspect-[3/4] overflow-hidden bg-slate-100 dark:bg-slate-700">
                     <img 
                         alt={nombre} 
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
@@ -47,14 +47,14 @@ function ProductCard({ product }) {
                     
                     {/* Badge */}
                     {badge && (
-                        <span className={`absolute top-3 left-3 ${badge.color} text-white text-[10px] font-bold px-2 py-1 rounded italic uppercase tracking-wider`}>
+                        <span className={`absolute top-3 left-3 ${badge.color} text-white text-[10px] font-bold px-2 py-1 rounded italic uppercase tracking-wider shadow-lg`}>
                             {badge.text}
                         </span>
                     )}
                     
                     {/* Contador de imágenes secundarias */}
                     {imagenes_secundarias.length > 0 && (
-                        <div className="absolute bottom-3 right-3 bg-white/90 dark:bg-slate-900/90 rounded-full w-8 h-8 flex items-center justify-center text-xs font-bold text-slate-700 dark:text-slate-300">
+                        <div className="absolute bottom-3 right-3 bg-white/90 dark:bg-slate-900/90 rounded-full w-8 h-8 flex items-center justify-center text-xs font-bold text-slate-700 dark:text-slate-300 shadow-md backdrop-blur-sm">
                             +{imagenes_secundarias.length}
                         </div>
                     )}
@@ -63,28 +63,36 @@ function ProductCard({ product }) {
             
             <div className="p-4 space-y-3">
                 <div>
-                    <h3 className="font-bold text-white text-base mb-1 line-clamp-1">{nombre}</h3>
-                    <p className="text-xs text-slate-500 mb-2">{categoria}</p>
+                    <h3 className="font-bold text-slate-900 dark:text-white text-base mb-1 line-clamp-1 transition-colors duration-300">
+                        {nombre}
+                    </h3>
+                    <p className="text-xs text-slate-500 dark:text-slate-400 mb-2 transition-colors duration-300">
+                        {categoria}
+                    </p>
                     
                     <div className="flex items-center justify-between">
                         {en_oferta ? (
                             <div className="flex items-center gap-2">
                                 <span className="text-primary font-bold text-lg">${precio}</span>
                                 {precio_original && (
-                                    <span className="text-white line-through text-sm">${precio_original}</span>
+                                    <span className="text-slate-400 dark:text-slate-500 line-through text-sm">${precio_original}</span>
                                 )}
                                 {descuento > 0 && (
-                                    <span className="text-white text-xs font-bold">-{descuento}%</span>
+                                    <span className="text-primary text-xs font-bold">-{descuento}%</span>
                                 )}
                             </div>
                         ) : (
-                            <span className="text-white font-bold text-lg">${precio}</span>
+                            <span className="text-slate-900 dark:text-white font-bold text-lg transition-colors duration-300">
+                                ${precio}
+                            </span>
                         )}
                         
                         {valoracion && (
                             <div className="flex items-center gap-1">
                                 <span className="text-yellow-400 text-sm">★</span>
-                                <span className="text-xs text-slate-400">{valoracion}</span>
+                                <span className="text-xs text-slate-500 dark:text-slate-400 transition-colors duration-300">
+                                    {valoracion}
+                                </span>
                             </div>
                         )}
                     </div>
@@ -101,7 +109,7 @@ function ProductCard({ product }) {
                         document.body.appendChild(notification);
                         setTimeout(() => notification.remove(), 3000);
                     }}
-                    className="w-full bg-primary hover:bg-red-500 text-white py-2.5 rounded-lg text-sm font-semibold transition-colors flex items-center justify-center gap-2"
+                    className="w-full bg-primary hover:bg-red-500 text-white py-2.5 rounded-lg text-sm font-semibold transition-all duration-300 flex items-center justify-center gap-2 shadow-md hover:shadow-lg"
                 >
                     <span className="material-symbols-outlined text-sm">shopping_cart</span>
                     Añadir al carrito
@@ -109,7 +117,7 @@ function ProductCard({ product }) {
                 
                 <Link 
                     to={`/productos/${id}`}
-                    className="block w-full bg-slate-700 hover:bg-slate-600 text-white py-2 rounded-lg text-sm font-medium transition-colors text-center"
+                    className="block w-full bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 text-slate-700 dark:text-white py-2 rounded-lg text-sm font-medium transition-all duration-300 text-center border border-slate-200 dark:border-slate-600"
                 >
                     Ver detalles
                 </Link>

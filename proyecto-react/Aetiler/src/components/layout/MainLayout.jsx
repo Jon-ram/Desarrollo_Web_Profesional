@@ -9,6 +9,14 @@ function MainLayout({ children }) {
     const location = useLocation();
     const pathname = location.pathname;
 
+    // Función para pasar a Productos cuando se busca
+    const handleSearch = (searchTerm) => {
+        // Solo redirigir si no estamos ya en productos
+        if (pathname !== '/productos') {
+            window.location.href = `/productos?search=${encodeURIComponent(searchTerm)}`;
+        }
+    };
+
     // Determinar qué header mostrar
     const renderHeader = () => {
         // Rutas de autenticación
@@ -18,11 +26,11 @@ function MainLayout({ children }) {
         
         // Ruta de productos (con buscador)
         if (pathname === '/productos') {
-            return <Header showSearch={true} />;
+            return <Header showSearch={true} onSearch={handleSearch} />;
         }
         
-        // Otras rutas (sin buscador)
-        return <Header showSearch={false} />;
+        // Otras rutas (con botón de Productos)
+        return <Header showSearch={false} onSearch={handleSearch} />;
     };
 
     // Determinar si mostrar footer (no en auth)

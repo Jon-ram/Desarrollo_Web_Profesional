@@ -1,12 +1,19 @@
+// src/hooks/useTheme.js
 import { useState, useEffect } from 'react';
 
 export function useTheme() {
     const [isDark, setIsDark] = useState(() => {
+        // Verificar localStorage primero
         const savedTheme = localStorage.getItem('theme');
-        return savedTheme ? savedTheme === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (savedTheme) {
+            return savedTheme === 'dark';
+        }
+        // Si no hay preferencia guardada, usar preferencia del sistema
+        return window.matchMedia('(prefers-color-scheme: dark)').matches;
     });
 
     useEffect(() => {
+        // Aplicar la clase 'dark' al elemento html
         if (isDark) {
             document.documentElement.classList.add('dark');
             localStorage.setItem('theme', 'dark');
@@ -16,7 +23,9 @@ export function useTheme() {
         }
     }, [isDark]);
 
-    const toggleTheme = () => setIsDark(!isDark);
+    const toggleTheme = () => {
+        setIsDark(prev => !prev);
+    };
 
     return { isDark, toggleTheme };
 }
