@@ -6,250 +6,6 @@ import Header from '../layout/Header';
 import Footer from '../layout/Footer';
 
 // ============================================
-// COMPONENTE DE COMENTARIOS CON MANIPULACIÓN DIRECTA DEL DOM
-// ============================================
-function SeccionComentarios({ productId, productName }) {
-    const [comentarios, setComentarios] = useState([]);
-    const [nuevoComentario, setNuevoComentario] = useState('');
-    const [autor, setAutor] = useState('');
-    const [puntuacion, setPuntuacion] = useState(5);
-    const [showConfirm, setShowConfirm] = useState(false);
-    const [comentarioAEliminar, setComentarioAEliminar] = useState(null);
-    
-    // Referencia al contenedor de comentarios para manipulación directa
-    const comentariosContainerRef = useRef(null);
-    
-    // Cargar comentarios guardados al iniciar
-    useEffect(() => {
-        const comentariosGuardados = localStorage.getItem(`comentarios_${productId}`);
-        if (comentariosGuardados) {
-            const comentariosParseados = JSON.parse(comentariosGuardados);
-            setComentarios(comentariosParseados);
-            
-            // Renderizar comentarios guardados en el DOM después de que el componente monte
-            setTimeout(() => {
-                if (comentariosContainerRef.current) {
-                    comentariosParseados.forEach(comentario => {
-                        renderizarComentarioEnDOM(comentario);
-                    });
-                }
-            }, 100);
-        }
-    }, [productId]);
-
-    // Función para renderizar un comentario en el DOM (createElement + appendChild)
-    const renderizarComentarioEnDOM = (comentario) => {
-        if (!comentariosContainerRef.current) return;
-        
-        // 1. Crear contenedor principal del comentario
-        const comentarioDiv = document.createElement('div');
-        comentarioDiv.className = 'comentario-item bg-white dark:bg-slate-800 rounded-lg p-4 border border-slate-200 dark:border-slate-700 mb-4 animate-fade-in shadow-sm';
-        comentarioDiv.dataset.id = comentario.id;
-        
-        // 2. Crear header del comentario (autor y fecha)
-        const headerDiv = document.createElement('div');
-        headerDiv.className = 'flex items-center justify-between mb-3';
-        
-        const autorInfo = document.createElement('div');
-        autorInfo.className = 'flex items-center gap-3';
-        
-        const avatar = document.createElement('div');
-        avatar.className = 'w-8 h-8 bg-primary/20 rounded-full flex items-center justify-center';
-        avatar.innerHTML = `<span class="text-primary font-bold">${comentario.autor.charAt(0).toUpperCase()}</span>`;
-        
-        const autorNombre = document.createElement('span');
-        autorNombre.className = 'font-medium text-slate-900 dark:text-white';
-        autorNombre.textContent = comentario.autor;
-        
-        autorInfo.appendChild(avatar);
-        autorInfo.appendChild(autorNombre);
-        
-        // 3. Crear estrellas de puntuación
-        const estrellasDiv = document.createElement('div');
-        estrellasDiv.className = 'flex';
-        for (let i = 1; i <= 5; i++) {
-            const estrella = document.createElement('span');
-            estrella.className = `material-symbols-outlined text-sm ${i <= comentario.puntuacion ? 'text-amber-500' : 'text-slate-300 dark:text-slate-600'}`;
-            estrella.textContent = 'star';
-            estrellasDiv.appendChild(estrella);
-        }
-        
-        headerDiv.appendChild(autorInfo);
-        headerDiv.appendChild(estrellasDiv);
-        
-        // 4. Crear texto del comentario
-        const textoDiv = document.createElement('div');
-        textoDiv.className = 'mb-3';
-        
-        const textoP = document.createElement('p');
-        textoP.className = 'text-slate-600 dark:text-slate-400';
-        textoP.textContent = comentario.texto;
-        
-        textoDiv.appendChild(textoP);
-        
-        // 5. Crear fecha
-        const fechaDiv = document.createElement('div');
-        fechaDiv.className = 'text-xs text-slate-500 dark:text-slate-500 mb-3';
-        fechaDiv.textContent = comentario.fecha;
-        
-        // 6. Crear botón de eliminar (CON CONFIRMACIÓN)
-        const deleteBtn = document.createElement('button');
-        deleteBtn.className = 'text-red-500 hover:text-red-700 text-sm font-medium flex items-center gap-1 transition-colors';
-        deleteBtn.innerHTML = '<span class="material-symbols-outlined text-sm">delete</span> Eliminar';
-        
-        // Evento de eliminar con confirmación
-        deleteBtn.addEventListener('click', () => {
-            // CONFIRMACIÓN DE ACCIÓN (requisito de la actividad)
-            if (window.confirm('¿Estás seguro de eliminar este comentario? Esta acción no se puede deshacer.')) {
-                // ELIMINACIÓN DINÁMICA
-                comentarioDiv.remove();
-                
-                // Actualizar estado de React
-                const nuevosComentarios = comentarios.filter(c => c.id !== comentario.id);
-                setComentarios(nuevosComentarios);
-                
-                // Actualizar localStorage
-                localStorage.setItem(`comentarios_${productId}`, JSON.stringify(nuevosComentarios));
-            }
-        });
-        
-        // 7. Ensamblar todo
-        comentarioDiv.appendChild(headerDiv);
-        comentarioDiv.appendChild(textoDiv);
-        comentarioDiv.appendChild(fechaDiv);
-        comentarioDiv.appendChild(deleteBtn);
-        
-        // 8. AGREGAR AL DOM CON appendChild
-        comentariosContainerRef.current.appendChild(comentarioDiv);
-    };
-
-    // Función para agregar nuevo comentario
-    const agregarComentario = (e) => {
-        e.preventDefault();
-        
-        if (!nuevoComentario.trim() || !autor.trim()) {
-            alert('Por favor completa todos los campos');
-            return;
-        }
-        
-        // Crear objeto de comentario
-        const nuevoComentarioObj = {
-            id: Date.now(), // ID único basado en timestamp
-            autor: autor,
-            texto: nuevoComentario,
-            puntuacion: puntuacion,
-            fecha: new Date().toLocaleDateString('es-ES', {
-                day: 'numeric',
-                month: 'long',
-                year: 'numeric'
-            })
-        };
-        
-        // RENDERIZAR EN EL DOM CON createElement Y appendChild
-        renderizarComentarioEnDOM(nuevoComentarioObj);
-        
-        // Actualizar estado de React
-        const nuevosComentarios = [...comentarios, nuevoComentarioObj];
-        setComentarios(nuevosComentarios);
-        
-        // Guardar en localStorage
-        localStorage.setItem(`comentarios_${productId}`, JSON.stringify(nuevosComentarios));
-        
-        // Limpiar formulario
-        setNuevoComentario('');
-        setAutor('');
-        setPuntuacion(5);
-    };
-
-    return (
-        <div className="mt-8">
-            <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-6">
-                Comentarios de clientes
-            </h3>
-            
-            {/* Formulario para agregar comentario */}
-            <div className="bg-slate-50 dark:bg-slate-800/50 rounded-xl p-6 mb-8 border border-slate-200 dark:border-slate-700">
-                <h4 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">
-                    Deja tu comentario
-                </h4>
-                
-                <form onSubmit={agregarComentario} className="space-y-4">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
-                                Tu nombre
-                            </label>
-                            <input
-                                type="text"
-                                value={autor}
-                                onChange={(e) => setAutor(e.target.value)}
-                                className="w-full px-4 py-2 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary"
-                                placeholder="Ej. María García"
-                                required
-                            />
-                        </div>
-                        
-                        <div>
-                            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
-                                Puntuación
-                            </label>
-                            <div className="flex items-center gap-2">
-                                {[1, 2, 3, 4, 5].map((num) => (
-                                    <button
-                                        key={num}
-                                        type="button"
-                                        onClick={() => setPuntuacion(num)}
-                                        className="focus:outline-none"
-                                    >
-                                        <span className={`material-symbols-outlined text-2xl ${
-                                            num <= puntuacion ? 'text-amber-500' : 'text-slate-300 dark:text-slate-600'
-                                        }`}>
-                                            star
-                                        </span>
-                                    </button>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div>
-                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
-                            Tu comentario
-                        </label>
-                        <textarea
-                            value={nuevoComentario}
-                            onChange={(e) => setNuevoComentario(e.target.value)}
-                            rows="3"
-                            className="w-full px-4 py-2 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary"
-                            placeholder="Comparte tu experiencia con este producto..."
-                            required
-                        ></textarea>
-                    </div>
-                    
-                    <button
-                        type="submit"
-                        className="bg-primary hover:bg-red-500 text-white px-6 py-2 rounded-lg font-semibold transition-all flex items-center gap-2"
-                    >
-                        <span className="material-symbols-outlined">add_comment</span>
-                        Publicar comentario
-                    </button>
-                </form>
-            </div>
-            
-            {/* Contenedor de comentarios (MANIPULACIÓN DIRECTA DEL DOM) */}
-            <div ref={comentariosContainerRef} className="space-y-4">
-                {/* Los comentarios se insertarán aquí con createElement/appendChild */}
-                {comentarios.length === 0 && (
-                    <p className="text-center text-slate-500 dark:text-slate-400 py-8">
-                        No hay comentarios aún. ¡Sé el primero en comentar!
-                    </p>
-                )}
-            </div>
-        </div>
-    );
-}
-
-// ============================================
 // COMPONENTE PRINCIPAL PRODUCTO DETALLE
 // ============================================
 function ProductoDetalle() {
@@ -265,11 +21,184 @@ function ProductoDetalle() {
     const [imagenPrincipal, setImagenPrincipal] = useState('');
     const [tabActivo, setTabActivo] = useState('details');
     const [notificacion, setNotificacion] = useState(null);
+    
+    // Estados para reseñas dinámicas
+    const [reseñas, setReseñas] = useState([]);
+    const [nuevaReseña, setNuevaReseña] = useState('');
+    const [autorReseña, setAutorReseña] = useState('');
+    const [puntuacionReseña, setPuntuacionReseña] = useState(5);
+    const [mostrarFormulario, setMostrarFormulario] = useState(false);
+    
+    // Referencia al contenedor de reseñas para manipulación directa del DOM
+    const reseñasContainerRef = useRef(null);
 
     // Cargar producto al montar el componente
     useEffect(() => {
         cargarProducto();
     }, [id]);
+
+    // Cargar reseñas guardadas al iniciar
+    useEffect(() => {
+        if (producto) {
+            const reseñasGuardadas = localStorage.getItem(`reseñas_${producto.id}`);
+            if (reseñasGuardadas) {
+                const reseñasParseadas = JSON.parse(reseñasGuardadas);
+                setReseñas(reseñasParseadas);
+                
+                // Renderizar reseñas guardadas en el DOM
+                setTimeout(() => {
+                    if (reseñasContainerRef.current) {
+                        // Limpiar contenedor primero
+                        reseñasContainerRef.current.innerHTML = '';
+                        // Renderizar cada reseña
+                        reseñasParseadas.forEach(reseña => {
+                            renderizarReseñaEnDOM(reseña);
+                        });
+                    }
+                }, 100);
+            }
+        }
+    }, [producto]);
+
+    // Función para renderizar una reseña en el DOM (createElement + appendChild)
+    const renderizarReseñaEnDOM = (reseña) => {
+        if (!reseñasContainerRef.current) return;
+        
+        // 1. Crear contenedor principal de la reseña
+        const reseñaDiv = document.createElement('div');
+        reseñaDiv.className = 'bg-slate-50 dark:bg-slate-800/50 rounded-lg p-6 transition-colors duration-300 mb-4 animate-fade-in';
+        reseñaDiv.dataset.id = reseña.id;
+        
+        // 2. Crear header (autor y puntuación)
+        const headerDiv = document.createElement('div');
+        headerDiv.className = 'flex items-center justify-between mb-4';
+        
+        // Info del autor
+        const autorInfo = document.createElement('div');
+        autorInfo.className = 'flex items-center gap-3';
+        
+        const avatar = document.createElement('div');
+        avatar.className = 'w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center';
+        avatar.innerHTML = `<span class="text-primary font-bold">${reseña.autor.charAt(0).toUpperCase()}</span>`;
+        
+        const autorNombre = document.createElement('div');
+        autorNombre.innerHTML = `
+            <p class="font-medium text-slate-900 dark:text-white">${reseña.autor}</p>
+            <p class="text-xs text-slate-500 dark:text-slate-400">${reseña.fecha}</p>
+        `;
+        
+        autorInfo.appendChild(avatar);
+        autorInfo.appendChild(autorNombre);
+        
+        // Estrellas
+        const estrellasDiv = document.createElement('div');
+        estrellasDiv.className = 'flex';
+        for (let i = 1; i <= 5; i++) {
+            const estrella = document.createElement('span');
+            estrella.className = `material-symbols-outlined text-sm ${i <= reseña.puntuacion ? 'text-amber-500' : 'text-slate-300 dark:text-slate-600'}`;
+            estrella.textContent = 'star';
+            estrellasDiv.appendChild(estrella);
+        }
+        
+        headerDiv.appendChild(autorInfo);
+        headerDiv.appendChild(estrellasDiv);
+        
+        // 3. Texto de la reseña
+        const textoDiv = document.createElement('div');
+        textoDiv.className = 'mb-3';
+        
+        const textoP = document.createElement('p');
+        textoP.className = 'text-slate-600 dark:text-slate-400';
+        textoP.textContent = reseña.texto;
+        
+        textoDiv.appendChild(textoP);
+        
+        // 4. Botón de eliminar (CON CONFIRMACIÓN)
+        const deleteBtn = document.createElement('button');
+        deleteBtn.className = 'text-red-500 hover:text-red-700 text-sm font-medium flex items-center gap-1 transition-colors mt-2';
+        deleteBtn.innerHTML = '<span class="material-symbols-outlined text-sm">delete</span> Eliminar reseña';
+        
+        // Evento de eliminar con confirmación
+        deleteBtn.addEventListener('click', () => {
+            if (window.confirm('¿Estás seguro de eliminar esta reseña? Esta acción no se puede deshacer.')) {
+                // Eliminar del DOM
+                reseñaDiv.remove();
+                
+                // Actualizar estado
+                const nuevasReseñas = reseñas.filter(r => r.id !== reseña.id);
+                setReseñas(nuevasReseñas);
+                
+                // Actualizar localStorage
+                localStorage.setItem(`reseñas_${producto.id}`, JSON.stringify(nuevasReseñas));
+                
+                // Actualizar contador de reseñas en el header
+                actualizarContadorReseñas(nuevasReseñas.length);
+                
+                mostrarNotificacion('Reseña eliminada correctamente', 'success');
+            }
+        });
+        
+        // 5. Ensamblar todo
+        reseñaDiv.appendChild(headerDiv);
+        reseñaDiv.appendChild(textoDiv);
+        reseñaDiv.appendChild(deleteBtn);
+        
+        // 6. Agregar al DOM con appendChild
+        reseñasContainerRef.current.appendChild(reseñaDiv);
+    };
+
+    // Función para agregar nueva reseña
+    const agregarReseña = (e) => {
+        e.preventDefault();
+        
+        if (!nuevaReseña.trim() || !autorReseña.trim()) {
+            mostrarNotificacion('Por favor completa todos los campos', 'warning');
+            return;
+        }
+        
+        // Crear objeto de reseña
+        const nuevaReseñaObj = {
+            id: Date.now(),
+            autor: autorReseña,
+            texto: nuevaReseña,
+            puntuacion: puntuacionReseña,
+            fecha: new Date().toLocaleDateString('es-ES', {
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric'
+            })
+        };
+        
+        // Renderizar en el DOM con createElement y appendChild
+        renderizarReseñaEnDOM(nuevaReseñaObj);
+        
+        // Actualizar estado
+        const nuevasReseñas = [...reseñas, nuevaReseñaObj];
+        setReseñas(nuevasReseñas);
+        
+        // Guardar en localStorage
+        localStorage.setItem(`reseñas_${producto.id}`, JSON.stringify(nuevasReseñas));
+        
+        // Actualizar contador de reseñas en el header
+        actualizarContadorReseñas(nuevasReseñas.length);
+        
+        // Limpiar formulario y cerrarlo
+        setNuevaReseña('');
+        setAutorReseña('');
+        setPuntuacionReseña(5);
+        setMostrarFormulario(false);
+        
+        mostrarNotificacion('¡Reseña publicada! Gracias por tu opinión', 'success');
+    };
+
+    // Función para actualizar el contador de reseñas en el header
+    const actualizarContadorReseñas = (total) => {
+        // Buscar el elemento que muestra el total de reseñas
+        const contadorElement = document.querySelector('.reseñas-contador');
+        if (contadorElement) {
+            contadorElement.textContent = `Basado en ${total + (producto?.reseñas || 0)} reseñas`;
+        }
+    };
 
     // Función para mostrar notificaciones
     const mostrarNotificacion = (mensaje, tipo = 'success') => {
@@ -313,13 +242,11 @@ function ProductoDetalle() {
 
     // Cargar productos relacionados
     const cargarProductosRelacionados = (productoActual, todosProductos) => {
-        // Filtrar productos de la misma categoría, excluyendo el actual
         const relacionados = todosProductos
             .filter(p => p.id !== productoActual.id && p.categoria === productoActual.categoria)
             .slice(0, 4);
 
         if (relacionados.length === 0) {
-            // Si no hay productos en la misma categoría, tomar algunos aleatorios
             const otros = todosProductos
                 .filter(p => p.id !== productoActual.id)
                 .slice(0, 4);
@@ -337,17 +264,14 @@ function ProductoDetalle() {
         
         let estrellas = [];
         
-        // Estrellas llenas
         for (let i = 0; i < estrellasLlenas; i++) {
             estrellas.push(<span key={`llena-${i}`} className="material-symbols-outlined text-amber-500">star</span>);
         }
         
-        // Media estrella
         if (tieneMediaEstrella) {
             estrellas.push(<span key="media" className="material-symbols-outlined text-amber-500">star_half</span>);
         }
         
-        // Estrellas vacías
         for (let i = 0; i < estrellasVacias; i++) {
             estrellas.push(<span key={`vacia-${i}`} className="material-symbols-outlined text-slate-300 dark:text-slate-600">star</span>);
         }
@@ -371,23 +295,18 @@ function ProductoDetalle() {
             cantidad: cantidad
         };
 
-        // Obtener carrito actual de localStorage
         let carrito = JSON.parse(localStorage.getItem('carritoAtelier')) || [];
         
-        // Verificar si el producto ya está en el carrito
         const itemIndex = carrito.findIndex(i => 
             i.id === itemCarrito.id && i.talla === itemCarrito.talla
         );
         
         if (itemIndex > -1) {
-            // Actualizar cantidad
             carrito[itemIndex].cantidad += itemCarrito.cantidad;
         } else {
-            // Añadir nuevo item
             carrito.push(itemCarrito);
         }
         
-        // Guardar en localStorage
         localStorage.setItem('carritoAtelier', JSON.stringify(carrito));
         
         mostrarNotificacion(`${producto.nombre} añadido al carrito`);
@@ -401,7 +320,6 @@ function ProductoDetalle() {
         }
         
         mostrarNotificacion('Redirigiendo al checkout...', 'info');
-        // Aquí iría la redirección al checkout
     };
 
     // Cambiar imagen principal
@@ -815,75 +733,110 @@ function ProductoDetalle() {
 
                     {tabActivo === 'reviews' && (
                         <div className="space-y-6">
+                            {/* Header de reseñas */}
                             <div className="flex items-center justify-between mb-8">
                                 <div>
                                     <div className="flex items-center gap-4 mb-2">
-                                        <div className="text-4xl font-bold text-slate-900 dark:text-white">{producto.valoracion || 4.2}</div>
+                                        <div className="text-4xl font-bold text-slate-900 dark:text-white">
+                                            {producto.valoracion || 4.2}
+                                        </div>
                                         <div>
                                             <div className="flex mb-1">
                                                 {generarEstrellas(producto.valoracion || 4.2)}
                                             </div>
-                                            <p className="text-sm text-slate-500 dark:text-slate-400">Basado en {producto.reseñas || 128} reseñas</p>
+                                            <p className="text-sm text-slate-500 dark:text-slate-400 reseñas-contador">
+                                                Basado en {reseñas.length + (producto.reseñas || 0)} reseñas
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
-                                <button className="bg-primary hover:bg-red-500 text-white px-6 py-3 rounded-lg font-medium transition-colors">
-                                    Escribir reseña
+                                <button 
+                                    onClick={() => setMostrarFormulario(!mostrarFormulario)}
+                                    className="bg-primary hover:bg-red-500 text-white px-6 py-3 rounded-lg font-medium transition-colors"
+                                >
+                                    {mostrarFormulario ? 'Cancelar' : 'Escribir reseña'}
                                 </button>
                             </div>
 
-                            {/* Reviews Container */}
-                            <div className="space-y-6">
-                                {/* Review 1 */}
-                                <div className="bg-slate-50 dark:bg-slate-800/50 rounded-lg p-6 transition-colors duration-300">
-                                    <div className="flex items-center justify-between mb-4">
-                                        <div className="flex items-center gap-3">
-                                            <div className="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center">
-                                                <span className="text-primary font-bold">M</span>
-                                            </div>
+                            {/* Formulario para nueva reseña */}
+                            {mostrarFormulario && (
+                                <div className="bg-slate-50 dark:bg-slate-800/50 rounded-xl p-6 mb-8 border border-slate-200 dark:border-slate-700 animate-fade-in">
+                                    <h4 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">
+                                        Escribe tu reseña
+                                    </h4>
+                                    
+                                    <form onSubmit={agregarReseña} className="space-y-4">
+                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                             <div>
-                                                <p className="font-medium text-slate-900 dark:text-white">María García</p>
-                                                <p className="text-xs text-slate-500 dark:text-slate-400">Hace 2 semanas</p>
+                                                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                                                    Tu nombre
+                                                </label>
+                                                <input
+                                                    type="text"
+                                                    value={autorReseña}
+                                                    onChange={(e) => setAutorReseña(e.target.value)}
+                                                    className="w-full px-4 py-2 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary"
+                                                    placeholder="Ej. María García"
+                                                    required
+                                                />
+                                            </div>
+                                            
+                                            <div>
+                                                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                                                    Puntuación
+                                                </label>
+                                                <div className="flex items-center gap-2">
+                                                    {[1, 2, 3, 4, 5].map((num) => (
+                                                        <button
+                                                            key={num}
+                                                            type="button"
+                                                            onClick={() => setPuntuacionReseña(num)}
+                                                            className="focus:outline-none"
+                                                        >
+                                                            <span className={`material-symbols-outlined text-2xl ${
+                                                                num <= puntuacionReseña ? 'text-amber-500' : 'text-slate-300 dark:text-slate-600'
+                                                            }`}>
+                                                                star
+                                                            </span>
+                                                        </button>
+                                                    ))}
+                                                </div>
                                             </div>
                                         </div>
-                                        <div className="flex">
-                                            {[...Array(5)].map((_, i) => (
-                                                <span key={i} className="material-symbols-outlined text-amber-500 text-sm">
-                                                    {i < 4 ? 'star' : 'star'}
-                                                </span>
-                                            ))}
+                                        
+                                        <div>
+                                            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                                                Tu reseña
+                                            </label>
+                                            <textarea
+                                                value={nuevaReseña}
+                                                onChange={(e) => setNuevaReseña(e.target.value)}
+                                                rows="3"
+                                                className="w-full px-4 py-2 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary"
+                                                placeholder="Comparte tu experiencia con este producto..."
+                                                required
+                                            ></textarea>
                                         </div>
-                                    </div>
-                                    <p className="text-slate-600 dark:text-slate-400">
-                                        ¡Me encantó! La tela es súper suave y el color es exactamente como en la foto. 
-                                        La talla M me quedó perfecta.
-                                    </p>
+                                        
+                                        <button
+                                            type="submit"
+                                            className="bg-primary hover:bg-red-500 text-white px-6 py-2 rounded-lg font-semibold transition-all flex items-center gap-2"
+                                        >
+                                            <span className="material-symbols-outlined">rate_review</span>
+                                            Publicar reseña
+                                        </button>
+                                    </form>
                                 </div>
+                            )}
 
-                                {/* Review 2 */}
-                                <div className="bg-slate-50 dark:bg-slate-800/50 rounded-lg p-6">
-                                    <div className="flex items-center justify-between mb-4">
-                                        <div className="flex items-center gap-3">
-                                            <div className="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center">
-                                                <span className="text-primary font-bold">C</span>
-                                            </div>
-                                            <div>
-                                                <p className="font-medium text-slate-900 dark:text-white">Carlos Rodríguez</p>
-                                                <p className="text-xs text-slate-500 dark:text-slate-400">Hace 1 mes</p>
-                                            </div>
-                                        </div>
-                                        <div className="flex">
-                                            {[...Array(5)].map((_, i) => (
-                                                <span key={i} className="material-symbols-outlined text-amber-500 text-sm">
-                                                    {i < 5 ? 'star' : 'star'}
-                                                </span>
-                                            ))}
-                                        </div>
-                                    </div>
-                                    <p className="text-slate-600 dark:text-slate-400">
-                                        Excelente calidad, el envío llegó antes de lo esperado. Muy recomendado.
+                            {/* Contenedor de reseñas (MANIPULACIÓN DIRECTA DEL DOM) */}
+                            <div ref={reseñasContainerRef} className="space-y-4">
+                                {/* Las reseñas se insertarán aquí con createElement/appendChild */}
+                                {reseñas.length === 0 && !mostrarFormulario && (
+                                    <p className="text-center text-slate-500 dark:text-slate-400 py-8">
+                                        No hay reseñas aún. ¡Sé el primero en escribir una!
                                     </p>
-                                </div>
+                                )}
                             </div>
                         </div>
                     )}
@@ -926,11 +879,6 @@ function ProductoDetalle() {
                             </div>
                         </div>
                     )}
-                </div>
-
-                {/* SECCIÓN DE COMENTARIOS CON MANIPULACIÓN DIRECTA DEL DOM */}
-                <div className="mt-12 pt-12 border-t border-slate-200 dark:border-slate-800">
-                    <SeccionComentarios productId={producto.id} productName={producto.nombre} />
                 </div>
 
                 {/* Related Products */}
