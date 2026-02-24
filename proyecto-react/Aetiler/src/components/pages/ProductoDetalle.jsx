@@ -1,10 +1,257 @@
 // src/components/pages/ProductoDetalle.jsx
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import ProductCard from '../common/ProductCard';
 import Header from '../layout/Header';
 import Footer from '../layout/Footer';
 
+// ============================================
+// COMPONENTE DE COMENTARIOS CON MANIPULACIÓN DIRECTA DEL DOM
+// ============================================
+function SeccionComentarios({ productId, productName }) {
+    const [comentarios, setComentarios] = useState([]);
+    const [nuevoComentario, setNuevoComentario] = useState('');
+    const [autor, setAutor] = useState('');
+    const [puntuacion, setPuntuacion] = useState(5);
+    const [showConfirm, setShowConfirm] = useState(false);
+    const [comentarioAEliminar, setComentarioAEliminar] = useState(null);
+    
+    // Referencia al contenedor de comentarios para manipulación directa
+    const comentariosContainerRef = useRef(null);
+    
+    // Cargar comentarios guardados al iniciar
+    useEffect(() => {
+        const comentariosGuardados = localStorage.getItem(`comentarios_${productId}`);
+        if (comentariosGuardados) {
+            const comentariosParseados = JSON.parse(comentariosGuardados);
+            setComentarios(comentariosParseados);
+            
+            // Renderizar comentarios guardados en el DOM después de que el componente monte
+            setTimeout(() => {
+                if (comentariosContainerRef.current) {
+                    comentariosParseados.forEach(comentario => {
+                        renderizarComentarioEnDOM(comentario);
+                    });
+                }
+            }, 100);
+        }
+    }, [productId]);
+
+    // Función para renderizar un comentario en el DOM (createElement + appendChild)
+    const renderizarComentarioEnDOM = (comentario) => {
+        if (!comentariosContainerRef.current) return;
+        
+        // 1. Crear contenedor principal del comentario
+        const comentarioDiv = document.createElement('div');
+        comentarioDiv.className = 'comentario-item bg-white dark:bg-slate-800 rounded-lg p-4 border border-slate-200 dark:border-slate-700 mb-4 animate-fade-in shadow-sm';
+        comentarioDiv.dataset.id = comentario.id;
+        
+        // 2. Crear header del comentario (autor y fecha)
+        const headerDiv = document.createElement('div');
+        headerDiv.className = 'flex items-center justify-between mb-3';
+        
+        const autorInfo = document.createElement('div');
+        autorInfo.className = 'flex items-center gap-3';
+        
+        const avatar = document.createElement('div');
+        avatar.className = 'w-8 h-8 bg-primary/20 rounded-full flex items-center justify-center';
+        avatar.innerHTML = `<span class="text-primary font-bold">${comentario.autor.charAt(0).toUpperCase()}</span>`;
+        
+        const autorNombre = document.createElement('span');
+        autorNombre.className = 'font-medium text-slate-900 dark:text-white';
+        autorNombre.textContent = comentario.autor;
+        
+        autorInfo.appendChild(avatar);
+        autorInfo.appendChild(autorNombre);
+        
+        // 3. Crear estrellas de puntuación
+        const estrellasDiv = document.createElement('div');
+        estrellasDiv.className = 'flex';
+        for (let i = 1; i <= 5; i++) {
+            const estrella = document.createElement('span');
+            estrella.className = `material-symbols-outlined text-sm ${i <= comentario.puntuacion ? 'text-amber-500' : 'text-slate-300 dark:text-slate-600'}`;
+            estrella.textContent = 'star';
+            estrellasDiv.appendChild(estrella);
+        }
+        
+        headerDiv.appendChild(autorInfo);
+        headerDiv.appendChild(estrellasDiv);
+        
+        // 4. Crear texto del comentario
+        const textoDiv = document.createElement('div');
+        textoDiv.className = 'mb-3';
+        
+        const textoP = document.createElement('p');
+        textoP.className = 'text-slate-600 dark:text-slate-400';
+        textoP.textContent = comentario.texto;
+        
+        textoDiv.appendChild(textoP);
+        
+        // 5. Crear fecha
+        const fechaDiv = document.createElement('div');
+        fechaDiv.className = 'text-xs text-slate-500 dark:text-slate-500 mb-3';
+        fechaDiv.textContent = comentario.fecha;
+        
+        // 6. Crear botón de eliminar (CON CONFIRMACIÓN)
+        const deleteBtn = document.createElement('button');
+        deleteBtn.className = 'text-red-500 hover:text-red-700 text-sm font-medium flex items-center gap-1 transition-colors';
+        deleteBtn.innerHTML = '<span class="material-symbols-outlined text-sm">delete</span> Eliminar';
+        
+        // Evento de eliminar con confirmación
+        deleteBtn.addEventListener('click', () => {
+            // CONFIRMACIÓN DE ACCIÓN (requisito de la actividad)
+            if (window.confirm('¿Estás seguro de eliminar este comentario? Esta acción no se puede deshacer.')) {
+                // ELIMINACIÓN DINÁMICA
+                comentarioDiv.remove();
+                
+                // Actualizar estado de React
+                const nuevosComentarios = comentarios.filter(c => c.id !== comentario.id);
+                setComentarios(nuevosComentarios);
+                
+                // Actualizar localStorage
+                localStorage.setItem(`comentarios_${productId}`, JSON.stringify(nuevosComentarios));
+            }
+        });
+        
+        // 7. Ensamblar todo
+        comentarioDiv.appendChild(headerDiv);
+        comentarioDiv.appendChild(textoDiv);
+        comentarioDiv.appendChild(fechaDiv);
+        comentarioDiv.appendChild(deleteBtn);
+        
+        // 8. AGREGAR AL DOM CON appendChild
+        comentariosContainerRef.current.appendChild(comentarioDiv);
+    };
+
+    // Función para agregar nuevo comentario
+    const agregarComentario = (e) => {
+        e.preventDefault();
+        
+        if (!nuevoComentario.trim() || !autor.trim()) {
+            alert('Por favor completa todos los campos');
+            return;
+        }
+        
+        // Crear objeto de comentario
+        const nuevoComentarioObj = {
+            id: Date.now(), // ID único basado en timestamp
+            autor: autor,
+            texto: nuevoComentario,
+            puntuacion: puntuacion,
+            fecha: new Date().toLocaleDateString('es-ES', {
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric'
+            })
+        };
+        
+        // RENDERIZAR EN EL DOM CON createElement Y appendChild
+        renderizarComentarioEnDOM(nuevoComentarioObj);
+        
+        // Actualizar estado de React
+        const nuevosComentarios = [...comentarios, nuevoComentarioObj];
+        setComentarios(nuevosComentarios);
+        
+        // Guardar en localStorage
+        localStorage.setItem(`comentarios_${productId}`, JSON.stringify(nuevosComentarios));
+        
+        // Limpiar formulario
+        setNuevoComentario('');
+        setAutor('');
+        setPuntuacion(5);
+    };
+
+    return (
+        <div className="mt-8">
+            <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-6">
+                Comentarios de clientes
+            </h3>
+            
+            {/* Formulario para agregar comentario */}
+            <div className="bg-slate-50 dark:bg-slate-800/50 rounded-xl p-6 mb-8 border border-slate-200 dark:border-slate-700">
+                <h4 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">
+                    Deja tu comentario
+                </h4>
+                
+                <form onSubmit={agregarComentario} className="space-y-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                                Tu nombre
+                            </label>
+                            <input
+                                type="text"
+                                value={autor}
+                                onChange={(e) => setAutor(e.target.value)}
+                                className="w-full px-4 py-2 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary"
+                                placeholder="Ej. María García"
+                                required
+                            />
+                        </div>
+                        
+                        <div>
+                            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                                Puntuación
+                            </label>
+                            <div className="flex items-center gap-2">
+                                {[1, 2, 3, 4, 5].map((num) => (
+                                    <button
+                                        key={num}
+                                        type="button"
+                                        onClick={() => setPuntuacion(num)}
+                                        className="focus:outline-none"
+                                    >
+                                        <span className={`material-symbols-outlined text-2xl ${
+                                            num <= puntuacion ? 'text-amber-500' : 'text-slate-300 dark:text-slate-600'
+                                        }`}>
+                                            star
+                                        </span>
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                            Tu comentario
+                        </label>
+                        <textarea
+                            value={nuevoComentario}
+                            onChange={(e) => setNuevoComentario(e.target.value)}
+                            rows="3"
+                            className="w-full px-4 py-2 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary"
+                            placeholder="Comparte tu experiencia con este producto..."
+                            required
+                        ></textarea>
+                    </div>
+                    
+                    <button
+                        type="submit"
+                        className="bg-primary hover:bg-red-500 text-white px-6 py-2 rounded-lg font-semibold transition-all flex items-center gap-2"
+                    >
+                        <span className="material-symbols-outlined">add_comment</span>
+                        Publicar comentario
+                    </button>
+                </form>
+            </div>
+            
+            {/* Contenedor de comentarios (MANIPULACIÓN DIRECTA DEL DOM) */}
+            <div ref={comentariosContainerRef} className="space-y-4">
+                {/* Los comentarios se insertarán aquí con createElement/appendChild */}
+                {comentarios.length === 0 && (
+                    <p className="text-center text-slate-500 dark:text-slate-400 py-8">
+                        No hay comentarios aún. ¡Sé el primero en comentar!
+                    </p>
+                )}
+            </div>
+        </div>
+    );
+}
+
+// ============================================
+// COMPONENTE PRINCIPAL PRODUCTO DETALLE
+// ============================================
 function ProductoDetalle() {
     const { id } = useParams();
     const navigate = useNavigate();
@@ -679,6 +926,11 @@ function ProductoDetalle() {
                             </div>
                         </div>
                     )}
+                </div>
+
+                {/* SECCIÓN DE COMENTARIOS CON MANIPULACIÓN DIRECTA DEL DOM */}
+                <div className="mt-12 pt-12 border-t border-slate-200 dark:border-slate-800">
+                    <SeccionComentarios productId={producto.id} productName={producto.nombre} />
                 </div>
 
                 {/* Related Products */}
