@@ -1,0 +1,19 @@
+body {
+    font-family: Arial;
+    margin: 20px;
+    transition: 0.3s;
+}
+
+.modo-oscuro {
+    background-color: black;
+    color: white;
+}
+
+button {
+    margin: 5px;
+    padding: 5px 12px;
+}
+
+.seccion {
+    margin-top: 10px;
+}
