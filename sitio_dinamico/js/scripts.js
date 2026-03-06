@@ -15,8 +15,9 @@ btnCambiarTitulo.addEventListener('click', ()=>{
 //evento para agregar servicio
 
 btnAgregarServicio.addEventListener('click', ()=>{
+    let texto = prompt('ingresa el texto que desees')
     const nuevoServicio=document.createElement("li");
-    nuevoServicio.textContent="Nuevo servicio agregado"
+    nuevoServicio.textContent= texto
     listaServicios.appendChild(nuevoServicio)
 })
 
