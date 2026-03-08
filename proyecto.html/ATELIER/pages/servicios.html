@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicios | ATELIER</title>
+    
+    <!-- Fuentes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+    
+    <!-- CSS Global -->
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/components.css">
+    
+    <!-- CSS Específico de la página -->
+    <link rel="stylesheet" href="../css/pages/servicios.css">
+    
+    <!-- Scripts -->
+    <script src="../js/header-manager.js" defer></script>
+    <script src="../js/main.js" defer></script>
+    <script src="../js/servicios.js" defer></script>
+</head>
+<body>
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo">
+                <a href="../index.html">Atelier</a>
+            </div>
+        
+            <!-- Botón a productos -->
+            <a href="productos2.html" class="btn-productos">
+                <span class="material-symbols-outlined">shopping_bag</span>
+                Ver Productos
+            </a>
+        
+            <div class="header-actions">
+                <button class="theme-toggle" id="theme-toggle">
+                    <span class="material-symbols-outlined dark:hidden">dark_mode</span>
+                    <span class="material-symbols-outlined hidden dark:inline">light_mode</span>
+                </button>
+                <a href="login.html" class="btn-primary">Regístrate o inicia sesión</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol class="breadcrumb-list">
+            <li class="breadcrumb-item">
+                <a href="../index.html" class="breadcrumb-link">Home</a>
+            </li>
+            <li class="breadcrumb-item">
+                <span class="material-symbols-outlined breadcrumb-icon">chevron_right</span>
+                <span class="breadcrumb-current">Servicios</span>
+            </li>
+        </ol>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="servicios-hero">
+            <div class="container">
+                <div class="servicios-hero-content">
+                    <h1 class="servicios-hero-title">Elevamos tu Experiencia</h1>
+                    <p class="servicios-hero-description">
+                        Más que moda, ofrecemos un estilo de vida. Descubre servicios exclusivos diseñados para la mujer moderna.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Servicios Principales -->
+        <section class="servicios-principales">
+            <div class="container">
+                <!-- Servicio 1: Personal Styling -->
+                <div class="servicio-item">
+                    <div class="servicio-image-container">
+                        <div class="servicio-image">
+                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzskSXsWZYxwjTyq-F0o4VZhfIL5rknRU4A9m2cigUTqYw3dZBItX9Dv3rUmff9aeO8PmZ1DNLnwBzNVY5bOYMvGcOiWt_zfhKM4aMa_Nwp4ppx54HOH1JkZjt2ojHKK6hLZZAHQkZda6e7d9JqtUWyTSOSa-seAWqnR8rLf4jYzzXcU6FamY1WWQHN3LQg6Cl2rru7oroLxj8--7-5uxFC9bKZUTw1Tb5Aa1kkaoy18tw5DSYSXK7IqC9gHmCyBORfXwdonCv_Vq6" 
+                                 alt="Personal Styling">
+                        </div>
+                    </div>
+                    
+                    <div class="servicio-content">
+                        <div class="servicio-header">
+                            <div class="servicio-icon">
+                                <span class="material-symbols-outlined">person_search</span>
+                            </div>
+                            <h2 class="servicio-title">Personal Styling</h2>
+                        </div>
+                        
+                        <p class="servicio-description">
+                            Nuestros expertos crean looks que resaltan tu personalidad. Sesiones individuales, 
+                            análisis de colorimetría y curaduría de guardarropa.
+                        </p>
+                        
+                        <ul class="servicio-features">
+                            <li class="servicio-feature">
+                                <span class="material-symbols-outlined">check_circle</span>
+                                <span>Asesoría online o presencial</span>
+                            </li>
+                            <li class="servicio-feature">
+                                <span class="material-symbols-outlined">check_circle</span>
+                                <span>Reporte de estilo personalizado</span>
+                            </li>
+                        </ul>
+                        
+                        <button class="btn-primary servicio-btn">Agendar Cita</button>
+                    </div>
+                </div>
+
+                <!-- Servicio 2: Envío Premium -->
+                <div class="servicio-item">
+                    <div class="servicio-image-container">
+                        <div class="servicio-image">
+                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCb7s2vaJFu89EtkS6OG2ntR5pj1VM7nr4WSAQbmfLcyajCzhbAUhOqFQSUMxJVJOAEX9XROWkf5sY7v5lytacBNiuNRyfikKJyBvHSPYZNOgnvsKMHk0_z4xe5n6ZxYQX_JCTg6n1zAVorxXZrP669MtHWujd_kLkcOL5tjreJQZZxwfa7y8wqOtKHJLxtnjzzo7dcideu81BYsMLv9FJEdhpob5Iu6z14lx2Iv3fhFELH4aw-uklqjAIB2cccvcMSKF6RNQ0NHjnd" 
+                                 alt="Envío Premium">
+                        </div>
+                    </div>
+                    
+                    <div class="servicio-content">
+                        <div class="servicio-header">
+                            <div class="servicio-icon">
+                                <span class="material-symbols-outlined">local_shipping</span>
+                            </div>
+                            <h2 class="servicio-title">Envío Premium</h2>
+                        </div>
+                        
+                        <p class="servicio-description">
+                            Disfruta de envíos express en 24 horas y nuestro servicio de entrega especial 
+                            con packaging de lujo eco-friendly.
+                        </p>
+                        
+                        <ul class="servicio-features">
+                            <li class="servicio-feature">
+                                <span class="material-symbols-outlined">check_circle</span>
+                                <span>Entrega en el mismo día</span>
+                            </li>
+                            <li class="servicio-feature">
+                                <span class="material-symbols-outlined">check_circle</span>
+                                <span>Packaging eco-friendly</span>
+                            </li>
+                        </ul>
+                        
+                        <button class="btn-primary servicio-btn">Conocer más</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Servicios Adicionales -->
+        <section class="servicios-adicionales" id="seccionServiciosAdicionales">
+            <div class="container">
+                <div class="servicios-adicionales-header">
+                    <h2 class="servicios-adicionales-title">Más Servicios</h2>
+                    <p class="servicios-adicionales-subtitle">Completa tu experiencia Atelier</p>
+                </div>
+                
+                <div class="servicios-adicionales-grid">
+                    <!-- Card 1: Cambios y Devoluciones -->
+                    <div class="servicio-card">
+                        <div class="servicio-card-icon">
+                            <span class="material-symbols-outlined">sync_alt</span>
+                        </div>
+                        <h3 class="servicio-card-title">Cambios y Devoluciones</h3>
+                        <p class="servicio-card-description">
+                            Hasta 30 días para cambios y devoluciones gratuitas en todos los pedidos.
+                        </p>
+                        <a href="#" class="servicio-card-link">
+                            Más información
+                            <span class="material-symbols-outlined">arrow_forward</span>
+                        </a>
+                    </div>
+                    
+                    <!-- Card 2: Soporte VIP -->
+                    <div class="servicio-card">
+                        <div class="servicio-card-icon">
+                            <span class="material-symbols-outlined">support_agent</span>
+                        </div>
+                        <h3 class="servicio-card-title">Soporte VIP</h3>
+                        <p class="servicio-card-description">
+                            Atención personalizada 24/7 por teléfono, chat y email para clientes premium.
+                        </p>
+                        <a href="#" class="servicio-card-link">
+                            Contactar soporte
+                            <span class="material-symbols-outlined">arrow_forward</span>
+                        </a>
+                    </div>
+                    
+                    <!-- Card 3: Eventos Exclusivos -->
+                    <div class="servicio-card">
+                        <div class="servicio-card-icon">
+                            <span class="material-symbols-outlined">calendar_month</span>
+                        </div>
+                        <h3 class="servicio-card-title">Eventos Exclusivos</h3>
+                        <p class="servicio-card-description">
+                            Acceso a previews de colecciones, talleres de estilo y eventos de networking.
+                        </p>
+                        <a href="#" class="servicio-card-link">
+                            Ver próximos eventos
+                            <span class="material-symbols-outlined">arrow_forward</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BOTÓN PARA MOSTRAR/OCULTAR (debajo de la sección) -->
+    <div style="display: flex; justify-content: center; margin: 2rem 0;">
+        <button id="btnToggleServicios" class="btn-primary" style="display: flex; align-items: center; gap: 0.5rem;">
+            <span class="material-symbols-outlined">visibility_off</span>
+            <span id="btnTexto">Ocultar Servicios Adicionales</span>
+        </button>
+    </div>
+
+        <!-- Newsletter CTA -->
+        <section class="newsletter-cta">
+            <div class="container">
+                <div class="newsletter-cta-container">
+                    <h2 class="newsletter-cta-title">Acceso Prioritario</h2>
+                    <p class="newsletter-cta-description">
+                        Sé el primero en conocer nuevas colecciones y ofertas exclusivas.
+                    </p>
+                    <form class="newsletter-cta-form" id="newsletterForm">
+                        <input type="email" 
+                               class="newsletter-cta-input" 
+                               placeholder="Tu correo electrónico"
+                               required>
+                        <button type="submit" class="btn-primary">Suscribirme</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h2 class="footer-logo">Atelier</h2>
+                    <p class="footer-description">Diseño de alta gama y elegancia para el mundo moderno. Encuentra tu estilo hoy.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-section">
+                        <h4>Explorar</h4>
+                        <ul>
+                            <li><a href="nosotros.html">Nosotros</a></li>
+                            <li><a href="servicios.html">Servicios</a></li>
+                            <li><a href="error.html">Ofertas</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h4>Servicios</h4>
+                        <ul>
+                            <li><a href="#">Soporte</a></li>
+                            <li><a href="#">Styling</a></li>
+                            <li><a href="#">Envíos</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h4>Legal</h4>
+                        <ul>
+                            <li><a href="#">Términos</a></li>
+                            <li><a href="#">Privacidad</a></li>
+                            <li><a href="#">Cookies</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2024 ATELIER S.A. Todos los derechos reservados.</p>
+                <div class="social-links">
+                    <a href="#">
+                        <span class="material-symbols-outlined">photo_camera</span>
+                    </a>
+                    <a href="#">
+                        <span class="material-symbols-outlined">thumb_up</span>
+                    </a>
+                    <a href="#">
+                        <span class="material-symbols-outlined">chat</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Tema oscuro/claro
+        const themeToggle = document.getElementById('theme-toggle');
+        const htmlElement = document.documentElement;
+        
+        // Inicializar tema
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            htmlElement.classList.add('dark');
+        } else {
+            htmlElement.classList.remove('dark');
+        }
+        
+        // Evento para cambiar tema
+        themeToggle.addEventListener('click', () => {
+            htmlElement.classList.toggle('dark');
+            localStorage.setItem('theme', htmlElement.classList.contains('dark') ? 'dark' : 'light');
+        });
+
+        // Newsletter form submission
+        const newsletterForm = document.getElementById('newsletterForm');
+        if (newsletterForm) {
+            newsletterForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const email = e.target.querySelector('input[type="email"]').value;
+                
+                // Mostrar notificación (si existe NotificationManager)
+                if (window.NotificationManager) {
+                    NotificationManager.show('¡Gracias por suscribirte!', 'success');
+                } else {
+                    alert('¡Gracias por suscribirte!');
+                }
+                
+                e.target.reset();
+            });
+        }
+    </script>
+</body>
+</html>

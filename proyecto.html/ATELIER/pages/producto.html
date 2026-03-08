@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cargando producto... | ATELIER</title>
+    
+    <!-- Fuentes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+    
+    <!-- CSS Global -->
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/components.css">
+    
+    <!-- CSS Específico de la página -->
+    <link rel="stylesheet" href="../css/pages/producto.css">
+    
+    <!-- Scripts -->
+    <script src="../js/header-manager.js" defer></script>
+    <script src="../js/main.js" defer></script>
+    <script src="../js/producto.js" defer></script>
+</head>
+<body>
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo">
+                <a href="../index.html">Atelier</a>
+            </div>
+            
+            <div class="search-container">
+                <span class="material-symbols-outlined search-icon">search</span>
+                <input type="text" class="search-input" placeholder="Buscar productos...">
+            </div>
+            
+            <div class="header-actions">
+                <button class="theme-toggle" id="theme-toggle">
+                    <span class="material-symbols-outlined dark:hidden">dark_mode</span>
+                    <span class="material-symbols-outlined hidden dark:inline">light_mode</span>
+                </button>
+                <a href="login.html" class="btn-primary">Regístrate o inicia sesión</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb" aria-label="Breadcrumb" id="breadcrumb">
+        <ol class="breadcrumb-list">
+            <li class="breadcrumb-item">
+                <a href="../index.html" class="breadcrumb-link">Inicio</a>
+            </li>
+            <li class="breadcrumb-item">
+                <span class="material-symbols-outlined breadcrumb-icon">chevron_right</span>
+                <a href="productos2.html" class="breadcrumb-link">Productos</a>
+            </li>
+            <li class="breadcrumb-item">
+                <span class="material-symbols-outlined breadcrumb-icon">chevron_right</span>
+                <span class="breadcrumb-current" id="breadcrumb-product">Cargando...</span>
+            </li>
+        </ol>
+    </nav>
+
+    <main>
+        <!-- Loading State -->
+        <div id="loadingState" class="loading-state">
+            <div class="loading-spinner"></div>
+            <p>Cargando producto...</p>
+        </div>
+
+        <!-- Error State -->
+        <div id="errorState" class="error-state hidden">
+            <span class="material-symbols-outlined error-icon">error</span>
+            <h3>Producto no encontrado</h3>
+            <p>El producto que buscas no existe o ha sido removido.</p>
+            <a href="productos2.html" class="btn-primary">Ver todos los productos</a>
+        </div>
+
+        <!-- Product Container -->
+        <div id="productContainer" class="producto-container container hidden">
+            <!-- El contenido se cargará dinámicamente -->
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h2 class="footer-logo">Atelier</h2>
+                    <p class="footer-description">Diseño de alta gama y elegancia para el mundo moderno. Encuentra tu estilo hoy.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-section">
+                        <h4>Explorar</h4>
+                        <ul>
+                            <li><a href="nosotros.html">Nosotros</a></li>
+                            <li><a href="servicios.html">Servicios</a></li>
+                            <li><a href="error.html">Ofertas</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h4>Ayuda</h4>
+                        <ul>
+                            <li><a href="error.html">Soporte</a></li>
+                            <li><a href="error.html">Envíos</a></li>
+                            <li><a href="error.html">Devoluciones</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h4>Legal</h4>
+                        <ul>
+                            <li><a href="error.html">Términos</a></li>
+                            <li><a href="error.html">Privacidad</a></li>
+                            <li><a href="error.html">Cookies</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2024 ATELIER S.A. Todos los derechos reservados.</p>
+                <div class="social-links">
+                    <a href="#">
+                        <span class="material-symbols-outlined">photo_camera</span>
+                    </a>
+                    <a href="#">
+                        <span class="material-symbols-outlined">thumb_up</span>
+                    </a>
+                    <a href="#">
+                        <span class="material-symbols-outlined">chat</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Template para producto -->
+    <template id="productTemplate">
+        <div class="producto-grid">
+            <!-- Galería de imágenes -->
+            <div class="producto-gallery">
+                <div class="main-image-container" id="mainImageContainer">
+                    <img id="mainImage" src="" alt="" class="main-image">
+                    
+                    <!-- Badges -->
+                    <div class="producto-badges" id="badgeContainer"></div>
+                    
+                    <!-- Wishlist Button -->
+                    <button class="wishlist-btn" id="wishlistBtn">
+                        <span class="material-symbols-outlined">favorite</span>
+                    </button>
+                </div>
+
+                <!-- Thumbnails -->
+                <div class="thumbnails-grid" id="thumbnailsContainer"></div>
+            </div>
+
+            <!-- Información del producto -->
+            <div class="producto-info">
+                <!-- Header -->
+                <div class="producto-header">
+                    <div class="producto-meta">
+                        <span class="producto-categoria" id="productCategory"></span>
+                        <span class="producto-codigo" id="productCode"></span>
+                    </div>
+                    <h1 class="producto-titulo" id="productName"></h1>
+                    
+                    <div class="producto-rating-container">
+                        <div class="producto-rating" id="ratingStars"></div>
+                        <span class="rating-text" id="ratingText"></span>
+                    </div>
+                    
+                    <div class="stock-status" id="stockStatus"></div>
+                </div>
+
+                <!-- Price -->
+                <div class="producto-precio-container">
+                    <span class="precio-actual" id="currentPrice"></span>
+                    <span class="precio-original" id="originalPrice"></span>
+                    <span class="descuento-badge" id="discountBadge"></span>
+                </div>
+                <p class="precio-info">Precio incluye IVA. Envío gratuito en pedidos +$50</p>
+
+                <!-- Description -->
+                <div class="producto-descripcion" id="productDescription"></div>
+                <ul class="producto-caracteristicas" id="featuresList"></ul>
+
+                <!-- Size Selector -->
+                <div class="size-selector" id="sizeSelectorContainer"></div>
+
+                <!-- Quantity -->
+                <div class="quantity-selector">
+                    <h3>Cantidad</h3>
+                    <div class="quantity-controls">
+                        <div class="quantity-input-group">
+                            <button class="quantity-btn" id="decreaseQty" aria-label="Disminuir cantidad">
+                                <span class="material-symbols-outlined">remove</span>
+                            </button>
+                            <input type="number" id="quantity" class="quantity-input" value="1" min="1" max="10" readonly>
+                            <button class="quantity-btn" id="increaseQty" aria-label="Aumentar cantidad">
+                                <span class="material-symbols-outlined">add</span>
+                            </button>
+                        </div>
+                        <span class="stock-info" id="stockInfo"></span>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="producto-actions">
+                    <button class="btn-add-cart" id="addToCartBtn">
+                        <span class="material-symbols-outlined">shopping_cart</span>
+                        Añadir al carrito
+                    </button>
+                    <button class="btn-buy-now" id="buyNowBtn">
+                        <span class="material-symbols-outlined">bolt</span>
+                        Comprar ahora
+                    </button>
+                </div>
+
+                <!-- Shipping Info -->
+                <div class="shipping-info">
+                    <div class="shipping-item">
+                        <span class="material-symbols-outlined">local_shipping</span>
+                        <div>
+                            <h4>Envío gratis</h4>
+                            <p>En 24-48h</p>
+                        </div>
+                    </div>
+                    <div class="shipping-item">
+                        <span class="material-symbols-outlined">assignment_return</span>
+                        <div>
+                            <h4>Devolución fácil</h4>
+                            <p>30 días</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="producto-tabs">
+            <div class="tabs-nav">
+                <button class="tab-btn active" data-tab="details">Detalles</button>
+                <button class="tab-btn" data-tab="reviews">Reseñas</button>
+                <button class="tab-btn" data-tab="shipping">Envío & Devoluciones</button>
+            </div>
+
+            <!-- Details Tab -->
+            <div class="tab-content active" id="tabDetails">
+                <div class="details-grid">
+                    <div class="details-section">
+                        <h4>Especificaciones</h4>
+                        <div class="specs-list" id="specificationsList"></div>
+                    </div>
+                    <div class="details-section">
+                        <h4>Medidas</h4>
+                        <div class="specs-list" id="measurementsList"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reviews Tab -->
+            <div class="tab-content" id="tabReviews">
+                <div class="reviews-header">
+                    <div class="average-rating">
+                        <span class="average-number" id="averageRating">4.5</span>
+                        <div>
+                            <div class="producto-rating" id="reviewStars"></div>
+                            <span class="rating-text" id="reviewCount">Basado en 0 reseñas</span>
+                        </div>
+                    </div>
+                    <button class="btn-write-review" id="writeReviewBtn">Escribir reseña</button>
+                </div>
+
+                <div class="reviews-list" id="reviewsContainer">
+                    <!-- Las reseñas se cargarán dinámicamente -->
+                </div>
+            </div>
+
+            <!-- Shipping Tab -->
+            <div class="tab-content" id="tabShipping">
+                <div class="shipping-tab-grid">
+                    <div class="shipping-tab-section">
+                        <h4>Política de Envío</h4>
+                        <ul class="shipping-tab-list">
+                            <li>
+                                <span class="material-symbols-outlined">local_shipping</span>
+                                <span>Envío gratuito en pedidos superiores a $50</span>
+                            </li>
+                            <li>
+                                <span class="material-symbols-outlined">schedule</span>
+                                <span>Entrega en 24-48 horas en zonas urbanas</span>
+                            </li>
+                            <li>
+                                <span class="material-symbols-outlined">track_changes</span>
+                                <span>Seguimiento en tiempo real</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="shipping-tab-section">
+                        <h4>Devoluciones & Cambios</h4>
+                        <ul class="shipping-tab-list">
+                            <li>
+                                <span class="material-symbols-outlined">assignment_return</span>
+                                <span>30 días para devoluciones gratuitas</span>
+                            </li>
+                            <li>
+                                <span class="material-symbols-outlined">sync_alt</span>
+                                <span>Cambios de talla sin costo adicional</span>
+                            </li>
+                            <li>
+                                <span class="material-symbols-outlined">support_agent</span>
+                                <span>Soporte dedicado para devoluciones</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Related Products -->
+        <section class="related-products">
+            <div class="related-header">
+                <h2 class="related-title">Productos relacionados</h2>
+                <a href="productos2.html" class="related-link">
+                    Ver todos
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                </a>
+            </div>
+            <div class="related-grid" id="relatedProducts"></div>
+        </section>
+    </template>
+
+    <script>
+        // Tema oscuro/claro (fallback)
+        const themeToggle = document.getElementById('theme-toggle');
+        const htmlElement = document.documentElement;
+        
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            htmlElement.classList.add('dark');
+        } else {
+            htmlElement.classList.remove('dark');
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            htmlElement.classList.toggle('dark');
+            localStorage.setItem('theme', htmlElement.classList.contains('dark') ? 'dark' : 'light');
+        });
+    </script>
+</body>
+</html>

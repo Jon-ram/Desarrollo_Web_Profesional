@@ -1,0 +1,126 @@
+/* ===== RESET Y VARIABLES GLOBALES ===== */
+:root {
+    /* Colores principales */
+    --primary: #f0625d;
+    --primary-hover: #ef4444;
+    --primary-light: rgba(240, 98, 93, 0.1);
+    
+    /* Fondos */
+    --bg-light: #ffffff;
+    --bg-dark: #0f172a;
+    --bg-slate-50: #f8fafc;
+    --bg-slate-100: #f1f5f9;
+    --bg-slate-200: #e2e8f0;
+    --bg-slate-300: #cbd5e1;
+    --bg-slate-800: #1e293b;
+    --bg-slate-900: #0f172a;
+    
+    /* Textos */
+    --text-light: #0f172a;
+    --text-dark: #f8fafc;
+    --text-slate-400: #94a3b8;
+    --text-slate-500: #64748b;
+    --text-slate-600: #475569;
+    
+    /* Bordes */
+    --border-light: #e2e8f0;
+    --border-dark: #1e293b;
+    
+    /* Tipografía */
+    --font-display: 'Playfair Display', serif;
+    --font-sans: 'Inter', sans-serif;
+    
+    /* Espaciado */
+    --container-padding: 1rem;
+    --container-max-width: 1280px;
+    
+    /* Sombras */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+}
+
+/* Modo oscuro */
+.dark {
+    --bg-light: #0f172a;
+    --text-light: #f8fafc;
+    --border-light: #1e293b;
+    --bg-slate-50: #1e293b;
+    --bg-slate-100: #334155;
+    --bg-slate-200: #475569;
+    --text-slate-600: #cbd5e1;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-sans);
+    background-color: var(--bg-light);
+    color: var(--text-light);
+    line-height: 1.5;
+    transition: background-color 0.3s, color 0.3s;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Utilidades básicas */
+.container {
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    padding: 0 var(--container-padding);
+}
+
+/* Animaciones */
+@keyframes fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in {
+    animation: fade-in 0.3s ease-out;
+}
+
+/* Scrollbar personalizada */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-slate-100);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-hover);
+}

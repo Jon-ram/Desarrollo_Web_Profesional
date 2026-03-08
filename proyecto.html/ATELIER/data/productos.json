@@ -1,0 +1,412 @@
+{
+  "productos": [
+    {
+      "id": 1,
+      "nombre": "Vestido chic rojo",
+      "descripcion": "Vestido elegante de color rojo intenso, perfecto para ocasiones especiales",
+      "precio": 200,
+      "precio_original": 350,
+      "categoria": "vestidos",
+      "subcategoria": "vestidos-ocasion",
+      "tallas": ["S", "M", "L"],
+      "colores": ["Rojo"],
+      "imagen": "https://lh3.googleusercontent.com/aida-public/AB6AXuBnzcKiD19cFwGWNnCHFqMff3Dz_KlSWuGbMy31J3hjs8RXpQ0Dm9m6aUT7WL-K05cbhiw2uKrcR8kOXKYIbNKa3rdcjtFo5KGjB7nwqTMaASaQDEC4y6PLc79dsU_WYd9IF3rMaK93s8BWXeWzAGamYUHY1jIii4I0AHic_JYlw0kNreoMGSy0RigKDe06YExp6x6h71_zr6HjDtTh98dBFJjcL0eZCDeB0IsDxAf9WJNiKYvafZdE_3Sqk2OcHiHcMYGSyDzPf5nf",
+      "imagenes_secundarias": [
+        "https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=800&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1598554747436-c9293d6a5883?w-800&auto=format&fit=crop"
+      ],
+      "en_oferta": true,
+      "descuento": 43,
+      "stock": 15,
+      "material": "Seda sintética",
+      "disponible": true,
+      "destacado": true,
+      "nuevo": false,
+      "valoracion": 4.8,
+      "reseñas": 42,
+      "tags": ["vestido", "rojo", "elegante", "ocasión especial", "fiesta"]
+    },
+    {
+      "id": 2,
+      "nombre": "Chaqueta bomber terracota",
+      "descripcion": "Chaqueta bomber estilo urbano en tono terracota, cómoda y moderna",
+      "precio": 100,
+      "precio_original": 180,
+      "categoria": "chaquetas",
+      "subcategoria": "chaquetas-urbana",
+      "tallas": ["M", "L", "XL"],
+      "colores": ["Terracota"],
+      "imagen": "../assets/img/chaqueta3(frente).png",
+      "imagenes_secundarias": [
+        "../assets/img/chaqueta3(detras).png",
+        "../assets/img/chaqueta3(cuello).png"
+      ],
+      "en_oferta": true,
+      "descuento": 44,
+      "stock": 8,
+      "material": "Algodón y poliéster",
+      "disponible": true,
+      "destacado": true,
+      "nuevo": false,
+      "valoracion": 4.5,
+      "reseñas": 28,
+      "tags": ["chaqueta", "bomber", "urbano", "terracota", "casual"]
+    },
+    {
+      "id": 3,
+      "nombre": "Camisa lino minimalista",
+      "descripcion": "Camisa de lino minimalista, ideal para looks casuales y elegantes",
+      "precio": 120,
+      "precio_original": 120,
+      "categoria": "camisetas",
+      "subcategoria": "camisas-formales",
+      "tallas": ["XS", "S", "M"],
+      "colores": ["Blanco", "Beige"],
+      "imagen": "https://lh3.googleusercontent.com/aida-public/AB6AXuCzjbXbGyeWFTFTWYqzYXAGkwGjdTA46wwX1zgxAp30MVL0JyJLQoI40-nGpdLQThAe50LGfpnZ5pTacxxWLHtYuzj4QAEGPWMyf_ZPyj2WUNS-Jk0Knoped2SmZTrOIMtIj--MAqzwLSRPr6h_5eSaz2cEyw-FUaearOTgBZbBI_Mi674NZXSDECk7wutqdFBK0Jn1BobZTo7xxnL5eEWjHbzRiSKfdHm3QDCjcFm90nep1kH-ZcyMCMYJzkhQt6oc3WHoAs3j690u",
+      "imagenes_secundarias": [
+        "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=800&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=800&auto=format&fit=crop"
+      ],
+      "en_oferta": false,
+      "descuento": 0,
+      "stock": 22,
+      "material": "Lino 100%",
+      "disponible": true,
+      "destacado": false,
+      "nuevo": true,
+      "valoracion": 4.7,
+      "reseñas": 31,
+      "tags": ["camisa", "lino", "minimalista", "formal", "casual"]
+    },
+    {
+      "id": 4,
+      "nombre": "Conjunto veraniego",
+      "descripcion": "Conjunto de dos piezas perfecto para el verano, fresco y moderno",
+      "precio": 240,
+      "precio_original": 240,
+      "categoria": "vestidos",
+      "subcategoria": "conjuntos",
+      "tallas": ["S", "M"],
+      "colores": ["Azul claro", "Blanco"],
+      "imagen": "https://lh3.googleusercontent.com/aida-public/AB6AXuBQ6HvXIyMIKUXeW-uXdU6ITgpjL5bDx_o2OWO6elM6E9AuhcVNVWyy2FfPOfNF1Ub_J3tAGlfgt4Hf-Iyb_FQkn4vgB1cLCdAbIdNivD7t-xUnxr3CiVaAEwSN7dC9g-BRsBVKUiOon-KHvhpowCi2Kb3_i-qcOWKKqFGJg-QkRZN1mfYwf4X9W_fs3zxpulgpA9Ezu4EYqflMgEsiKNNJnHrs8RZ7ssaEccLZtiEEy38EUqX1es8AcnoNlQyFGliOwpvv7F-19Yse",
+      "imagenes_secundarias": [
+        "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=800&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=800&auto=format&fit=crop"
+      ],
+      "en_oferta": false,
+      "descuento": 0,
+      "stock": 12,
+      "material": "Algodón y viscosa",
+      "disponible": true,
+      "destacado": false,
+      "nuevo": true,
+      "valoracion": 4.9,
+      "reseñas": 19,
+      "tags": ["conjunto", "verano", "playa", "fresco", "moderno"]
+    },
+    {
+      "id": 5,
+      "nombre": "Vestido midi negro",
+      "descripcion": "Vestido midi negro elegante, versátil para cualquier ocasión",
+      "precio": 160,
+      "precio_original": 210,
+      "categoria": "vestidos",
+      "subcategoria": "vestidos-midi",
+      "tallas": ["XS", "S", "M", "L"],
+      "colores": ["Negro"],
+      "imagen": "../assets/img/vestido1(frente).jpg",
+      "imagenes_secundarias": [
+        "../assets/img/vestido1(detras).jpg",
+        "../assets/img/vestido1(frente2).jpg"
+      ],
+      "en_oferta": true,
+      "descuento": 24,
+      "stock": 18,
+      "material": "Crepe",
+      "disponible": true,
+      "destacado": true,
+      "nuevo": false,
+      "valoracion": 4.6,
+      "reseñas": 37,
+      "tags": ["vestido", "midi", "negro", "elegante", "versátil"]
+    },
+    {
+      "id": 6,
+      "nombre": "Sudadera urban style",
+      "descripcion": "Sudadera cómoda estilo urbano, perfecta para el día a día",
+      "precio": 95,
+      "precio_original": 95,
+      "categoria": "camisetas",
+      "subcategoria": "sudaderas",
+      "tallas": ["M", "L", "XL"],
+      "colores": ["Gris", "Negro"],
+      "imagen": "../assets/img/sudadera1(frente).jpg",
+      "imagenes_secundarias": [
+        "../assets/img/sudadera1(detras).jpg",
+        "../assets/img/sudadera1(lado).jpg",
+        "../assets/img/sudadera1(capucha).jpg"
+      ],
+      "en_oferta": false,
+      "descuento": 0,
+      "stock": 25,
+      "material": "Algodón",
+      "disponible": true,
+      "destacado": false,
+      "nuevo": false,
+      "valoracion": 4.3,
+      "reseñas": 45,
+      "tags": ["sudadera", "urbano", "cómoda", "casual", "diario"]
+    },
+    {
+      "id": 7,
+      "nombre": "Pantalón cargo beige",
+      "descripcion": "Pantalón cargo en tono beige, funcional y a la moda",
+      "precio": 140,
+      "precio_original": 140,
+      "categoria": "pantalones",
+      "subcategoria": "pantalones-cargo",
+      "tallas": ["S", "M", "L"],
+      "colores": ["Beige", "Caqui"],
+      "imagen": "../assets/img/pantalon2(frente).jpg",
+      "imagenes_secundarias": [
+        "../assets/img/pantalon2(detras).jpg",
+        "../assets/img/pantalon2(lado).jpg",
+        "../assets/img/pantalon2(cintura).jpg"
+      ],
+      "en_oferta": false,
+      "descuento": 0,
+      "stock": 14,
+      "material": "Algodón y poliéster",
+      "disponible": true,
+      "destacado": false,
+      "nuevo": true,
+      "valoracion": 4.4,
+      "reseñas": 23,
+      "tags": ["pantalón", "cargo", "beige", "funcional", "moda"]
+    },
+    {
+      "id": 8,
+      "nombre": "Chaqueta denim oversize",
+      "descripcion": "Chaqueta denim oversize, estilo relajado y contemporáneo",
+      "precio": 180,
+      "precio_original": 220,
+      "categoria": "chaquetas",
+      "subcategoria": "chaquetas-denim",
+      "tallas": ["M", "L", "XL"],
+      "colores": ["Azul denim", "Negro"],
+      "imagen": "../assets/img/chaqueta2(frente).jpg",
+      "imagenes_secundarias": [
+        "../assets/img/chaqueta2(detras).jpg"
+      ],
+      "en_oferta": true,
+      "descuento": 18,
+      "stock": 9,
+      "material": "Denim",
+      "disponible": true,
+      "destacado": true,
+      "nuevo": false,
+      "valoracion": 4.7,
+      "reseñas": 39,
+      "tags": ["chaqueta", "denim", "oversize", "relajado", "contemporáneo"]
+    },
+    {
+      "id": 9,
+      "nombre": "Top seda satinada",
+      "descripcion": "Top de seda satinada, elegante y perfecto para combinar",
+      "precio": 85,
+      "precio_original": 85,
+      "categoria": "camisetas",
+      "subcategoria": "tops",
+      "tallas": ["XS", "S", "M"],
+      "colores": ["Blanco", "Rosa pálido"],
+      "imagen": "../assets/img/top(frente).jpg",
+      "imagenes_secundarias": [
+        "../assets/img/top(tela).jpg",
+        "../assets/img/top(zoon).jpg"
+      ],
+      "en_oferta": false,
+      "descuento": 0,
+      "stock": 20,
+      "material": "Seda",
+      "disponible": true,
+      "destacado": false,
+      "nuevo": true,
+      "valoracion": 4.8,
+      "reseñas": 27,
+      "tags": ["top", "seda", "satinado", "elegante", "combinable"]
+    },
+    {
+      "id": 10,
+      "nombre": "Falda midi plisada",
+      "descripcion": "Falda midi plisada, femenina y con movimiento",
+      "precio": 120,
+      "precio_original": 120,
+      "categoria": "vestidos",
+      "subcategoria": "faldas",
+      "tallas": ["S", "M"],
+      "colores": ["Negro", "Bordó"],
+      "imagen": "../assets/img/falda1(frente).jpg",
+      "imagenes_secundarias": [
+        "../assets/img/falda1(frente2).jpg",
+        "../assets/img/falda1(cintura).jpg"
+      ],
+      "en_oferta": false,
+      "descuento": 0,
+      "stock": 16,
+      "material": "Poliéster",
+      "disponible": true,
+      "destacado": false,
+      "nuevo": false,
+      "valoracion": 4.5,
+      "reseñas": 33,
+      "tags": ["falda", "midi", "plisada", "femenina", "movimiento"]
+    },
+    {
+      "id": 11,
+      "nombre": "Pantalón cuero sintético",
+      "descripcion": "Pantalón de cuero sintético, moderno y con actitud",
+      "precio": 160,
+      "precio_original": 160,
+      "categoria": "pantalones",
+      "subcategoria": "pantalones-piel",
+      "tallas": ["S", "M", "L"],
+      "colores": ["Negro"],
+      "imagen": "../assets/img/pantalon1(frente).jpg",
+      "imagenes_secundarias": [
+        "../assets/img/pantalon1(detras).jpg",
+        "../assets/img/pantalon1(lado).jpg",
+        "../assets/img/pantalon1(lado2).jpg"
+      ],
+      "en_oferta": false,
+      "descuento": 0,
+      "stock": 7,
+      "material": "Cuero sintético",
+      "disponible": true,
+      "destacado": false,
+      "nuevo": true,
+      "valoracion": 4.6,
+      "reseñas": 18,
+      "tags": ["pantalón", "cuero", "sintético", "moderno", "actitud"]
+    },
+    {
+      "id": 12,
+      "nombre": "Chaqueta vaquera vintage",
+      "descripcion": "Chaqueta vaquera estilo vintage, auténtica y con carácter",
+      "precio": 145,
+      "precio_original": 190,
+      "categoria": "chaquetas",
+      "subcategoria": "chaquetas-vaqueras",
+      "tallas": ["M", "L"],
+      "colores": ["Azul denim", "Gris"],
+      "imagen": "../assets/img/chaqueta1(frente).jpg",
+      "imagenes_secundarias": [
+        "../assets/img/chaqueta1(detras).jpg",
+        "../assets/img/chaqueta1(cuello).jpg",
+        "../assets/img/chaqueta1(bolsa).jpg"
+      ],
+      "en_oferta": true,
+      "descuento": 24,
+      "stock": 11,
+      "material": "Denim",
+      "disponible": true,
+      "destacado": true,
+      "nuevo": false,
+      "valoracion": 4.9,
+      "reseñas": 41,
+      "tags": ["chaqueta", "vaquera", "vintage", "auténtica", "carácter"]
+    }
+  ],
+  "categorias": [
+    {
+      "id": "vestidos",
+      "nombre": "Vestidos",
+      "descripcion": "Vestidos para toda ocasión",
+      "icono": "dress"
+    },
+    {
+      "id": "chaquetas",
+      "nombre": "Chaquetas",
+      "descripcion": "Chaquetas y abrigos",
+      "icono": "jacket"
+    },
+    {
+      "id": "camisetas",
+      "nombre": "Camisetas",
+      "descripcion": "Camisas, tops y sudaderas",
+      "icono": "shirt"
+    },
+    {
+      "id": "pantalones",
+      "nombre": "Pantalones",
+      "descripcion": "Pantalones y faldas",
+      "icono": "pants"
+    }
+  ],
+  "subcategorias": [
+    {
+      "id": "vestidos-ocasion",
+      "nombre": "Vestidos de ocasión",
+      "categoria": "vestidos"
+    },
+    {
+      "id": "vestidos-midi",
+      "nombre": "Vestidos midi",
+      "categoria": "vestidos"
+    },
+    {
+      "id": "conjuntos",
+      "nombre": "Conjuntos",
+      "categoria": "vestidos"
+    },
+    {
+      "id": "faldas",
+      "nombre": "Faldas",
+      "categoria": "vestidos"
+    },
+    {
+      "id": "chaquetas-urbana",
+      "nombre": "Chaquetas urbanas",
+      "categoria": "chaquetas"
+    },
+    {
+      "id": "chaquetas-denim",
+      "nombre": "Chaquetas denim",
+      "categoria": "chaquetas"
+    },
+    {
+      "id": "chaquetas-vaqueras",
+      "nombre": "Chaquetas vaqueras",
+      "categoria": "chaquetas"
+    },
+    {
+      "id": "camisas-formales",
+      "nombre": "Camisas formales",
+      "categoria": "camisetas"
+    },
+    {
+      "id": "sudaderas",
+      "nombre": "Sudaderas",
+      "categoria": "camisetas"
+    },
+    {
+      "id": "tops",
+      "nombre": "Tops",
+      "categoria": "camisetas"
+    },
+    {
+      "id": "pantalones-cargo",
+      "nombre": "Pantalones cargo",
+      "categoria": "pantalones"
+    },
+    {
+      "id": "pantalones-piel",
+      "nombre": "Pantalones de piel",
+      "categoria": "pantalones"
+    }
+  ],
+  "metadata": {
+    "total_productos": 12,
+    "ultima_actualizacion": "2026-01-30",
+    "version": "1.0.0"
+  }
+}
