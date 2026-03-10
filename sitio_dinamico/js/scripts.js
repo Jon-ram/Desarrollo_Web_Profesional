@@ -5,7 +5,8 @@ const btnAgregarServicio = document.getElementById("btnAgregarServicio")
 const btnModoOscuro = document.getElementById("btnModoOscuro")
 const campoTexto = document.getElementById("campoTexto")
 const resultado = document.getElementById("resultado")
-const btnElinarServicio = document.getElementById("btnEliminarServicio")
+const btnElinarServicio = document.getElementById("btnEliminarServicio");
+const numeroServicio = document.getElementById("numeroServicio");
 
 //evento para cambiar titulo
 btnCambiarTitulo.addEventListener('click', ()=>{
@@ -19,7 +20,10 @@ btnAgregarServicio.addEventListener('click', ()=>{
     const nuevoServicio=document.createElement("li");
     nuevoServicio.textContent= texto
     listaServicios.appendChild(nuevoServicio)
+     numeroServicio.textContent =  listaServicios.children.length
 })
+
+numeroServicio.textContent =  listaServicios.children.length
 
 //Modo oscuro
 
