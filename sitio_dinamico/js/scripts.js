@@ -13,32 +13,62 @@ btnCambiarTitulo.addEventListener('click', ()=>{
     titulo.textContent = "Mi sitio web Dinamico";
 })
 
-//evento para agregar servicio
+//funcion para actualizar el contador de servicios
+function actualizarContador() {
+    numeroServicio.textContent =`Total de servicios: ${listaServicios.children.length}`;
+}
 
+//evento para agregar servicio
 btnAgregarServicio.addEventListener('click', ()=>{
     let texto = prompt('ingresa el texto que desees')
-    const nuevoServicio=document.createElement("li");
-    nuevoServicio.textContent= texto
-    listaServicios.appendChild(nuevoServicio)
-     numeroServicio.textContent =  listaServicios.children.length
+    if (texto && texto.trim() !== '') {
+        const nuevoServicio = document.createElement("li");
+        nuevoServicio.textContent = texto;
+        listaServicios.appendChild(nuevoServicio);
+        actualizarContador();
+    } else if (texto !== null) {
+        alert("El nombre no puede estar vacío"); // Mensaje simple
+    }
 })
 
-numeroServicio.textContent =  listaServicios.children.length
+//Evento para eliminar el ultimo servicio de la lista
+btnElinarServicio.addEventListener('click', ()=>{
+    if (listaServicios.lastElementChild)
+        listaServicios.removeChild(listaServicios.lastElementChild) 
+        actualizarContador(); 
+    }
+)
+
+// Evento para eliminar un servicio específico al hacer doble clic en él
+listaServicios.addEventListener('dblclick', (e) => {
+    if (e.target.tagName === 'LI') {
+        e.target.remove();
+        actualizarContador(); // Si creaste la función del paso 2
+    }
+});
 
 //Modo oscuro
+//btnModoOscuro.addEventListener('click', ()=>{
+//    document.body.classList.toggle("modo-oscuro")
+//})
 
-btnModoOscuro.addEventListener('click', ()=>{
-    document.body.classList.toggle("modo-oscuro")
-})
+// Cargar preferencia (usando true/false)
+if (localStorage.getItem('modoOscuro') === 'true') {
+    document.body.classList.add('modo-oscuro');
+}
 
-//
+btnModoOscuro.addEventListener('click', () => {
+    document.body.classList.toggle('modo-oscuro');
+    
+    // Guarda directamente si tiene la clase o no
+    localStorage.setItem('modoOscuro', document.body.classList.contains('modo-oscuro'));
+});
 
+//Evento para mostrar lo que se escribe en el campo de texto en tiempo real
 campoTexto.addEventListener('keyup', ()=>{
     resultado.textContent="Escribiendo: " + campoTexto.value
 })
 
-btnElinarServicio.addEventListener('click', ()=>{
-    if (listaServicios.lastElementChild)
-        listaServicios.removeChild(listaServicios.lastElementChild) 
-})
+//Inicializamos el contador de servicios al cargar la página
+actualizarContador();
 
