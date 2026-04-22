@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Mi Sitio Web</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <header id="main-header">
+        <div class="nav-container">
+            <div class="logo">MiSitio</div>
+            <ul id="navbar">
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#carousel">Galería</a></li>
+                <li><a href="#features">Nosotros</a></li>
+                <li><a href="#interactivo">Contacto</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- CARRUSEL DE IMÁGENES -->
+    <section id="carousel" class="carousel-section">
+        <div class="carousel-container">
+            <div class="carousel-inner" id="carouselInner">
+                <div class="slide active" data-index="0">
+                    <img src="img/imagen(1).jpg" alt="Paisaje montaña">
+                </div>
+                <div class="slide" data-index="1">
+                    <img src="img/imagen(2).jpg" alt="Lago y naturaleza">
+                </div>
+                <div class="slide" data-index="2">
+                    <img src="img/imagen(3).jpg" alt="Hoja de agua">
+                </div>
+                <div class="slide" data-index="3">
+                    <img src="img/imagen(4).jpg" alt="Animales pradera">
+                </div>
+            </div>
+            <button class="carousel-btn" id="prev" aria-label="Anterior">‹</button>
+            <button class="carousel-btn" id="next" aria-label="Siguiente">›</button>
+        </div>
+        <div class="carousel-dots" id="dotsContainer"></div>
+    </section>
+
+    <!-- SECCIONES -->
+    <section id="features" class="content-section hidden">
+        <h2>Bienvenidos a Nuestro Sitio</h2>
+        <p>Somos un espacio dedicado a compartir experiencias, inspiración y contenido visual que conecta con la naturaleza y la creatividad.</p>
+        <p>Nuestro objetivo es brindarte una experiencia agradable mientras exploras cada sección de nuestra página.</p>
+    </section>
+
+    <section class="content-section hidden">
+        <h2>Nuestra Misión</h2>
+        <p>
+            Buscamos ofrecer contenido de calidad que inspire a las personas a descubrir nuevos lugares, valorar el entorno natural
+            y disfrutar de momentos únicos. Creemos en la importancia de la conexión con el mundo que nos rodea.
+        </p>
+    </section>
+
+    <section class="content-section hidden">
+        <h2>Visión</h2>
+        <p>
+            Aspiramos a convertirnos en una plataforma de referencia donde los usuarios puedan encontrar ideas, inspiración
+            y contenido que motive a explorar, aprender y crecer constantemente.
+        </p>
+    </section>
+
+    <section class="content-section hidden">
+        <h2>Nuestros Valores</h2>
+        <div class="cards-grid" id="cardsGrid">
+            <div class="card" data-card="1">
+                <h3>Creatividad</h3>
+                <p>Innovamos en cada detalle</p>
+            </div>
+            <div class="card" data-card="2">
+                <h3>Compromiso</h3>
+                <p>Siempre enfocados en la calidad</p>
+            </div>
+            <div class="card" data-card="3">
+                <h3>Pasión</h3>
+                <p>Amamos lo que hacemos</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PANEL -->
+    <div class="toggle-panel-area" id="interactivo">
+        <button id="toggle-btn">Ver más información</button>
+        <div id="panel" class="hidden">
+            <h3>Contáctanos</h3>
+            <p>Si deseas saber más sobre nosotros o colaborar en algún proyecto, no dudes en ponerte en contacto.</p>
+            <p>Estamos siempre abiertos a nuevas ideas y oportunidades.</p>
+        </div>
+    </div>
+
+    <!-- Sección extra -->
+    <section class="content-section hidden">
+        <h2>Explora Más</h2>
+        <p>Continúa navegando por nuestro sitio para descubrir contenido interesante, imágenes sorprendentes y mucho más.</p>
+        <p>Gracias por visitarnos y ser parte de esta experiencia.</p>
+    </section>
+
+    <footer>
+        <p>© 2026 MiSitio - Todos los derechos reservados</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="pagina-dashboard">
+
+    <!-- Sidebar -->
+    <aside class="sidebar sidebar-admin">
+        <div class="sidebar-brand">
+            <div class="brand-icon">⬡</div>
+            <span class="brand-name">AuthSystem</span>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="#" class="nav-item active"><span class="nav-icon">📊</span> Dashboard</a>
+            <a href="#" class="nav-item"><span class="nav-icon">👥</span> Usuarios</a>
+            <a href="#" class="nav-icon-link nav-item"><span class="nav-icon">📋</span> Reportes</a>
+            <a href="#" class="nav-item"><span class="nav-icon">⚙️</span> Configuración</a>
+            <a href="#" class="nav-item"><span class="nav-icon">📜</span> Auditoría</a>
+        </nav>
+        <div class="sidebar-footer">
+            <div class="sidebar-user">
+                <div class="avatar avatar-admin">A</div>
+                <div class="sidebar-user-info">
+                    <span class="sidebar-user-name" id="navEmail">admin@test.com</span>
+                    <span class="badge-rol badge-admin">Admin</span>
+                </div>
+            </div>
+            <button class="btn-logout" onclick="cerrarSesion()">↩ Salir</button>
+        </div>
+    </aside>
+
+    <!-- Main content -->
+    <main class="dashboard-main">
+
+        <!-- Top bar -->
+        <header class="topbar">
+            <div>
+                <h1 class="page-title" id="saludo">Bienvenido, Administrador</h1>
+                <p class="page-subtitle">Panel de control · Acceso total al sistema</p>
+            </div>
+            <div class="topbar-actions">
+                <span class="topbar-date" id="fechaActual"></span>
+            </div>
+        </header>
+
+        <!-- Stat cards -->
+        <div class="cards-grid">
+            <div class="card card-accent-1">
+                <div class="card-icon-bg">👥</div>
+                <div class="card-info">
+                    <div class="card-numero">2</div>
+                    <div class="card-label">Usuarios registrados</div>
+                </div>
+                <div class="card-trend up">↑ activos</div>
+            </div>
+            <div class="card card-accent-2">
+                <div class="card-icon-bg">🛡️</div>
+                <div class="card-info">
+                    <div class="card-numero">1</div>
+                    <div class="card-label">Administradores</div>
+                </div>
+                <div class="card-trend">sin cambios</div>
+            </div>
+            <div class="card card-accent-3">
+                <div class="card-icon-bg">👤</div>
+                <div class="card-info">
+                    <div class="card-numero">1</div>
+                    <div class="card-label">Usuarios estándar</div>
+                </div>
+                <div class="card-trend">sin cambios</div>
+            </div>
+            <div class="card card-accent-4">
+                <div class="card-icon-bg">✅</div>
+                <div class="card-info">
+                    <div class="card-numero">100%</div>
+                    <div class="card-label">Disponibilidad</div>
+                </div>
+                <div class="card-trend up">↑ operativo</div>
+            </div>
+        </div>
+
+        <!-- Content grid -->
+        <div class="content-grid">
+
+            <!-- Users table -->
+            <div class="seccion seccion-wide">
+                <div class="seccion-header">
+                    <h3>👥 Usuarios del sistema</h3>
+                    <button class="btn-small">+ Agregar</button>
+                </div>
+                <table class="tabla-usuarios">
+                    <thead>
+                        <tr>
+                            <th>Usuario</th>
+                            <th>Correo electrónico</th>
+                            <th>Rol</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="user-cell">
+                                    <div class="avatar avatar-admin sm">A</div>
+                                    <span>Admin</span>
+                                </div>
+                            </td>
+                            <td>admin@test.com</td>
+                            <td><span class="badge-rol badge-admin">Admin</span></td>
+                            <td><span class="status-dot active"></span> Activo</td>
+                            <td><button class="btn-table">Editar</button></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="user-cell">
+                                    <div class="avatar avatar-usuario sm">U</div>
+                                    <span>Usuario</span>
+                                </div>
+                            </td>
+                            <td>user@test.com</td>
+                            <td><span class="badge-rol badge-usuario">Usuario</span></td>
+                            <td><span class="status-dot active"></span> Activo</td>
+                            <td><button class="btn-table">Editar</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+            <!-- Recent activity -->
+            <div class="seccion">
+                <div class="seccion-header">
+                    <h3>📜 Actividad reciente</h3>
+                </div>
+                <ul class="activity-list">
+                    <li>
+                        <span class="activity-dot"></span>
+                        <div>
+                            <p class="activity-text">Login exitoso — admin@test.com</p>
+                            <p class="activity-time">Hace un momento</p>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="activity-dot warning"></span>
+                        <div>
+                            <p class="activity-text">Intento fallido — unknown@mail.com</p>
+                            <p class="activity-time">Hace 12 min</p>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="activity-dot"></span>
+                        <div>
+                            <p class="activity-text">Login exitoso — user@test.com</p>
+                            <p class="activity-time">Hace 1 hora</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        const email = sessionStorage.getItem('usuarioEmail');
+        const rol   = sessionStorage.getItem('usuarioRol');
+
+        if (!email || rol !== 'admin') {
+            window.location.href = 'index.html';
+        } else {
+            document.getElementById('navEmail').textContent = email;
+            document.getElementById('saludo').textContent   = `Bienvenido, ${email.split('@')[0]}`;
+        }
+
+        // Fecha actual
+        const ahora = new Date();
+        document.getElementById('fechaActual').textContent =
+            ahora.toLocaleDateString('es-MX', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+
+        function cerrarSesion() {
+            sessionStorage.clear();
+            window.location.href = 'index.html';
+        }
+    </script>
+
+</body>
+</html>

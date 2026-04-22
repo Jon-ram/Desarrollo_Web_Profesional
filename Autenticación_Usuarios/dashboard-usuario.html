@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Usuario</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="pagina-dashboard">
+
+    <!-- Sidebar -->
+    <aside class="sidebar sidebar-usuario">
+        <div class="sidebar-brand">
+            <div class="brand-icon">⬡</div>
+            <span class="brand-name">AuthSystem</span>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="#" class="nav-item active"><span class="nav-icon">🏠</span> Mi Panel</a>
+            <a href="#" class="nav-item"><span class="nav-icon">📁</span> Mis Documentos</a>
+            <a href="#" class="nav-item"><span class="nav-icon">👤</span> Mi Perfil</a>
+        </nav>
+        <div class="sidebar-footer">
+            <div class="sidebar-user">
+                <div class="avatar avatar-usuario">U</div>
+                <div class="sidebar-user-info">
+                    <span class="sidebar-user-name" id="navEmail">user@test.com</span>
+                    <span class="badge-rol badge-usuario">Usuario</span>
+                </div>
+            </div>
+            <button class="btn-logout" onclick="cerrarSesion()">↩ Salir</button>
+        </div>
+    </aside>
+
+    <!-- Main content -->
+    <main class="dashboard-main">
+
+        <!-- Top bar -->
+        <header class="topbar">
+            <div>
+                <h1 class="page-title" id="saludo">Bienvenido</h1>
+                <p class="page-subtitle">Tu espacio personal · Acceso limitado</p>
+            </div>
+            <div class="topbar-actions">
+                <span class="topbar-date" id="fechaActual"></span>
+            </div>
+        </header>
+
+        <!-- Stat cards -->
+        <div class="cards-grid">
+            <div class="card card-accent-3">
+                <div class="card-icon-bg">📁</div>
+                <div class="card-info">
+                    <div class="card-numero">3</div>
+                    <div class="card-label">Mis documentos</div>
+                </div>
+            </div>
+            <div class="card card-accent-2">
+                <div class="card-icon-bg">🟢</div>
+                <div class="card-info">
+                    <div class="card-numero">1</div>
+                    <div class="card-label">Sesión activa</div>
+                </div>
+                <div class="card-trend up">↑ en línea</div>
+            </div>
+        </div>
+
+        <!-- Content grid -->
+        <div class="content-grid">
+
+            <!-- Mi información -->
+            <div class="seccion">
+                <div class="seccion-header">
+                    <h3>👤 Mi información</h3>
+                </div>
+                <div class="profile-card">
+                    <div class="avatar avatar-usuario lg">U</div>
+                    <div class="profile-info">
+                        <p class="profile-name" id="infoEmail">Cargando...</p>
+                        <span class="badge-rol badge-usuario">Usuario estándar</span>
+                        <p class="profile-status"><span class="status-dot active"></span> Sesión activa</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mis documentos -->
+            <div class="seccion">
+                <div class="seccion-header">
+                    <h3>📁 Mis documentos</h3>
+                    <button class="btn-small">Ver todos</button>
+                </div>
+                <ul class="doc-list">
+                    <li class="doc-item">
+                        <span class="doc-icon">📄</span>
+                        <div class="doc-info">
+                            <p class="doc-name">Contrato de servicio.pdf</p>
+                            <p class="doc-date">Actualizado hace 2 días</p>
+                        </div>
+                        <button class="btn-table">Ver</button>
+                    </li>
+                    <li class="doc-item">
+                        <span class="doc-icon">📊</span>
+                        <div class="doc-info">
+                            <p class="doc-name">Reporte mensual.xlsx</p>
+                            <p class="doc-date">Actualizado hace 1 semana</p>
+                        </div>
+                        <button class="btn-table">Ver</button>
+                    </li>
+                    <li class="doc-item">
+                        <span class="doc-icon">📝</span>
+                        <div class="doc-info">
+                            <p class="doc-name">Notas personales.txt</p>
+                            <p class="doc-date">Actualizado hace 3 semanas</p>
+                        </div>
+                        <button class="btn-table">Ver</button>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        const email = sessionStorage.getItem('usuarioEmail');
+        const rol   = sessionStorage.getItem('usuarioRol');
+
+        if (!email || rol !== 'usuario') {
+            window.location.href = 'index.html';
+        } else {
+            document.getElementById('navEmail').textContent  = email;
+            document.getElementById('saludo').textContent    = `Hola, ${email.split('@')[0]}`;
+            document.getElementById('infoEmail').textContent = email;
+        }
+
+        const ahora = new Date();
+        document.getElementById('fechaActual').textContent =
+            ahora.toLocaleDateString('es-MX', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+
+        function cerrarSesion() {
+            sessionStorage.clear();
+            window.location.href = 'index.html';
+        }
+    </script>
+
+</body>
+</html>
